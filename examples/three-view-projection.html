@@ -2,99 +2,73 @@
 <html lang="zh-CN">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>投影笔记 · 求点 K 的三面投影</title>
+<title>求点 K 的三面投影 · 工程图学研习</title>
 <style>
-:root{--paper:#f5f4ed;--ink:#282722;--blue:#1b365d;--muted:#625d52;--rule:#d5cfc0}
+:root{--paper:#f5f4ed;--ink:#282722;--blue:#1b365d;--muted:#625d52;--rule:#d5cfc0;--diagram:#fbfaf5;--faded:#81796b;--button-bg:#1b365d;--button-ink:#fff;color-scheme:light dark}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 "Songti SC","Noto Serif CJK SC",serif}
 main{max-width:820px;margin:auto;padding:clamp(18px,5vw,48px)}
 header{border-top:2px solid var(--blue);padding-top:16px}
 small{color:var(--muted)}h1{font-size:clamp(27px,5vw,44px);line-height:1.2;font-weight:600;margin:8px 0 14px}p{margin:0 0 12px}
-figure{margin:18px 0;background:#fbfaf5;border:1px solid var(--rule)}svg{display:block;width:100%;height:auto}figcaption{border-top:1px solid var(--rule);padding:7px 12px;color:var(--muted);font-size:13px}
+figure{margin:18px 0;background:var(--diagram);border:1px solid var(--rule)}svg{display:block;width:100%;height:auto}figcaption{border-top:1px solid var(--rule);padding:7px 12px;color:var(--muted);font-size:13px}
 .controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding-block:10px;border-block:1px solid var(--rule)}
 button{font:inherit;color:var(--blue);background:transparent;border:1px solid var(--rule);border-radius:4px;padding:7px 13px;min-height:44px;cursor:pointer}
-#next{background:var(--blue);color:white}button:disabled{opacity:.42;cursor:default}button:focus-visible{outline:2px solid var(--blue);outline-offset:3px}#count{margin-right:auto;font-size:14px}
+#next{background:var(--button-bg);color:var(--button-ink)}button:disabled{opacity:.42;cursor:default}button:focus-visible{outline:2px solid var(--blue);outline-offset:3px}#count{margin-right:auto;font-size:14px}
 .explain{padding-top:14px;min-height:145px}h2{margin:0 0 5px;color:var(--blue);font-size:21px}
 .why{color:var(--muted)}details{border-top:1px solid var(--rule);padding-top:12px}summary{cursor:pointer;color:var(--blue)}
-svg line,svg path,svg circle{stroke:currentColor;vector-effect:non-scaling-stroke}svg line,svg path{fill:none;stroke-width:1.25}svg circle{fill:currentColor}svg text{fill:currentColor;font-size:19px}svg .plane{font-size:17px;fill:#625d52}svg .aux{stroke-dasharray:4 4}svg .old{color:#81796b}svg .new,svg .answer{color:var(--blue)}svg .new line,svg .new path{stroke-width:1.65}svg .old .temporary{display:none}svg .found{font-weight:bold}
+svg line,svg path,svg circle{stroke:currentColor;vector-effect:non-scaling-stroke}svg line,svg path{fill:none;stroke-width:1.25}svg circle{fill:currentColor}svg text{fill:currentColor;font-size:19px}svg .plane{font-size:17px;fill:var(--muted)}svg .aux{stroke-dasharray:4 4}svg .old{color:var(--faded)}svg .new,svg .answer{color:var(--blue)}svg .new line,svg .new path{stroke-width:1.65}svg .old .temporary{display:none}svg .found{font-weight:bold}
+
+a{color:var(--blue)}.catalog{list-style:none;padding:0}.catalog li{padding:14px 0;border-bottom:1px solid var(--rule)}
+svg .center{stroke-dasharray:10 4 2 4}svg .axis{stroke-width:1}svg .answer line{stroke-width:1.6}
+svg .dim{font-size:15px}svg .hidden-edge{stroke-dasharray:6 4}svg text{stroke:none}
+
+.is-hidden{display:none}
+svg .ring{fill:none}svg .ring,svg .ring.aux{stroke-width:1.25}
+@media(prefers-color-scheme:dark){:root{--paper:#242218;--ink:#ebe5d7;--blue:#abc9eb;--muted:#beb6a5;--rule:#5b5547;--diagram:#211f15;--faded:#a19a8b;--button-bg:#223d5f;--button-ink:#fff}}
 </style>
 <main>
-<header><small>工程图学 · 2024 秋期中 · 第 2 题（1）</small>
-<h1>求点 K 的三面投影</h1>
-<p>已知直线 AB 的正面投影和水平投影。在直线 AB 上找一点 K，使 K 到 Y 轴的距离为 30 mm，并作出 K 的三面投影。</p></header>
-<figure>
-<svg id="drawing" viewBox="0 0 570 380" role="img" aria-label="点 K 的三面投影分步作图"></svg>
-<figcaption>依据原题重绘的教学示意图。图中距离按所用示意坐标绘制。</figcaption>
-</figure>
+<header><small><a href="../">工程图学研习</a> / 2024 秋期中 · 第 2 题（1）</small>
+<h1>求点 K 的三面投影</h1><p>已知直线 AB 的正面投影和水平投影。在直线 AB 上找一点 K，使 K 到 Y 轴的距离为 30 mm，并作出 K 的三面投影。</p></header>
+<figure><svg viewBox="0 0 570 380" id="drawing" role="img" aria-label="求点 K 的三面投影 的分步作图"><g data-layer="given"><line x1="82" y1="232" x2="514" y2="232" class=""/><line x1="303" y1="38" x2="303" y2="356" class=""/><text x="62" y="238" class="">X</text><text x="310" y="252" class="">O</text><text x="312" y="36" class="">Z</text><text x="522" y="237" class="">Y<tspan baseline-shift="sub" font-size="13">W</tspan></text><text x="312" y="360" class="">Y<tspan baseline-shift="sub" font-size="13">H</tspan></text><text x="83" y="49" class="plane">正面 V</text><text x="83" y="355" class="plane">水平 H</text><text x="440" y="49" class="plane">侧面 W</text><line x1="193" y1="102" x2="193" y2="302" class="aux"/><line x1="273" y1="172" x2="273" y2="382" class="aux"/><line x1="193" y1="102" x2="273" y2="172" class=""/><line x1="193" y1="302" x2="273" y2="382" class=""/><text x="173" y="99" class="">a′</text><text x="281" y="169" class="">b′</text><text x="173" y="307" class="">a</text><text x="281" y="377" class="">b</text></g><g data-layer="radius" class="is-hidden"><line x1="303" y1="232" x2="208.4693" y2="115.5356" class=""/><circle cx="208.4693" cy="115.5356" r="2.7"/><text x="186.4693" y="137.5356" class="found">k′</text></g><g data-layer="radius-marks" class="is-hidden"><path class="" d="M154.878,208.3381 A150,150 0 0,1 274.3193,84.7675"/><text x="207.7347" y="192.7678" class="">30 mm</text></g><g data-layer="vertical-projection" class="is-hidden"><line x1="208.4693" y1="115.5356" x2="208.4693" y2="317.4693" class="aux"/><circle cx="208.4693" cy="317.4693" r="2.7"/><text x="190.4693" y="335.4693" class="found">k</text></g><g data-layer="depth-transfer" class="is-hidden"><line x1="303" y1="232" x2="426" y2="355" class="aux"/><line x1="208.4693" y1="317.4693" x2="388.4693" y2="317.4693" class="aux"/><line x1="388.4693" y1="317.4693" x2="388.4693" y2="115.5356" class="aux"/><line x1="208.4693" y1="115.5356" x2="388.4693" y2="115.5356" class="aux"/><circle cx="388.4693" cy="115.5356" r="2.7"/><text x="397.4693" y="105.5356" class="found">k″</text></g><g data-layer="depth-transfer-marks" class="is-hidden"><text x="429" y="357" class="">45°</text></g><g data-layer="answer-geometry" class="is-hidden"><circle cx="208.4693" cy="115.5356" r="2.7"/><text x="186.4693" y="137.5356" class="found">k′</text><circle cx="208.4693" cy="317.4693" r="2.7"/><text x="190.4693" y="335.4693" class="found">k</text><circle cx="388.4693" cy="115.5356" r="2.7"/><text x="397.4693" y="105.5356" class="found">k″</text></g></svg><figcaption>依据原题重绘的教学示意图。图中距离按所用示意坐标绘制。</figcaption></figure>
 <nav class="controls" aria-label="作图步骤">
-<span id="count"></span><button id="prev">上一步</button><button id="next">下一步</button><button id="finish">完成图</button>
+<span id="count">题图</span><button id="prev" disabled>上一步</button><button id="next">下一步</button><button id="finish">完成图</button>
 </nav>
-<section class="explain" aria-live="polite"><h2 id="heading"></h2><p id="action"></p><p id="why" class="why"></p></section>
-<details><summary>为什么正面图里可以直接量取这段距离？</summary>
-<p>设 K 的空间坐标为 (x, y, z)。K 到 Y 轴的距离为 √(x² + z²)。侧面投影会丢掉 x，水平投影会丢掉 z。正面投影 k′ 同时保留 x 和 z，所以在正面图中，圆心为 O 的 30 mm 圆直接给出距离条件。也可从正面图先定点，再转到其他两面。</p>
-</details>
-<noscript>请在支持 JavaScript 的浏览器中打开此文件，以切换作图步骤。</noscript>
-</main>
+<section class="explain" aria-live="polite"><h2 id="heading">读题</h2><p id="action">先找出 a′b′ 和 ab，分别是 AB 的正面投影和水平投影。</p><p id="why" class="why">要找的是同一个空间点 K 的三个投影。</p></section>
+<details><summary>为什么正面图里可以直接量取这段距离？</summary><p>设 K 的空间坐标为 (x, y, z)。K 到 Y 轴的距离为 √(x² + z²)。侧面投影会丢掉 x，水平投影会丢掉 z。正面投影 k′ 同时保留 x 和 z，所以在正面图中，圆心为 O 的 30 mm 圆直接给出距离条件。也可从正面图先定点，再转到其他两面。</p></details>
+<noscript>启用 JavaScript 后可查看分步作图。</noscript>
+<script type="application/json" id="lesson">{"given": ["given"], "intro": {"title": "读题", "action": "先找出 a′b′ 和 ab，分别是 AB 的正面投影和水平投影。", "reason": "要找的是同一个空间点 K 的三个投影。"}, "steps": [{"title": "在正面图中量出 30 mm", "action": "以 O 为圆心、30 mm 为半径作圆弧，与 a′b′ 相交，取交点 k′。", "reason": "从正面看，Y 轴投影为 O。正面投影 k′ 到 O 的距离，就是 K 到 Y 轴的距离。", "add": ["radius"], "show": ["radius-marks"]}, {"title": "向下投影，得到 k", "action": "过 k′ 作垂直于 X 轴的投影线，与 ab 相交，得到 k。", "reason": "k′ 与 k 对应同一个点，所以两者在同一条投影连线上。", "add": ["vertical-projection"]}, {"title": "转移深度，得到 k″", "action": "过 O 作右下方 45° 线。从 k 水平引线，碰到 45° 线后竖直向上，与 k′ 的水平引线相交，得到 k″。", "reason": "45° 线让 k 到 X 轴的距离等于 k″ 到 Z 轴的距离。k′ 和 k″ 等高。", "add": ["depth-transfer"], "show": ["depth-transfer-marks"]}], "answer": {"title": "完成图", "action": "三面投影为 k′、k、k″。", "show": ["answer-geometry"], "reason": "检查 k′ 是否在 a′b′ 上、k 是否在 ab 上，以及 k′ 和 k″ 是否等高。"}}</script>
 <script>
-const origin = [303, 232];
-const scale = 5;
-const a = [22, 14, 26], b = [6, 30, 12];
-const delta = b.map((value, i) => value - a[i]);
-const [x, , z] = a, [dx, , dz] = delta;
-const qa = dx*dx + dz*dz, qb = x*dx + z*dz, qc = x*x + z*z - 30*30;
-const t = (-qb - Math.sqrt(qb*qb - qa*qc))/qa;
-const k = a.map((value, i) => value + t*delta[i]);
-const V = ([x,y,z]) => [origin[0]-scale*x, origin[1]-scale*z];
-const H = ([x,y,z]) => [origin[0]-scale*x, origin[1]+scale*y];
-const W = ([x,y,z]) => [origin[0]+scale*y, origin[1]-scale*z];
-const v = V(k), h = H(k), w = W(k);
-const turn = [w[0],h[1]], [ox,oy] = origin;
-const line = (p,q,cls='') => `<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" class="${cls}"/>`;
-const label = (p,txt,dx=0,dy=0,cls='') => `<text x="${p[0]+dx}" y="${p[1]+dy}" class="${cls}">${txt}</text>`;
-const dot = (p,txt,dx,dy) => `<circle cx="${p[0]}" cy="${p[1]}" r="3"/>`+label(p,txt,dx,dy,'found');
-const base = line([82,oy],[514,oy])+line([ox,38],[ox,356])
- + label([62,oy],'X',0,6)+label(origin,'O',7,20)+label([ox,36],'Z',9,0)
- + label([514,oy],'Y<tspan baseline-shift="sub" font-size="13">W</tspan>',8,5)
- + label([ox,354],'Y<tspan baseline-shift="sub" font-size="13">H</tspan>',9,6)
- + label([83,49],'正面 V',0,0,'plane')+label([83,355],'水平 H',0,0,'plane')+label([440,49],'侧面 W',0,0,'plane')
- + line(V(a),H(a),'aux')+line(V(b),H(b),'aux')+line(V(a),V(b))+line(H(a),H(b))
- + label(V(a),'a′',-20,-3)+label(V(b),'b′',8,-3)+label(H(a),'a',-20,5)+label(H(b),'b',8,-5);
-const arcPoint = angle => [ox + 150*Math.cos(angle), oy + 150*Math.sin(angle)].join(",");
-const geometry = [
- `<path class="temporary" d="M ${arcPoint(3.30)} A 150,150 0 0 1 ${arcPoint(4.52)}"/>`
- + line(origin,v)+label([(ox+v[0])/2,(oy+v[1])/2],'30 mm',-48,19,'temporary')
- + dot(v,'k′',-22,22),
- line(v,h,'aux')+dot(h,'k',-18,18),
- line(origin,[426,355],'aux')+line(h,turn,'aux')+line(turn,w,'aux')+line(v,w,'aux')
- + label([415,355],'45°',14,2,'temporary')+dot(w,'k″',9,-10)
-];
-const steps = [
- ['读题','先找出 a′b′ 和 ab，分别是 AB 的正面投影和水平投影。','要找的是同一个空间点 K 的三个投影。'],
- ['在正面图中量出 30 mm','以 O 为圆心、30 mm 为半径作圆弧，与 a′b′ 相交，取交点 k′。','从正面看，Y 轴投影为 O。正面投影 k′ 到 O 的距离，就是 K 到 Y 轴的距离。'],
- ['向下投影，得到 k','过 k′ 作垂直于 X 轴的投影线，与 ab 相交，得到 k。','k′ 与 k 对应同一个点，所以两者在同一条投影连线上。'],
- ['转移深度，得到 k″','过 O 作右下方 45° 线。从 k 水平引线，碰到 45° 线后竖直向上，与 k′ 的水平引线相交，得到 k″。','45° 线让 k 到 X 轴的距离等于 k″ 到 Z 轴的距离。k′ 和 k″ 等高。'],
- ['核对结果','三面投影为 k′、k、k″。','检查 k′ 是否在 a′b′ 上、k 是否在 ab 上，以及 k′ 和 k″ 是否等高。']
-];
-// The lower endpoint lies inside the distance circle. Choose the intersection on AB.
-const drawing = document.querySelector('#drawing');
-const prev = document.querySelector('#prev'), next = document.querySelector('#next'), finish = document.querySelector('#finish');
+const config = JSON.parse(document.getElementById('lesson').textContent);
+const get = id => document.getElementById(id);
+const layers = new Map(Array.from(get('drawing').children, group => [group.dataset.layer, group]));
+const previous = get('prev'), next = get('next'), finish = get('finish');
 let current = 0;
-function render() {
- const done = current === steps.length-1;
- drawing.innerHTML = base + (done
-  ? `<g class="answer">${dot(v,'k′',-22,22)+dot(h,'k',-18,18)+dot(w,'k″',9,-10)}</g>`
-  : geometry.slice(0,current).map((part,index) => `<g class="${index===current-1?'new':'old'}">${part}</g>`).join(''));
- const [title,action,why] = steps[current];
- document.querySelector('#heading').textContent = title;
- document.querySelector('#action').textContent = action;
- document.querySelector('#why').textContent = why;
- document.querySelector('#count').textContent = done ? '完成图' : current ? `第 ${current} 步 / 共 3 步` : '题图';
- prev.disabled = current===0;
- next.disabled = done;
- finish.disabled = done;
+
+function render(position) {
+  current = position;
+  const last = config.steps.length + 1;
+  const done = position === last;
+  const step = done ? config.answer : position ? config.steps[position - 1] : config.intro;
+  const given = new Set(config.given);
+  const earlier = new Set(done ? [] : config.steps.slice(0, Math.max(0, position - 1)).flatMap(item => item.add || []));
+  const highlight = new Set(done ? step.show : [...(step.add || []), ...(step.show || [])]);
+
+  for (const [id, group] of layers) {
+    const state = highlight.has(id) ? (done ? 'answer' : 'new') :
+      given.has(id) ? '' : earlier.has(id) ? 'old' : 'is-hidden';
+    group.setAttribute('class', state);
+  }
+
+  get('heading').textContent = step.title;
+  get('action').textContent = step.action;
+  get('why').textContent = step.reason || '';
+  get('count').textContent = done ? '完成图' : position ? '第 ' + position + ' 步 / 共 ' + config.steps.length + ' 步' : '题图';
+  previous.disabled = position === 0;
+  next.disabled = finish.disabled = done;
 }
-prev.onclick = () => { current--; render(); };
-next.onclick = () => { current++; render(); };
-finish.onclick = () => { current=steps.length-1; render(); };
-render();
+
+previous.onclick = () => render(current - 1);
+next.onclick = () => render(current + 1);
+finish.onclick = () => render(config.steps.length + 1);
 </script>
+</main>
 </html>

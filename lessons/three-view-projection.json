@@ -1,0 +1,116 @@
+{
+  "source": "2024 秋期中 · 第 2 题（1）",
+  "title": "求点 K 的三面投影",
+  "problem": "已知直线 AB 的正面投影和水平投影。在直线 AB 上找一点 K，使 K 到 Y 轴的距离为 30 mm，并作出 K 的三面投影。",
+  "caption": "依据原题重绘的教学示意图。图中距离按所用示意坐标绘制。",
+  "size": [
+    570,
+    380
+  ],
+  "layers": {
+    "given": [
+      {"type": "line", "from": [82.0, 232.0], "to": [514.0, 232.0]},
+      {"type": "line", "from": [303.0, 38.0], "to": [303.0, 356.0]},
+      {"type": "label", "at": [62.0, 238.0], "text": "X"},
+      {"type": "label", "at": [310.0, 252.0], "text": "O"},
+      {"type": "label", "at": [312.0, 36.0], "text": "Z"},
+      {"type": "label", "at": [522.0, 237.0], "text": "Y", "subscript": "W"},
+      {"type": "label", "at": [312.0, 360.0], "text": "Y", "subscript": "H"},
+      {"type": "label", "at": [83.0, 49.0], "text": "正面 V", "role": "view"},
+      {"type": "label", "at": [83.0, 355.0], "text": "水平 H", "role": "view"},
+      {"type": "label", "at": [440.0, 49.0], "text": "侧面 W", "role": "view"},
+      {"type": "line", "from": [193.0, 102.0], "to": [193.0, 302.0], "role": "construction"},
+      {"type": "line", "from": [273.0, 172.0], "to": [273.0, 382.0], "role": "construction"},
+      {"type": "line", "from": [193.0, 102.0], "to": [273.0, 172.0]},
+      {"type": "line", "from": [193.0, 302.0], "to": [273.0, 382.0]},
+      {"type": "label", "at": [173.0, 99.0], "text": "a′"},
+      {"type": "label", "at": [281.0, 169.0], "text": "b′"},
+      {"type": "label", "at": [173.0, 307.0], "text": "a"},
+      {"type": "label", "at": [281.0, 377.0], "text": "b"}
+    ],
+    "radius": [
+      {"type": "line", "from": [303.0, 232.0], "to": [208.4693, 115.5356]},
+      {"type": "dot", "at": [208.4693, 115.5356]},
+      {"type": "label", "at": [186.4693, 137.5356], "text": "k′", "role": "result"}
+    ],
+    "radius-marks": [
+      {"type": "arc", "from": [154.878, 208.3381], "to": [274.3193, 84.7675], "radius": 150.0, "clockwise": true},
+      {"type": "label", "at": [207.7347, 192.7678], "text": "30 mm"}
+    ],
+    "vertical-projection": [
+      {"type": "line", "from": [208.4693, 115.5356], "to": [208.4693, 317.4693], "role": "construction"},
+      {"type": "dot", "at": [208.4693, 317.4693]},
+      {"type": "label", "at": [190.4693, 335.4693], "text": "k", "role": "result"}
+    ],
+    "depth-transfer": [
+      {"type": "line", "from": [303.0, 232.0], "to": [426.0, 355.0], "role": "construction"},
+      {"type": "line", "from": [208.4693, 317.4693], "to": [388.4693, 317.4693], "role": "construction"},
+      {"type": "line", "from": [388.4693, 317.4693], "to": [388.4693, 115.5356], "role": "construction"},
+      {"type": "line", "from": [208.4693, 115.5356], "to": [388.4693, 115.5356], "role": "construction"},
+      {"type": "dot", "at": [388.4693, 115.5356]},
+      {"type": "label", "at": [397.4693, 105.5356], "text": "k″", "role": "result"}
+    ],
+    "depth-transfer-marks": [
+      {"type": "label", "at": [429.0, 357.0], "text": "45°"}
+    ],
+    "answer-geometry": [
+      {"type": "dot", "at": [208.4693, 115.5356]},
+      {"type": "label", "at": [186.4693, 137.5356], "text": "k′", "role": "result"},
+      {"type": "dot", "at": [208.4693, 317.4693]},
+      {"type": "label", "at": [190.4693, 335.4693], "text": "k", "role": "result"},
+      {"type": "dot", "at": [388.4693, 115.5356]},
+      {"type": "label", "at": [397.4693, 105.5356], "text": "k″", "role": "result"}
+    ]
+  },
+  "given": [
+    "given"
+  ],
+  "steps": [
+    {
+      "title": "在正面图中量出 30 mm",
+      "action": "以 O 为圆心、30 mm 为半径作圆弧，与 a′b′ 相交，取交点 k′。",
+      "reason": "从正面看，Y 轴投影为 O。正面投影 k′ 到 O 的距离，就是 K 到 Y 轴的距离。",
+      "add": [
+        "radius"
+      ],
+      "show": [
+        "radius-marks"
+      ]
+    },
+    {
+      "title": "向下投影，得到 k",
+      "action": "过 k′ 作垂直于 X 轴的投影线，与 ab 相交，得到 k。",
+      "reason": "k′ 与 k 对应同一个点，所以两者在同一条投影连线上。",
+      "add": [
+        "vertical-projection"
+      ]
+    },
+    {
+      "title": "转移深度，得到 k″",
+      "action": "过 O 作右下方 45° 线。从 k 水平引线，碰到 45° 线后竖直向上，与 k′ 的水平引线相交，得到 k″。",
+      "reason": "45° 线让 k 到 X 轴的距离等于 k″ 到 Z 轴的距离。k′ 和 k″ 等高。",
+      "add": [
+        "depth-transfer"
+      ],
+      "show": [
+        "depth-transfer-marks"
+      ]
+    }
+  ],
+  "details": {
+    "title": "为什么正面图里可以直接量取这段距离？",
+    "text": "设 K 的空间坐标为 (x, y, z)。K 到 Y 轴的距离为 √(x² + z²)。侧面投影会丢掉 x，水平投影会丢掉 z。正面投影 k′ 同时保留 x 和 z，所以在正面图中，圆心为 O 的 30 mm 圆直接给出距离条件。也可从正面图先定点，再转到其他两面。"
+  },
+  "intro": {
+    "title": "读题",
+    "action": "先找出 a′b′ 和 ab，分别是 AB 的正面投影和水平投影。",
+    "reason": "要找的是同一个空间点 K 的三个投影。"
+  },
+  "answer": {
+    "action": "三面投影为 k′、k、k″。",
+    "show": [
+      "answer-geometry"
+    ],
+    "reason": "检查 k′ 是否在 a′b′ 上、k 是否在 ab 上，以及 k′ 和 k″ 是否等高。"
+  }
+}

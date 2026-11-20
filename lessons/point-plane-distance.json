@@ -1,0 +1,170 @@
+{
+  "source": "2024 秋期中 · 第 3 题",
+  "title": "在线上找距平面 20 mm 的点",
+  "problem": "在直线 EF 上求点 D，使 D 到三角形 ABC 所在平面的距离为 20 mm。",
+  "caption": "依据原卷重绘。未标注的图面坐标为估读值，图中数值仅供方法核对。",
+  "size": [
+    640,
+    430
+  ],
+  "layers": {
+    "given": [
+      {"type": "line", "from": [15.0, 201.0], "to": [328.0, 201.0]},
+      {"type": "label", "at": [0.0, 206.0], "text": "X"},
+      {"type": "label", "at": [334.0, 206.0], "text": "O"},
+      {"type": "line", "from": [40.58, 179.94], "to": [142.76, 122.22]},
+      {"type": "line", "from": [40.58, 257.16], "to": [142.76, 224.4]},
+      {"type": "line", "from": [142.76, 122.22], "to": [85.82, 77.76]},
+      {"type": "line", "from": [142.76, 224.4], "to": [85.82, 318.0]},
+      {"type": "line", "from": [85.82, 77.76], "to": [40.58, 179.94]},
+      {"type": "line", "from": [85.82, 318.0], "to": [40.58, 257.16]},
+      {"type": "line", "from": [180.2, 59.82], "to": [254.3, 122.22]},
+      {"type": "line", "from": [180.2, 253.26], "to": [254.3, 318.78]},
+      {"type": "line", "from": [40.58, 179.94], "to": [40.58, 257.16], "role": "construction"},
+      {"type": "label", "at": [26.58, 174.94], "text": "a′"},
+      {"type": "label", "at": [44.58, 273.16], "text": "a"},
+      {"type": "line", "from": [142.76, 122.22], "to": [142.76, 224.4], "role": "construction"},
+      {"type": "label", "at": [128.76, 117.22], "text": "b′"},
+      {"type": "label", "at": [146.76, 240.4], "text": "b"},
+      {"type": "line", "from": [85.82, 77.76], "to": [85.82, 318.0], "role": "construction"},
+      {"type": "label", "at": [71.82, 72.76], "text": "c′"},
+      {"type": "label", "at": [89.82, 334.0], "text": "c"},
+      {"type": "line", "from": [180.2, 59.82], "to": [180.2, 253.26], "role": "construction"},
+      {"type": "label", "at": [166.2, 54.82], "text": "e′"},
+      {"type": "label", "at": [184.2, 269.26], "text": "e"},
+      {"type": "line", "from": [254.3, 122.22], "to": [254.3, 318.78], "role": "construction"},
+      {"type": "label", "at": [240.3, 117.22], "text": "f′"},
+      {"type": "label", "at": [258.3, 334.78], "text": "f"},
+      {"type": "label", "at": [419.0, 46.0], "text": "辅助视图", "role": "view"}
+    ],
+    "horizontal-line": [
+      {"type": "line", "from": [142.76, 122.22], "to": [66.14, 122.22]},
+      {"type": "line", "from": [142.76, 224.4], "to": [66.14, 291.53]},
+      {"type": "line", "from": [66.14, 122.22], "to": [66.14, 291.53], "role": "construction"},
+      {"type": "dot", "at": [66.14, 122.22]},
+      {"type": "label", "at": [71.14, 116.22], "text": "p′"},
+      {"type": "dot", "at": [66.14, 291.53]},
+      {"type": "label", "at": [71.14, 285.53], "text": "p"}
+    ],
+    "edge-view": [
+      {"type": "line", "from": [54.38, 276.8], "to": [175.62, 415.2], "role": "construction"},
+      {"type": "label", "at": [172.4, 404.67], "text": "X₁"},
+      {"type": "line", "from": [120.27, 352.02], "to": [114.25, 357.29]},
+      {"type": "line", "from": [114.25, 357.29], "to": [108.98, 351.27]},
+      {"type": "line", "from": [378.0, 340.0], "to": [624.0, 340.0]},
+      {"type": "label", "at": [608.0, 359.0], "text": "X₁"},
+      {"type": "line", "from": [392.43, 354.56], "to": [515.36, 188.35]},
+      {"type": "label", "at": [399.0, 336.99], "text": "a₁"},
+      {"type": "label", "at": [439.56, 265.16], "text": "b₁"},
+      {"type": "label", "at": [495.8, 217.92], "text": "c₁"},
+      {"type": "line", "from": [502.62, 205.88], "to": [595.82, 265.16]},
+      {"type": "dot", "at": [502.62, 205.88]},
+      {"type": "label", "at": [509.62, 198.88], "text": "e₁"},
+      {"type": "dot", "at": [595.82, 265.16]},
+      {"type": "label", "at": [602.82, 278.16], "text": "f₁"}
+    ],
+    "offset-intersections": [
+      {"type": "line", "from": [426.53, 379.79], "to": [549.47, 213.57]},
+      {"type": "line", "from": [358.33, 329.34], "to": [481.26, 163.13]},
+      {"type": "line", "from": [502.62, 205.88], "to": [466.59, 182.97], "role": "construction"},
+      {"type": "dot", "at": [538.35, 228.6]},
+      {"type": "label", "at": [545.35, 223.6], "text": "d1₁"},
+      {"type": "dot", "at": [466.59, 182.97]},
+      {"type": "label", "at": [473.59, 177.97], "text": "d2₁"}
+    ],
+    "offset-intersections-marks": [
+      {"type": "line", "from": [538.35, 228.6], "to": [504.25, 203.38], "role": "construction"},
+      {"type": "line", "from": [509.07, 206.95], "to": [512.64, 202.13]},
+      {"type": "line", "from": [512.64, 202.13], "to": [507.81, 198.56]},
+      {"type": "label", "at": [526.3, 211.99], "text": "20 mm", "role": "dimension"},
+      {"type": "line", "from": [466.59, 182.97], "to": [500.69, 208.19], "role": "construction"},
+      {"type": "line", "from": [495.87, 204.62], "to": [499.44, 199.8]},
+      {"type": "line", "from": [499.44, 199.8], "to": [504.26, 203.36]},
+      {"type": "label", "at": [488.64, 191.58], "text": "20 mm", "role": "dimension"}
+    ],
+    "original-projections": [
+      {"type": "line", "from": [208.61, 83.74], "to": [208.61, 278.38], "role": "construction"},
+      {"type": "dot", "at": [208.61, 83.74]},
+      {"type": "label", "at": [213.61, 77.74], "text": "d1′"},
+      {"type": "dot", "at": [208.61, 278.38]},
+      {"type": "label", "at": [213.61, 292.38], "text": "d1"},
+      {"type": "line", "from": [151.56, 35.7], "to": [151.56, 227.94], "role": "construction"},
+      {"type": "dot", "at": [151.56, 35.7]},
+      {"type": "label", "at": [156.56, 29.7], "text": "d2′"},
+      {"type": "dot", "at": [151.56, 227.94]},
+      {"type": "label", "at": [156.56, 241.94], "text": "d2"},
+      {"type": "line", "from": [180.2, 59.82], "to": [151.56, 35.7], "role": "construction"},
+      {"type": "line", "from": [180.2, 253.26], "to": [151.56, 227.94], "role": "construction"}
+    ],
+    "answer-geometry": [
+      {"type": "line", "from": [378.0, 340.0], "to": [624.0, 340.0]},
+      {"type": "label", "at": [608.0, 359.0], "text": "X₁"},
+      {"type": "line", "from": [392.43, 354.56], "to": [515.36, 188.35]},
+      {"type": "label", "at": [399.0, 336.99], "text": "a₁"},
+      {"type": "label", "at": [439.56, 265.16], "text": "b₁"},
+      {"type": "label", "at": [495.8, 217.92], "text": "c₁"},
+      {"type": "line", "from": [502.62, 205.88], "to": [595.82, 265.16]},
+      {"type": "dot", "at": [502.62, 205.88]},
+      {"type": "label", "at": [509.62, 198.88], "text": "e₁"},
+      {"type": "dot", "at": [595.82, 265.16]},
+      {"type": "label", "at": [602.82, 278.16], "text": "f₁"},
+      {"type": "line", "from": [502.62, 205.88], "to": [466.59, 182.97], "role": "construction"},
+      {"type": "dot", "at": [538.35, 228.6]},
+      {"type": "label", "at": [545.35, 223.6], "text": "d1₁"},
+      {"type": "dot", "at": [466.59, 182.97]},
+      {"type": "label", "at": [473.59, 177.97], "text": "d2₁"}
+    ]
+  },
+  "given": [
+    "given"
+  ],
+  "steps": [
+    {
+      "title": "在平面内找水平线",
+      "action": "过 b′ 作水平线，交 a′c′ 得 p′。向下投影到 ac 得 p，连接 bp。",
+      "reason": "BP 平行于 H 面。它的水平投影 bp 给出了该水平线的实方向。",
+      "add": [
+        "horizontal-line"
+      ]
+    },
+    {
+      "title": "换面，让 ABC 积聚成直线",
+      "action": "在 H 图空白处作 X₁ 垂直于 bp。沿垂直于 X₁ 的投影方向转移各点，距 X₁ 的高度沿用正面投影中的高度。右侧单独绘出辅助视图。",
+      "reason": "BP 垂直于新投影面，所以 b₁ 与 p₁ 重合，整个 ABC 积聚为 a₁b₁c₁。EF 的新投影为 e₁f₁。",
+      "add": [
+        "edge-view"
+      ]
+    },
+    {
+      "title": "在线的两侧各偏移 20 mm",
+      "action": "在辅助视图中，作两条与 a₁b₁c₁ 平行、垂距均为 20 mm 的线。分别与 e₁f₁ 或其延长线相交。",
+      "reason": "ABC 在该视图里积聚成直线，垂直于 ABC 的距离在此视图中显示实长。两侧都要检查。",
+      "add": [
+        "offset-intersections"
+      ],
+      "show": [
+        "offset-intersections-marks"
+      ]
+    },
+    {
+      "title": "回到原来的两面投影",
+      "action": "从两个交点分别反投影到原来的 ef 直线，再在 e′f′ 直线上找对应点。必要时延长 EF 的投影。",
+      "reason": "也可用辅助视图中交点距 X₁ 的有向高度，在正面图作同一高度的水平线，再向下对正。",
+      "show": [
+        "original-projections"
+      ]
+    }
+  ],
+  "intro": {
+    "title": "题图",
+    "action": "读题",
+    "reason": "在直线 EF 上求点 D，使 D 到三角形 ABC 所在平面的距离为 20 mm。"
+  },
+  "answer": {
+    "action": "共有两个候选点。按重绘图，一个在 EF 线段上，另一个在越过 E 的延长线上。",
+    "show": [
+      "original-projections",
+      "answer-geometry"
+    ]
+  }
+}

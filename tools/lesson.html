@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>$title · 工程图学研习</title>
+<style>
+:root{--paper:#f5f4ed;--ink:#282722;--blue:#1b365d;--muted:#625d52;--rule:#d5cfc0;--diagram:#fbfaf5;--faded:#81796b;--button-bg:#1b365d;--button-ink:#fff;color-scheme:light dark}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 "Songti SC","Noto Serif CJK SC",serif}
+main{max-width:820px;margin:auto;padding:clamp(18px,5vw,48px)}
+header{border-top:2px solid var(--blue);padding-top:16px}
+small{color:var(--muted)}h1{font-size:clamp(27px,5vw,44px);line-height:1.2;font-weight:600;margin:8px 0 14px}p{margin:0 0 12px}
+figure{margin:18px 0;background:var(--diagram);border:1px solid var(--rule)}svg{display:block;width:100%;height:auto}figcaption{border-top:1px solid var(--rule);padding:7px 12px;color:var(--muted);font-size:13px}
+.controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding-block:10px;border-block:1px solid var(--rule)}
+button{font:inherit;color:var(--blue);background:transparent;border:1px solid var(--rule);border-radius:4px;padding:7px 13px;min-height:44px;cursor:pointer}
+#next{background:var(--button-bg);color:var(--button-ink)}button:disabled{opacity:.42;cursor:default}button:focus-visible{outline:2px solid var(--blue);outline-offset:3px}#count{margin-right:auto;font-size:14px}
+.explain{padding-top:14px;min-height:145px}h2{margin:0 0 5px;color:var(--blue);font-size:21px}
+.why{color:var(--muted)}details{border-top:1px solid var(--rule);padding-top:12px}summary{cursor:pointer;color:var(--blue)}
+svg line,svg path,svg circle{stroke:currentColor;vector-effect:non-scaling-stroke}svg line,svg path{fill:none;stroke-width:1.25}svg circle{fill:currentColor}svg text{fill:currentColor;font-size:19px}svg .plane{font-size:17px;fill:var(--muted)}svg .aux{stroke-dasharray:4 4}svg .old{color:var(--faded)}svg .new,svg .answer{color:var(--blue)}svg .new line,svg .new path{stroke-width:1.65}svg .old .temporary{display:none}svg .found{font-weight:bold}
+
+a{color:var(--blue)}.catalog{list-style:none;padding:0}.catalog li{padding:14px 0;border-bottom:1px solid var(--rule)}
+svg .center{stroke-dasharray:10 4 2 4}svg .axis{stroke-width:1}svg .answer line{stroke-width:1.6}
+svg .dim{font-size:15px}svg .hidden-edge{stroke-dasharray:6 4}svg text{stroke:none}
+
+.is-hidden{display:none}
+svg .ring{fill:none}svg .ring,svg .ring.aux{stroke-width:1.25}
+@media(prefers-color-scheme:dark){:root{--paper:#242218;--ink:#ebe5d7;--blue:#abc9eb;--muted:#beb6a5;--rule:#5b5547;--diagram:#211f15;--faded:#a19a8b;--button-bg:#223d5f;--button-ink:#fff}}
+</style>
+<main>
+<header><small><a href="../">工程图学研习</a> / $source</small>
+<h1>$title</h1><p>$problem</p></header>
+<figure><svg viewBox="0 0 $width $height" id="drawing" role="img" aria-label="$title 的分步作图">$drawing</svg><figcaption>$caption</figcaption></figure>
+<nav class="controls" aria-label="作图步骤">
+<span id="count">题图</span><button id="prev" disabled>上一步</button><button id="next">下一步</button><button id="finish">完成图</button>
+</nav>
+<section class="explain" aria-live="polite"><h2 id="heading">$intro_title</h2><p id="action">$intro</p><p id="why" class="why">$intro_reason</p></section>
+$details
+<noscript>启用 JavaScript 后可查看分步作图。</noscript>
+<script type="application/json" id="lesson">$lesson</script>
+<script>
+const config = JSON.parse(document.getElementById('lesson').textContent);
+const get = id => document.getElementById(id);
+const layers = new Map(Array.from(get('drawing').children, group => [group.dataset.layer, group]));
+const previous = get('prev'), next = get('next'), finish = get('finish');
+let current = 0;
+
+function render(position) {
+  current = position;
+  const last = config.steps.length + 1;
+  const done = position === last;
+  const step = done ? config.answer : position ? config.steps[position - 1] : config.intro;
+  const given = new Set(config.given);
+  const earlier = new Set(done ? [] : config.steps.slice(0, Math.max(0, position - 1)).flatMap(item => item.add || []));
+  const highlight = new Set(done ? step.show : [...(step.add || []), ...(step.show || [])]);
+
+  for (const [id, group] of layers) {
+    const state = highlight.has(id) ? (done ? 'answer' : 'new') :
+      given.has(id) ? '' : earlier.has(id) ? 'old' : 'is-hidden';
+    group.setAttribute('class', state);
+  }
+
+  get('heading').textContent = step.title;
+  get('action').textContent = step.action;
+  get('why').textContent = step.reason || '';
+  get('count').textContent = done ? '完成图' : position ? '第 ' + position + ' 步 / 共 ' + config.steps.length + ' 步' : '题图';
+  previous.disabled = position === 0;
+  next.disabled = finish.disabled = done;
+}
+
+previous.onclick = () => render(current - 1);
+next.onclick = () => render(current + 1);
+finish.onclick = () => render(config.steps.length + 1);
+</script>
+</main>
+</html>

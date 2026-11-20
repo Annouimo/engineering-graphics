@@ -1,0 +1,133 @@
+{
+  "source": "2024 秋期中 · 第 2 题（3）",
+  "title": "求 AB 与 X 轴的最短距离",
+  "problem": "求 AB 与 X 轴之间公垂线段 MN 的实长，并作出 MN 的三面投影。M 在 AB 上，N 在 X 轴上。",
+  "caption": "依据原卷重绘。未标注的图面坐标为估读值，图中数值仅供方法核对。",
+  "size": [
+    640,
+    430
+  ],
+  "layers": {
+    "given": [
+      {"type": "line", "from": [83.0, 232.0], "to": [303.0, 232.0]},
+      {"type": "label", "at": [68.0, 237.0], "text": "X"},
+      {"type": "label", "at": [309.0, 237.0], "text": "O"},
+      {"type": "line", "from": [193.0, 102.0], "to": [273.0, 172.0]},
+      {"type": "line", "from": [193.0, 302.0], "to": [273.0, 382.0]},
+      {"type": "line", "from": [193.0, 102.0], "to": [193.0, 302.0], "role": "construction"},
+      {"type": "label", "at": [179.0, 97.0], "text": "a′"},
+      {"type": "label", "at": [197.0, 318.0], "text": "a"},
+      {"type": "line", "from": [273.0, 172.0], "to": [273.0, 382.0], "role": "construction"},
+      {"type": "label", "at": [259.0, 167.0], "text": "b′"},
+      {"type": "label", "at": [277.0, 398.0], "text": "b"},
+      {"type": "line", "from": [303.0, 42.0], "to": [303.0, 396.0]},
+      {"type": "line", "from": [303.0, 232.0], "to": [585.0, 232.0]},
+      {"type": "label", "at": [311.0, 43.0], "text": "Z"},
+      {"type": "label", "at": [311.0, 392.0], "text": "Yₕ"},
+      {"type": "label", "at": [593.0, 232.0], "text": "Y𝑤"},
+      {"type": "label", "at": [90.0, 70.0], "text": "正面 V", "role": "view"},
+      {"type": "label", "at": [90.0, 388.0], "text": "水平 H", "role": "view"},
+      {"type": "label", "at": [525.0, 70.0], "text": "侧面 W", "role": "view"}
+    ],
+    "side-projection": [
+      {"type": "line", "from": [193.0, 302.0], "to": [373.0, 302.0], "role": "construction"},
+      {"type": "line", "from": [373.0, 302.0], "to": [373.0, 102.0], "role": "construction"},
+      {"type": "line", "from": [373.0, 102.0], "to": [193.0, 102.0], "role": "construction"},
+      {"type": "line", "from": [273.0, 382.0], "to": [453.0, 382.0], "role": "construction"},
+      {"type": "line", "from": [453.0, 382.0], "to": [453.0, 172.0], "role": "construction"},
+      {"type": "line", "from": [453.0, 172.0], "to": [273.0, 172.0], "role": "construction"},
+      {"type": "line", "from": [303.0, 232.0], "to": [454.0, 383.0], "role": "construction"},
+      {"type": "line", "from": [373.0, 102.0], "to": [453.0, 172.0]},
+      {"type": "dot", "at": [373.0, 102.0]},
+      {"type": "label", "at": [378.0, 96.0], "text": "a″"},
+      {"type": "dot", "at": [453.0, 172.0]},
+      {"type": "label", "at": [458.0, 166.0], "text": "b″"}
+    ],
+    "perpendicular-foot": [
+      {"type": "line", "from": [303.0, 232.0], "to": [397.78, 123.68]},
+      {"type": "dot", "at": [397.78, 123.68]},
+      {"type": "label", "at": [405.78, 115.68], "text": "m″"}
+    ],
+    "perpendicular-foot-marks": [
+      {"type": "line", "from": [391.76, 118.41], "to": [386.49, 124.43]},
+      {"type": "line", "from": [386.49, 124.43], "to": [392.51, 129.7]},
+      {"type": "label", "at": [356.28, 165.67], "text": "MN 实长", "role": "dimension"}
+    ],
+    "transfer-foot": [
+      {"type": "line", "from": [397.78, 123.68], "to": [217.78, 123.68], "role": "construction"},
+      {"type": "line", "from": [217.78, 123.68], "to": [217.78, 326.78], "role": "construction"},
+      {"type": "dot", "at": [217.78, 123.68]},
+      {"type": "label", "at": [192.78, 126.68], "text": "m′"},
+      {"type": "dot", "at": [217.78, 326.78]},
+      {"type": "label", "at": [199.78, 341.78], "text": "m"}
+    ],
+    "axis-intersection": [
+      {"type": "line", "from": [217.78, 123.68], "to": [217.78, 232.0]},
+      {"type": "line", "from": [217.78, 326.78], "to": [217.78, 232.0]},
+      {"type": "dot", "at": [217.78, 232.0]},
+      {"type": "label", "at": [190.78, 224.0], "text": "n ≡ n′"}
+    ],
+    "answer-geometry": [
+      {"type": "line", "from": [373.0, 102.0], "to": [453.0, 172.0]},
+      {"type": "dot", "at": [303.0, 232.0]},
+      {"type": "label", "at": [315.0, 224.0], "text": "n″"},
+      {"type": "dot", "at": [217.78, 123.68]},
+      {"type": "label", "at": [192.78, 126.68], "text": "m′"},
+      {"type": "dot", "at": [217.78, 326.78]},
+      {"type": "label", "at": [198.78, 340.78], "text": "m"}
+    ]
+  },
+  "given": [
+    "given"
+  ],
+  "steps": [
+    {
+      "title": "把 X 轴看成一个点",
+      "action": "用等高与等深关系补出 a″、b″，连接 a″b″。",
+      "reason": "X 轴垂直于 W 面，在侧面图中积聚为 O，也就是 n″。",
+      "add": [
+        "side-projection"
+      ]
+    },
+    {
+      "title": "作垂足并量实长",
+      "action": "从 O 向 a″b″ 作垂线，垂足为 m″。",
+      "reason": "MN 垂直于 X 轴，所以平行于 W 面。它在侧面图保持实长，并与 a″b″ 垂直。",
+      "add": [
+        "perpendicular-foot"
+      ],
+      "show": [
+        "perpendicular-foot-marks"
+      ]
+    },
+    {
+      "title": "找出 m′ 和 m",
+      "action": "从 m″ 向左引等高线与 a′b′ 相交得 m′，再向下投影到 ab，得 m。",
+      "reason": "M 是直线 AB 上的点，同一空间点的正面与水平投影对正。",
+      "add": [
+        "transfer-foot"
+      ]
+    },
+    {
+      "title": "确定 n′ 和 n",
+      "action": "取 m′m 与 X 轴的交点为 n′、n 的重合位置，连 m′n′ 和 mn。",
+      "reason": "MN 垂直于 X 轴，因此 N 与 M 的 X 向坐标相同。",
+      "show": [
+        "axis-intersection"
+      ]
+    }
+  ],
+  "intro": {
+    "title": "题图",
+    "action": "读题",
+    "reason": "求 AB 与 X 轴之间公垂线段 MN 的实长，并作出 MN 的三面投影。M 在 AB 上，N 在 X 轴上。"
+  },
+  "answer": {
+    "action": "m″n″ 为实长。三个视图分别是 m′n′、mn、m″n″。",
+    "show": [
+      "perpendicular-foot",
+      "axis-intersection",
+      "answer-geometry"
+    ]
+  }
+}

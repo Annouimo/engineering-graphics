@@ -1,0 +1,185 @@
+{
+  "source": "2024 秋期中 · 第 4 题",
+  "title": "作等腰三角形并求平面倾角",
+  "problem": "以 AB 为底边作等腰三角形 ABC，使腰 AC 同时垂直于 EF 和 GK。已知 AB 为水平线、EF 为正平线。求 ABC 与 H 面的夹角。",
+  "caption": "依据原卷重绘。未标注的图面坐标为估读值，图中数值仅供方法核对。",
+  "size": [
+    640,
+    430
+  ],
+  "layers": {
+    "given": [
+      {"type": "line", "from": [24.0, 228.0], "to": [308.0, 228.0]},
+      {"type": "label", "at": [9.0, 233.0], "text": "X"},
+      {"type": "label", "at": [314.0, 233.0], "text": "O"},
+      {"type": "line", "from": [45.72, 177.6], "to": [114.12, 177.6]},
+      {"type": "line", "from": [45.72, 317.28], "to": [114.12, 301.44]},
+      {"type": "line", "from": [155.16, 156.72], "to": [212.76, 105.6]},
+      {"type": "line", "from": [155.16, 268.32], "to": [212.76, 268.32]},
+      {"type": "line", "from": [124.92, 59.52], "to": [165.96, 135.84]},
+      {"type": "line", "from": [124.92, 290.64], "to": [165.96, 349.68]},
+      {"type": "line", "from": [45.72, 177.6], "to": [45.72, 317.28], "role": "construction"},
+      {"type": "label", "at": [31.72, 172.6], "text": "a′"},
+      {"type": "label", "at": [49.72, 333.28], "text": "a"},
+      {"type": "line", "from": [114.12, 177.6], "to": [114.12, 301.44], "role": "construction"},
+      {"type": "label", "at": [100.12, 172.6], "text": "b′"},
+      {"type": "label", "at": [118.12, 317.44], "text": "b"},
+      {"type": "line", "from": [155.16, 156.72], "to": [155.16, 268.32], "role": "construction"},
+      {"type": "label", "at": [141.16, 151.72], "text": "e′"},
+      {"type": "label", "at": [159.16, 284.32], "text": "e"},
+      {"type": "line", "from": [212.76, 105.6], "to": [212.76, 268.32], "role": "construction"},
+      {"type": "label", "at": [198.76, 100.6], "text": "f′"},
+      {"type": "label", "at": [216.76, 284.32], "text": "f"},
+      {"type": "line", "from": [124.92, 59.52], "to": [124.92, 290.64], "role": "construction"},
+      {"type": "label", "at": [110.92, 54.52], "text": "g′"},
+      {"type": "label", "at": [128.92, 306.64], "text": "g"},
+      {"type": "line", "from": [165.96, 135.84], "to": [165.96, 349.68], "role": "construction"},
+      {"type": "label", "at": [151.96, 130.84], "text": "k′"},
+      {"type": "label", "at": [169.96, 365.68], "text": "k"}
+    ],
+    "parallel-directions": [
+      {"type": "line", "from": [68.76, 157.15], "to": [45.72, 177.6]},
+      {"type": "line", "from": [45.72, 177.6], "to": [62.14, 208.13]},
+      {"type": "line", "from": [68.76, 317.28], "to": [45.72, 317.28]},
+      {"type": "line", "from": [45.72, 317.28], "to": [62.14, 340.9]},
+      {"type": "dot", "at": [68.76, 157.15]},
+      {"type": "label", "at": [73.76, 151.15], "text": "p′"},
+      {"type": "dot", "at": [62.14, 208.13]},
+      {"type": "label", "at": [46.14, 201.13], "text": "q′"},
+      {"type": "dot", "at": [68.76, 317.28]},
+      {"type": "label", "at": [75.76, 312.28], "text": "p"},
+      {"type": "dot", "at": [62.14, 340.9]},
+      {"type": "label", "at": [46.14, 352.9], "text": "q"}
+    ],
+    "horizontal-line": [
+      {"type": "line", "from": [45.72, 177.6], "to": [66.1, 177.6]},
+      {"type": "line", "from": [68.76, 157.15], "to": [66.1, 177.6], "role": "construction"},
+      {"type": "line", "from": [66.1, 177.6], "to": [62.14, 208.13], "role": "construction"},
+      {"type": "line", "from": [68.76, 317.28], "to": [66.1, 326.75], "role": "construction"},
+      {"type": "line", "from": [66.1, 326.75], "to": [62.14, 340.9], "role": "construction"},
+      {"type": "line", "from": [45.72, 317.28], "to": [66.1, 326.75]},
+      {"type": "line", "from": [66.1, 177.6], "to": [66.1, 326.75], "role": "construction"},
+      {"type": "dot", "at": [66.1, 177.6]},
+      {"type": "label", "at": [49.1, 169.6], "text": "r′"},
+      {"type": "dot", "at": [66.1, 326.75]},
+      {"type": "label", "at": [48.1, 332.75], "text": "r"}
+    ],
+    "normal-direction": [
+      {"type": "line", "from": [45.72, 177.6], "to": [92.18, 229.95]},
+      {"type": "line", "from": [45.72, 317.28], "to": [86.18, 230.22]}
+    ],
+    "normal-direction-marks": [
+      {"type": "line", "from": [52.97, 320.65], "to": [56.35, 313.4]},
+      {"type": "line", "from": [56.35, 313.4], "to": [49.09, 310.03]},
+      {"type": "line", "from": [51.7, 172.29], "to": [57.01, 178.27]},
+      {"type": "line", "from": [57.01, 178.27], "to": [51.03, 183.58]}
+    ],
+    "triangle": [
+      {"type": "line", "from": [45.72, 177.6], "to": [69.77, 204.7]},
+      {"type": "line", "from": [69.77, 204.7], "to": [114.12, 177.6]},
+      {"type": "line", "from": [45.72, 317.28], "to": [69.77, 265.53]},
+      {"type": "line", "from": [69.77, 265.53], "to": [114.12, 301.44]},
+      {"type": "dot", "at": [69.77, 204.7]},
+      {"type": "label", "at": [79.77, 210.7], "text": "c′"},
+      {"type": "dot", "at": [69.77, 265.53]},
+      {"type": "label", "at": [78.77, 259.53], "text": "c"}
+    ],
+    "triangle-marks": [
+      {"type": "line", "from": [66.38, 250.91], "to": [94.81, 373.66], "role": "construction"},
+      {"type": "dot", "at": [79.92, 309.36]},
+      {"type": "label", "at": [86.92, 325.36], "text": "中点"},
+      {"type": "line", "from": [69.77, 265.53], "to": [69.77, 204.7], "role": "construction"}
+    ],
+    "edge-view": [
+      {"type": "line", "from": [406.0, 238.0], "to": [617.0, 238.0]},
+      {"type": "label", "at": [606.0, 255.0], "text": "X₁"},
+      {"type": "line", "from": [490.0, 187.6], "to": [534.99, 214.7]},
+      {"type": "dot", "at": [490.0, 187.6]},
+      {"type": "label", "at": [439.0, 177.6], "text": "a₁ ≡ b₁"},
+      {"type": "dot", "at": [534.99, 214.7]},
+      {"type": "label", "at": [542.99, 222.7], "text": "c₁"},
+      {"type": "label", "at": [454.0, 134.0], "text": "辅助视图", "role": "view"},
+      {"type": "line", "from": [490.0, 187.6], "to": [561.99, 187.6], "role": "construction"},
+      {"type": "arc", "from": [516.0, 187.6], "to": [512.2716, 201.0155], "radius": 26.0, "clockwise": true},
+      {"type": "label", "at": [527.0, 202.6], "text": "α"},
+      {"type": "line", "from": [301.25, 387.94], "to": [281.4, 302.21], "role": "construction"},
+      {"type": "label", "at": [291.7, 385.89], "text": "X₁"}
+    ],
+    "answer-geometry": [
+      {"type": "line", "from": [406.0, 238.0], "to": [617.0, 238.0]},
+      {"type": "label", "at": [606.0, 255.0], "text": "X₁"},
+      {"type": "line", "from": [490.0, 187.6], "to": [534.99, 214.7]},
+      {"type": "dot", "at": [490.0, 187.6]},
+      {"type": "label", "at": [439.0, 177.6], "text": "a₁ ≡ b₁"},
+      {"type": "dot", "at": [534.99, 214.7]},
+      {"type": "label", "at": [542.99, 222.7], "text": "c₁"},
+      {"type": "label", "at": [454.0, 134.0], "text": "辅助视图", "role": "view"},
+      {"type": "line", "from": [490.0, 187.6], "to": [561.99, 187.6], "role": "construction"},
+      {"type": "arc", "from": [516.0, 187.6], "to": [512.2716, 201.0155], "radius": 26.0, "clockwise": true},
+      {"type": "label", "at": [527.0, 202.6], "text": "α"}
+    ]
+  },
+  "given": [
+    "given"
+  ],
+  "steps": [
+    {
+      "title": "把两个方向移到 A",
+      "action": "过 A 作 AP ∥ EF、AQ ∥ GK。两面投影中分别复制各自的方向。",
+      "reason": "要求 AC 同时垂直于两个方向，因此 AC 是 AP、AQ 所定平面的法线。",
+      "add": [
+        "parallel-directions"
+      ]
+    },
+    {
+      "title": "找出平面内的水平线",
+      "action": "过 a′ 作水平线，与 p′q′相交得 r′，再在 pq上定 r。连接 ar。",
+      "reason": "AR 是水平线。AP 已是正平线，二者分别可在水平投影和正面投影中用来定位法线方向。",
+      "add": [
+        "horizontal-line"
+      ]
+    },
+    {
+      "title": "用直角投影定理作 AC 的方向",
+      "action": "过 a 作 ar 的垂线，过 a′ 作 a′p′ 的垂线。这两条线分别给出 AC 的水平与正面投影方向。",
+      "reason": "垂直于平面内两相交直线，即垂直于该平面。水平线和正平线各自在相应投影面上显示实长，直角在该面保持。",
+      "add": [
+        "normal-direction"
+      ],
+      "show": [
+        "normal-direction-marks"
+      ]
+    },
+    {
+      "title": "用等腰条件定 C",
+      "action": "在水平图作 ab 的垂直平分线，与刚作出的 ac 方向交于 c。向正面图投影得 c′，再连 BC 两面投影。",
+      "reason": "A、B 等高，C 到 A、B 的高差相同。ca = cb 就能保证 CA = CB。",
+      "add": [
+        "triangle"
+      ],
+      "show": [
+        "triangle-marks"
+      ]
+    },
+    {
+      "title": "换面读出 ABC 与 H 面的夹角",
+      "action": "令新轴 X₁ 垂直于 ab，按原高度换面。AB 积聚为 a₁ ≡ b₁，连接 a₁c₁。",
+      "reason": "辅助面垂直于 ABC 和 H 面。a₁c₁ 与平行于 X₁ 的水平线之间的锐角，就是所求倾角。",
+      "show": [
+        "edge-view"
+      ]
+    }
+  ],
+  "intro": {
+    "title": "题图",
+    "action": "读题",
+    "reason": "以 AB 为底边作等腰三角形 ABC，使腰 AC 同时垂直于 EF 和 GK。已知 AB 为水平线、EF 为正平线。求 ABC 与 H 面的夹角。"
+  },
+  "answer": {
+    "action": "AC = BC，且 AC 垂直于 EF、GK。按重绘数据，平面倾角约为 31.1°。",
+    "show": [
+      "triangle",
+      "answer-geometry"
+    ]
+  }
+}

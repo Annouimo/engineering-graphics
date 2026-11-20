@@ -1,0 +1,47 @@
+{
+  "source": "直线上的点 · 练习",
+  "title": "作线段 AB 的中点",
+  "problem": "已知线段 AB，作它的中点 M。",
+  "caption": "示意图采用统一比例。",
+  "size": [570, 300],
+  "layers": {
+    "segment": [
+      {"type": "line", "from": [135, 150], "to": [435, 150]},
+      {"type": "dot", "at": [135, 150]},
+      {"type": "dot", "at": [435, 150]},
+      {"type": "label", "at": [118, 177], "text": "A"},
+      {"type": "label", "at": [440, 177], "text": "B"}
+    ],
+    "arcs": [
+      {"type": "arc", "from": [272, 33.2481], "to": [272, 266.7519], "radius": 180, "clockwise": true, "role": "construction"},
+      {"type": "arc", "from": [298, 33.2481], "to": [298, 266.7519], "radius": 180, "clockwise": false, "role": "construction"}
+    ],
+    "bisector": [
+      {"type": "line", "from": [285, 50.5013], "to": [285, 249.4987], "role": "construction"}
+    ],
+    "midpoint": [
+      {"type": "dot", "at": [285, 150]},
+      {"type": "label", "at": [294, 174], "text": "M", "role": "result"}
+    ]
+  },
+  "given": ["segment"],
+  "steps": [
+    {
+      "title": "作等半径的两条弧",
+      "action": "分别以 A、B 为圆心，用同一半径画弧，并在 AB 的两侧取两弧的交点。",
+      "reason": "两交点到 A、B 的距离各自相等。半径需大于 AB 的一半。",
+      "add": ["arcs"]
+    },
+    {
+      "title": "连交点，定位中点",
+      "action": "连接两弧的交点，与 AB 相交于 M。",
+      "reason": "两交点的连线是 AB 的垂直平分线。",
+      "add": ["midpoint"],
+      "show": ["bisector"]
+    }
+  ],
+  "answer": {
+    "action": "点 M 为 AB 的中点。",
+    "show": ["midpoint"]
+  }
+}

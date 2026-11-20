@@ -1,0 +1,141 @@
+{
+  "source": "2024 秋期中 · 第 5 题 · 主视图",
+  "title": "由左视图和俯视图补主视图",
+  "problem": "已知平面立体的左视图与俯视图，求主视图。",
+  "caption": "立体按原卷轮廓重绘。相交点由同一组空间坐标推导。",
+  "size": [
+    640,
+    510
+  ],
+  "layers": {
+    "given": [
+      {"type": "line", "from": [375.0, 222.0], "to": [484.5, 222.0]},
+      {"type": "line", "from": [484.5, 222.0], "to": [484.5, 185.5]},
+      {"type": "line", "from": [484.5, 185.5], "to": [557.5, 185.5]},
+      {"type": "line", "from": [557.5, 185.5], "to": [557.5, 149.0]},
+      {"type": "line", "from": [557.5, 149.0], "to": [484.5, 76.0]},
+      {"type": "line", "from": [484.5, 76.0], "to": [375.0, 76.0]},
+      {"type": "line", "from": [375.0, 76.0], "to": [375.0, 222.0]},
+      {"type": "line", "from": [411.5, 76.0], "to": [411.5, 3.0]},
+      {"type": "line", "from": [411.5, 3.0], "to": [521.0, 3.0]},
+      {"type": "line", "from": [521.0, 3.0], "to": [521.0, 112.5]},
+      {"type": "line", "from": [466.25, 76.0], "to": [466.25, 3.0]},
+      {"type": "line", "from": [65.0, 267.0], "to": [247.5, 267.0]},
+      {"type": "line", "from": [247.5, 267.0], "to": [247.5, 449.5]},
+      {"type": "line", "from": [247.5, 449.5], "to": [65.0, 449.5]},
+      {"type": "line", "from": [65.0, 449.5], "to": [65.0, 267.0]},
+      {"type": "line", "from": [156.25, 303.5], "to": [211.0, 358.25]},
+      {"type": "line", "from": [211.0, 358.25], "to": [156.25, 413.0]},
+      {"type": "line", "from": [156.25, 413.0], "to": [101.5, 358.25]},
+      {"type": "line", "from": [101.5, 358.25], "to": [156.25, 303.5]},
+      {"type": "line", "from": [65.0, 376.5], "to": [119.75, 376.5]},
+      {"type": "line", "from": [192.75, 376.5], "to": [247.5, 376.5]},
+      {"type": "line", "from": [54.05, 358.25], "to": [258.45, 358.25], "role": "center"},
+      {"type": "line", "from": [156.25, 256.05], "to": [156.25, 460.45], "role": "center"},
+      {"type": "label", "at": [375.0, 252.0], "text": "左视图", "role": "view"},
+      {"type": "label", "at": [65.0, 485.0], "text": "俯视图", "role": "view"},
+      {"type": "label", "at": [65.0, 252.0], "text": "主视图", "role": "view"}
+    ],
+    "base-outline": [
+      {"type": "line", "from": [65.0, 76.0], "to": [65.0, 222.0]},
+      {"type": "line", "from": [65.0, 222.0], "to": [247.5, 222.0]},
+      {"type": "line", "from": [247.5, 222.0], "to": [247.5, 76.0]},
+      {"type": "line", "from": [65.0, 185.5], "to": [247.5, 185.5]},
+      {"type": "line", "from": [65.0, 149.0], "to": [247.5, 149.0]}
+    ],
+    "base-outline-marks": [
+      {"type": "line", "from": [65.0, 222.0], "to": [65.0, 449.5], "role": "construction"},
+      {"type": "line", "from": [247.5, 222.0], "to": [247.5, 449.5], "role": "construction"},
+      {"type": "line", "from": [247.5, 222.0], "to": [484.5, 222.0], "role": "construction"},
+      {"type": "line", "from": [247.5, 185.5], "to": [484.5, 185.5], "role": "construction"},
+      {"type": "line", "from": [247.5, 149.0], "to": [484.5, 149.0], "role": "construction"},
+      {"type": "line", "from": [247.5, 76.0], "to": [484.5, 76.0], "role": "construction"}
+    ],
+    "column-outline": [
+      {"type": "line", "from": [101.5, 76.0], "to": [101.5, 3.0]},
+      {"type": "line", "from": [101.5, 3.0], "to": [211.0, 3.0]},
+      {"type": "line", "from": [211.0, 3.0], "to": [211.0, 76.0]}
+    ],
+    "column-outline-marks": [
+      {"type": "line", "from": [101.5, 3.0], "to": [101.5, 358.25], "role": "construction"},
+      {"type": "line", "from": [156.25, 3.0], "to": [156.25, 358.25], "role": "construction"},
+      {"type": "line", "from": [211.0, 3.0], "to": [211.0, 358.25], "role": "construction"},
+      {"type": "line", "from": [211.0, 3.0], "to": [521.0, 3.0], "role": "construction"}
+    ],
+    "intersection-edges": [
+      {"type": "line", "from": [65.0, 76.0], "to": [119.75, 76.0]},
+      {"type": "line", "from": [192.75, 76.0], "to": [247.5, 76.0]},
+      {"type": "line", "from": [119.75, 76.0], "to": [156.25, 112.5]},
+      {"type": "line", "from": [156.25, 112.5], "to": [192.75, 76.0]},
+      {"type": "line", "from": [156.25, 112.5], "to": [156.25, 3.0]}
+    ],
+    "intersection-edges-marks": [
+      {"type": "line", "from": [119.75, 376.5], "to": [119.75, 76.0], "role": "construction"},
+      {"type": "line", "from": [156.25, 413.0], "to": [156.25, 112.5], "role": "construction"},
+      {"type": "line", "from": [192.75, 376.5], "to": [192.75, 76.0], "role": "construction"}
+    ],
+    "hidden-edges": [
+      {"type": "line", "from": [119.75, 76.0], "to": [192.75, 76.0], "role": "hidden"}
+    ]
+  },
+  "given": [
+    "given"
+  ],
+  "steps": [
+    {
+      "title": "先补底座",
+      "action": "由俯视图定左右边界，由左视图转移底面、台阶、斜面下缘和底座上缘的高度。",
+      "reason": "俯视图的外框给出全宽。底座的台阶和斜面都沿全宽延伸。",
+      "add": [
+        "base-outline"
+      ],
+      "show": [
+        "base-outline-marks"
+      ]
+    },
+    {
+      "title": "定位上方的四棱柱",
+      "action": "由俯视图的菱形定柱的左右边界和中棱位置，从左视图转移柱顶高度。",
+      "reason": "菱形是柱顶轮廓的俯视投影。定了宽度和高度，就能定出主视图中的柱顶和竖棱。",
+      "add": [
+        "column-outline"
+      ],
+      "show": [
+        "column-outline-marks"
+      ]
+    },
+    {
+      "title": "补柱脚与斜面的交线",
+      "action": "把左视图斜面上缘的深度转到俯视图，在深度分界线上取与菱形相交的两点，再向上对正。在正面三条投影线上分别找两个转折点与中间低点。",
+      "reason": "柱脚在平顶处同高，在斜面上随深度降低。朝前的中棱柱脚最低，形成一条折线。",
+      "add": [
+        "intersection-edges"
+      ],
+      "show": [
+        "intersection-edges-marks"
+      ]
+    },
+    {
+      "title": "按遮挡确定虚实",
+      "action": "底座上缘画到柱脚交线。柱后方与底座平顶的交线在正面图中被柱挡住，中段画虚线。",
+      "reason": "可见轮廓与不可见棱重合时保留可见实线。",
+      "show": [
+        "hidden-edges"
+      ]
+    }
+  ],
+  "intro": {
+    "title": "题图",
+    "action": "读题",
+    "reason": "已知平面立体的左视图与俯视图，求主视图。"
+  },
+  "answer": {
+    "action": "由俯视图定宽度，由左视图定高度和深度，最后用遮挡关系校核线型。",
+    "show": [
+      "base-outline",
+      "column-outline",
+      "intersection-edges",
+      "hidden-edges"
+    ]
+  }
+}

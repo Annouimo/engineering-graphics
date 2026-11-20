@@ -16,8 +16,8 @@
 
 ## 制作自己的讲解
 
-把题目和已知图交给 Agent，请它阅读 [AGENTS.md](AGENTS.md)、[知识点索引](topics.md) 和 [HTML 示例源码](examples/three-view-projection.html)。可以这样说：
+把题目和已知图交给 Agent，请它阅读 [AGENTS.md](AGENTS.md)、[知识点索引](topics.md) 、[配置指南](tools/README.md)和[示例配置](lessons/three-view-projection.json)。可以这样说：
 
-> 请按 AGENTS.md 制作这道题的离线作图讲解。先从 topics.md 选择适用的课内知识点，再参考示例的版式和步骤交互。图上要看得出从哪里量、沿哪个方向画、取哪个交点。
+> 请按 AGENTS.md 制作这道题的离线作图讲解。先从 topics.md 选择适用的课内知识点，再按配置模板写出图层和步骤，运行 `python3 tools/build_lessons.py` 生成 HTML。图上要看得出从哪里量、沿哪个方向画、取哪个交点。
 
 知识点按作图任务组织，使用时可以对照不同教材。SolidWorks 建模与出图实验见 [ai-solidworks](https://github.com/Annouimo/ai-solidworks)。

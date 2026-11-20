@@ -1,0 +1,119 @@
+{
+  "source": "2024 秋期中 · 第 2 题（2）",
+  "title": "求 AB 与 X 轴的夹角",
+  "problem": "已知 AB 的正面投影和水平投影，求直线 AB 与 X 轴的锐夹角。",
+  "caption": "依据原卷重绘。未标注的图面坐标为估读值，图中数值仅供方法核对。",
+  "size": [
+    640,
+    430
+  ],
+  "layers": {
+    "given": [
+      {"type": "line", "from": [83.0, 232.0], "to": [303.0, 232.0]},
+      {"type": "label", "at": [68.0, 237.0], "text": "X"},
+      {"type": "label", "at": [309.0, 237.0], "text": "O"},
+      {"type": "line", "from": [193.0, 102.0], "to": [273.0, 172.0]},
+      {"type": "line", "from": [193.0, 302.0], "to": [273.0, 382.0]},
+      {"type": "line", "from": [193.0, 102.0], "to": [193.0, 302.0], "role": "construction"},
+      {"type": "label", "at": [179.0, 97.0], "text": "a′"},
+      {"type": "label", "at": [197.0, 318.0], "text": "a"},
+      {"type": "line", "from": [273.0, 172.0], "to": [273.0, 382.0], "role": "construction"},
+      {"type": "label", "at": [259.0, 167.0], "text": "b′"},
+      {"type": "label", "at": [277.0, 398.0], "text": "b"},
+      {"type": "line", "from": [303.0, 42.0], "to": [303.0, 396.0]},
+      {"type": "line", "from": [303.0, 232.0], "to": [585.0, 232.0]},
+      {"type": "label", "at": [311.0, 43.0], "text": "Z"},
+      {"type": "label", "at": [311.0, 392.0], "text": "Yₕ"},
+      {"type": "label", "at": [593.0, 232.0], "text": "Y𝑤"},
+      {"type": "label", "at": [90.0, 70.0], "text": "正面 V", "role": "view"},
+      {"type": "label", "at": [90.0, 388.0], "text": "水平 H", "role": "view"},
+      {"type": "label", "at": [525.0, 70.0], "text": "侧面 W", "role": "view"}
+    ],
+    "side-projection": [
+      {"type": "line", "from": [193.0, 302.0], "to": [373.0, 302.0], "role": "construction"},
+      {"type": "line", "from": [373.0, 302.0], "to": [373.0, 102.0], "role": "construction"},
+      {"type": "line", "from": [373.0, 102.0], "to": [193.0, 102.0], "role": "construction"},
+      {"type": "line", "from": [273.0, 382.0], "to": [453.0, 382.0], "role": "construction"},
+      {"type": "line", "from": [453.0, 382.0], "to": [453.0, 172.0], "role": "construction"},
+      {"type": "line", "from": [453.0, 172.0], "to": [273.0, 172.0], "role": "construction"},
+      {"type": "line", "from": [303.0, 232.0], "to": [454.0, 383.0], "role": "construction"},
+      {"type": "line", "from": [373.0, 102.0], "to": [453.0, 172.0]},
+      {"type": "dot", "at": [373.0, 102.0]},
+      {"type": "label", "at": [378.0, 96.0], "text": "a″"},
+      {"type": "dot", "at": [453.0, 172.0]},
+      {"type": "label", "at": [458.0, 166.0], "text": "b″"}
+    ],
+    "length-triangle": [
+      {"type": "line", "from": [105.0, 175.0], "to": [185.0, 175.0]},
+      {"type": "line", "from": [185.0, 175.0], "to": [185.0, 68.7]},
+      {"type": "line", "from": [185.0, 68.7], "to": [105.0, 175.0]},
+      {"type": "line", "from": [177.0, 175.0], "to": [177.0, 167.0]},
+      {"type": "line", "from": [177.0, 167.0], "to": [185.0, 167.0]},
+      {"type": "arc", "from": [130.0, 175.0], "to": [120.0329, 155.0247], "radius": 25.0, "clockwise": false},
+      {"type": "label", "at": [137.0, 163.0], "text": "α"}
+    ],
+    "length-triangle-marks": [
+      {"type": "label", "at": [139.0, 197.0], "text": "Δx", "role": "dimension"},
+      {"type": "label", "at": [193.0, 129.0], "text": "|a″b″|", "role": "dimension"},
+      {"type": "label", "at": [80.0, 105.7], "text": "AB 实长", "role": "dimension"},
+      {"type": "line", "from": [193.0, 232.0], "to": [273.0, 232.0]}
+    ],
+    "angle": [
+      {"type": "label", "at": [139.0, 197.0], "text": "Δx", "role": "dimension"},
+      {"type": "label", "at": [193.0, 129.0], "text": "|a″b″|", "role": "dimension"},
+      {"type": "label", "at": [80.0, 105.7], "text": "AB 实长", "role": "dimension"}
+    ],
+    "answer-geometry": [
+      {"type": "line", "from": [373.0, 102.0], "to": [453.0, 172.0]},
+      {"type": "dot", "at": [373.0, 102.0]},
+      {"type": "label", "at": [378.0, 96.0], "text": "a″"},
+      {"type": "dot", "at": [453.0, 172.0]},
+      {"type": "label", "at": [458.0, 166.0], "text": "b″"}
+    ]
+  },
+  "given": [
+    "given"
+  ],
+  "steps": [
+    {
+      "title": "补出侧面投影",
+      "action": "用 45° 转向线转移 a、b 的深度，再分别与 a′、b′ 的等高线相交，连成 a″b″。",
+      "reason": "侧投影面垂直于 X 轴，a″b″ 是 AB 在垂直于 X 轴的平面上的投影。",
+      "add": [
+        "side-projection"
+      ]
+    },
+    {
+      "title": "作直角三角形",
+      "action": "从 S 沿水平方向量取两端点的 X 向坐标差 Δx，得 T。过 T 作垂线，量取 |a″b″| 得 U，再连 SU。",
+      "reason": "两直角边分别是 AB 沿 X 轴及垂直于 X 轴的分量，SU 是 AB 的实长。",
+      "add": [
+        "length-triangle"
+      ],
+      "show": [
+        "length-triangle-marks"
+      ]
+    },
+    {
+      "title": "读出夹角",
+      "action": "取 ST 与 SU 的锐角 α。",
+      "reason": "ST 代表 X 轴方向，SU 同时反映了 AB 沿轴和垂直于轴的变化。",
+      "show": [
+        "angle"
+      ]
+    }
+  ],
+  "intro": {
+    "title": "题图",
+    "action": "读题",
+    "reason": "已知 AB 的正面投影和水平投影，求直线 AB 与 X 轴的锐夹角。"
+  },
+  "answer": {
+    "action": "α = ∠TSU。按重绘数据，约为 53.0°。",
+    "show": [
+      "length-triangle",
+      "angle",
+      "answer-geometry"
+    ]
+  }
+}
