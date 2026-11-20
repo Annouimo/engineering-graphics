@@ -198,22 +198,27 @@
     ],
     "markers": [
       {
-        "point": "A",
-        "project": true
+        "point": "A"
       },
       {
-        "point": "B",
-        "project": true
+        "point": "B"
       },
       {
         "point": "M",
-        "step": 2,
-        "project": true
+        "step": 2
       },
       {
         "point": "N",
         "step": 2
       }
+    ],
+    "projections": [
+      {"view": "W", "step": 1, "until": 2, "points": ["A", "B"], "segments": [["A", "B"]]},
+      {"view": "W", "step": 2, "until": 2, "points": ["M"], "segments": [["M", "N"]]},
+      {"view": "V", "step": 3, "until": 3, "points": ["M"]},
+      {"view": "H", "step": 3, "until": 3, "points": ["M"]},
+      {"view": "V", "step": 4, "points": [], "segments": [["M", "N"]]},
+      {"view": "H", "step": 4, "points": [], "segments": [["M", "N"]]}
     ],
     "right_angles": [
       {

@@ -2,8 +2,7 @@ const panel = get('space-panel');
 const pointMarkers = [...panel.querySelectorAll('.space-point')];
 const linkedPoints = [...get('drawing').querySelectorAll('[data-point]'), ...pointMarkers];
 const sceneSteps = [...panel.querySelectorAll('[data-space-step]')];
-const cameras = [...panel.querySelectorAll('[data-camera]')];
-const sceneViews = [...panel.querySelectorAll('[data-space-view]')];
+const planes = [...panel.querySelectorAll('[data-plane]')];
 const reference = panel.querySelector('.space-status');
 let selectedPoint = '';
 
@@ -24,24 +23,24 @@ function highlightPoint() {
 }
 
 function renderSpace(position) {
+  const activePlanes = new Set();
   for (const element of sceneSteps) {
-    element.classList.toggle('is-hidden', Number(element.dataset.spaceStep) > position);
+    const start = Number(element.dataset.spaceStep);
+    const end = Number(element.dataset.spaceUntil ?? Infinity);
+    const visible = position >= start && position <= end;
+    element.classList.toggle('is-hidden', !visible);
+    element.classList.toggle('is-faded', visible && position > start && end !== Infinity);
+    if (visible && element.dataset.spaceFocus && (position === start || end === Infinity)) {
+      activePlanes.add(element.dataset.spaceFocus);
+    }
   }
-  for (const guide of panel.querySelectorAll("[data-fade-step]")) {
-    guide.classList.toggle("is-faded", position >= Number(guide.dataset.fadeStep));
+  for (const plane of planes) {
+    plane.classList.toggle('is-active', activePlanes.has(plane.dataset.plane));
   }
   if (!pointMarkers.some(node => node.dataset.point === selectedPoint && !node.closest('.is-hidden'))) {
     selectedPoint = '';
   }
   highlightPoint();
-}
-
-for (const button of cameras) {
-  button.onclick = () => {
-    const camera = button.dataset.camera;
-    for (const view of sceneViews) view.hidden = view.dataset.spaceView !== camera;
-    for (const control of cameras) control.setAttribute('aria-pressed', String(control === button));
-  };
 }
 
 for (const marker of pointMarkers) {
@@ -58,13 +57,14 @@ for (const marker of pointMarkers) {
 }
 
 // Orbit the existing SVG geometry, keeping paper projections and point IDs fixed.
-const orbit = panel.querySelector('[data-space-view="oblique"] svg');
+const orbit = panel.querySelector('svg[data-orbit]');
 const objects = [...orbit.querySelectorAll('[data-world]')].map(element => ({
   element,
   points: element.dataset.world.split(' ').map(point => point.split(',').map(Number)),
   offset: (element.dataset.offset || '0,0').split(',').map(Number),
 }));
-const defaults = orbit.dataset.orbit.split(",").map(Number);
+const fit = orbit.dataset.fit.split(' ').map(point => point.split(',').map(Number));
+const defaults = orbit.dataset.orbit.split(',').map(Number);
 let [azimuth, elevation] = defaults;
 let drag = null;
 
@@ -72,15 +72,14 @@ function drawOrbit() {
   const a = azimuth * Math.PI / 180;
   const e = elevation * Math.PI / 180;
   const sa = Math.sin(a), ca = Math.cos(a), se = Math.sin(e), ce = Math.cos(e);
-  const projected = objects.map(item => item.points.map(([x, y, z]) =>
-    [-sa * x + ca * y, se * (ca * x + sa * y) - ce * z]));
-  const all = projected.flat();
+  const project = ([x, y, z]) => [-sa * x + ca * y, se * (ca * x + sa * y) - ce * z];
+  const all = fit.map(project);
   const xs = all.map(([x]) => x), ys = all.map(([,y]) => y);
   const left = Math.min(...xs), right = Math.max(...xs);
   const top = Math.min(...ys), bottom = Math.max(...ys);
   const scale = Math.min(430 / Math.max(1, right - left), 214 / Math.max(1, bottom - top));
-  for (const [i, {element, offset}] of objects.entries()) {
-    const mapped = projected[i].map(([x, y]) =>
+  for (const {element, points, offset} of objects) {
+    const mapped = points.map(project).map(([x, y]) =>
       [270 + (x - (left + right) / 2) * scale, 142 + (y - (top + bottom) / 2) * scale]);
     const [[x,y]] = mapped;
     const tag = element.localName;
@@ -94,8 +93,7 @@ function drawOrbit() {
   }
 }
 
-const obliqueButton = cameras.find(button => button.dataset.camera === 'oblique');
-obliqueButton.addEventListener('click', () => {
+get('reset-space').addEventListener('click', () => {
   [azimuth, elevation] = defaults;
   drawOrbit();
 });

@@ -1,5 +1,4 @@
 .space-controls { display:flex; flex-wrap:wrap; gap:8px; }
-.space-controls [aria-pressed="true"] { background:var(--button-bg); color:var(--button-ink); }
 .space-panel svg { margin-top:8px; background:var(--diagram); border:1px solid var(--rule); }
 .space-panel svg text { font-size:22px; }
 .space-panel svg .space-result { color:var(--blue); }
@@ -21,13 +20,17 @@ main:has(.diagram-pair) > .controls { order:-1; position:sticky; top:0; z-index:
 .paper-panel figure { margin:0; }
 .space-panel { margin:0; }
 .space-panel svg .plane { font-size:15px; }
-.space-panel .h-plane { fill:var(--faded); fill-opacity:.14; stroke:var(--faded); stroke-opacity:.65; }
-.space-panel .w-plane { fill:var(--blue); fill-opacity:.09; stroke:var(--blue); stroke-opacity:.65; }
-.space-panel .h-plane,.space-panel .w-plane { vector-effect:non-scaling-stroke; }
 .space-panel .space-projection { color:var(--blue); }
 .space-panel .space-projection text { fill:var(--blue); }
 @media(max-width:820px) { .diagram-pair { grid-template-columns:1fr; gap:18px; } }
 
-[data-space-view="oblique"] svg { touch-action:none; cursor:grab; user-select:none; }
-[data-space-view="oblique"] svg:active { cursor:grabbing; }
-.space-projection.is-faded .aux { opacity:.36; }
+.space-panel svg[data-orbit] { touch-action:none; cursor:grab; user-select:none; }
+.space-panel svg[data-orbit]:active { cursor:grabbing; }
+
+.space-plane { color:var(--faded); }
+.space-plane polygon { fill:currentColor; fill-opacity:.05; stroke:currentColor; stroke-opacity:.48; vector-effect:non-scaling-stroke; }
+.space-plane.is-active,.space-plane.plane-extra { color:var(--blue); }
+.space-plane.is-active polygon { fill-opacity:.12; stroke-opacity:.82; }
+.space-plane.is-active text { fill:currentColor; font-weight:bold; }
+[data-space-focus].is-faded { opacity:.36; }
+.space-status:empty { display:none; }
