@@ -205,7 +205,9 @@ def compile_lesson(config, template):
     lesson = json.dumps({"given": given, "intro": intro, "steps": steps, "answer": answer}, ensure_ascii=False)
     return template.substitute(
         **{key: escape(words(config[key], key)) for key in ("title", "source", "problem", "caption")},
-        width=width, height=height, drawing="".join(drawing), details=details, spatial=panel,
+        width=width, height=height, drawing="".join(drawing), details=details,
+        diagram_start='<div class="diagram-pair">' + panel + '<div class="paper-panel"><h2>纸面作图</h2>' if panel else "",
+        diagram_end="</div></div>" if panel else "",
         spatial_css=(ROOT / "tools" / "space.css").read_text(encoding="utf-8") if panel else "",
         spatial_js=(ROOT / "tools" / "space.js").read_text(encoding="utf-8") if panel else "",
         spatial_update="\n  renderSpace(position);" if panel else "",

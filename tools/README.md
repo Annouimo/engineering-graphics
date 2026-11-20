@@ -45,3 +45,5 @@ python3 tools/build_lessons.py --check
 纸面图元可以用 `{"point":"M","view":"W"}` 代替二维坐标。标签可用 `offset` 设图面偏移。水平图的点引用加 `"on":"miter"`，可定位从该点向右引深度线与 45° 转向线的交点。普通二维坐标仍可用于轴线、图注和辅助构造。
 
 `segments` 用 `from` 和 `to` 引用空间点，可用 `role` 标为 `axis` 或 `result`。在 `markers` 中用 `point` 标出可对照的点，在 `right_angles` 中用 `vertex` 和两个 `arms` 端点标示直角。三类对象都可用 `step` 指定首次出现的步骤，省略则随题图显示。空间图和点选联动由模板生成。
+
+空间图在题目下方默认显示。斜视图绘出水平面 H 与侧投影面 W，线段在 W 上的投影和投射线随步骤出现。若要标出 W 面上的投影点，可在对应 `markers` 条目中加 `"project": true`。正对 W 面时，空间点标签切换成侧投影点名。

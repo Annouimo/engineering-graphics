@@ -27,8 +27,8 @@ def spatial_panel(model, points, steps, draw, fields, number, words, reference):
 
     # Unit screen bases. W shows +y to the right and +z upwards, like the paper drawing.
     presets = (
-        ("oblique", "空间关系", (.8660254, -.5, 0), (.25, .4330127, .8660254),
-         "观察 AB 和 X 轴如何错开。MN 出现后，可以看到两端的直角。"),
+        ("oblique", "空间关系", (-.8, .6, 0), (.3, .4, .8660254),
+         "蓝色为侧投影面 W，暖灰色为水平投影面 H。沿虚线追踪空间点在 W 面上的落点。"),
         ("side", "看向侧面 W", (0, 1, 0), (0, 0, 1),
          "沿 X 轴看过去，X 轴积聚为 O。MN 平行于 W 面，在这个方向显示实长。"),
     )
@@ -37,23 +37,57 @@ def spatial_panel(model, points, steps, draw, fields, number, words, reference):
     unit = lambda a: tuple(x / sqrt(dot(a, a)) for x in a)
 
     bases = [(key, title, unit(right), unit(up), note) for key, title, right, up, note in presets]
+    x_end = max(p[0] for p in points.values())
+    y_min = min(0, min(p[1] for p in points.values())) - 18
+    y_max = max(0, max(p[1] for p in points.values())) + 24
+    z_top = max(0, max(p[2] for p in points.values())) + 24
+    horizontal = [(0,y_min,0), (x_end,y_min,0), (x_end,y_max,0), (0,y_max,0)]
+    wall = [(0,y_min,0), (0,y_max,0), (0,y_max,z_top), (0,y_min,z_top)]
     bounds = []
     for _, _, right, up, _ in bases:
-        xs = [dot(point, right) for point in points.values()]
-        ys = [-dot(point, up) for point in points.values()]
+        xs = [dot(point, right) for point in [*points.values(), *wall, *horizontal]]
+        ys = [-dot(point, up) for point in [*points.values(), *wall, *horizontal]]
         bounds.append((min(xs), max(xs), min(ys), max(ys)))
-    scale = min(390 / max(max(r-l for l,r,_,_ in bounds), 1),
-                206 / max(max(b-t for _,_,t,b in bounds), 1))
+    scale = min(445 / max(max(r-l for l,r,_,_ in bounds), 1),
+                230 / max(max(b-t for _,_,t,b in bounds), 1))
     panels = []
     for (key, title, right, up, note), (left, right_edge, top, bottom) in zip(bases, bounds):
         def project(point):
             return [270 + scale*(dot(point, right) - (left+right_edge)/2),
                     142 + scale*(-dot(point, up) - (top+bottom)/2)]
 
+        def face(corners, cls):
+            vertices = " ".join(",".join(number(v, "投影面") for v in project(p)) for p in corners)
+            return f'<polygon points="{vertices}" class="{cls}"/>'
+
+        def segment(a, b, role="outline"):
+            return draw({"type": "line", "from": project(a), "to": project(b), "role": role}, "空间投影")
+
+        def caption(p, title, dx=0, dy=0):
+            x, y = project(p)
+            return draw({"type": "label", "at": [x+dx, y+dy], "text": title, "role": "view"}, "投影面名称")
+
         content = []
+        if key == "oblique":
+            content.extend([face(horizontal, "h-plane"), caption((x_end,y_max,0), "水平面 H", -45, 54)])
+        content.append(face(wall, "w-plane"))
         if key == "side":
-            content.append('<rect x="45" y="20" width="450" height="244" rx="3" class="w-plane"/>')
-            content.append('<text x="479" y="250" text-anchor="end" class="plane">W 面</text>')
+            content.append(caption((0,y_max,0), "侧投影面 W", -104, -9))
+        else:
+            content.append(caption((0,y_max,z_top), "侧投影面 W", -100, 18))
+            content.append(caption((0,0,0), "O", 7, 15))
+
+        for item in model["segments"]:
+            a, b = coordinate(item["from"]), coordinate(item["to"])
+            if item.get("role") == "axis":
+                continue
+            projected = [(0,p[1],p[2]) for p in (a,b)]
+            guides = ""
+            if key == "oblique":
+                guides = "".join(segment(p,q,"construction") for p,q in zip((a,b), projected) if p != q)
+                guides += segment(*projected)
+            content.append(wrap(stage(item), f'<g class="space-projection">{guides}</g>'))
+
         for item in model["segments"]:
             fields(item, ("from", "to"), ("label", "role", "step"), "space.segments")
             a, b = coordinate(item["from"]), coordinate(item["to"])
@@ -68,7 +102,7 @@ def spatial_panel(model, points, steps, draw, fields, number, words, reference):
                 geometry = draw({"type": "line", "from": p, "to": q}, "空间线段")
             if "label" in item:
                 label = words(item["label"], "space.segments.label")
-                at = [p[0]-42, p[1]+21] if collapsed else [q[0]+10, q[1]+4]
+                at = [p[0]-23, p[1]+22] if collapsed else [q[0]-27, q[1]+20]
                 geometry += draw({"type": "label", "at": at, "text": "O" if collapsed and role=="axis" else label}, "空间线段标签")
             content.append(wrap(stage(item), f'<g class="space-{role}">{geometry}</g>'))
         for item in model["right_angles"]:
@@ -88,22 +122,35 @@ def spatial_panel(model, points, steps, draw, fields, number, words, reference):
             mark = draw({"type":"polyline","points":corners}, "空间直角")
             content.append(wrap(stage(item), f'<g class="space-result">{mark}</g>'))
         for item in model["markers"]:
-            fields(item, ("point",), ("step",), "space.markers")
+            fields(item, ("point",), ("step", "project"), "space.markers")
             name = item["point"]
             at = project(coordinate(name))
             x,y = (number(n,"空间标记") for n in at)
+            if key == "oblique" and item.get("project", False):
+                projected = (0, *coordinate(name)[1:])
+                px, py = project(projected)
+                content.append(wrap(stage(item),
+                    f'<g class="space-projection"><circle cx="{number(px,"投影")}" cy="{number(py,"投影")}" r="3"/>'
+                    + caption(projected, name.lower()+"″", 7, -7) + "</g>"))
+
             label = escape(name)
+            display = label if key == "oblique" else label.lower() + "″"
+            label_y = at[1] + 22 if key == "oblique" and name == "B" else at[1] - 9
+            if key == "oblique" and at[0] > 450:
+                x_label = at[0]-22
+            else:
+                x_label = at[0]+9
             content.append(wrap(stage(item),
                 f'<g class="space-point" data-point="{reference(name)}" role="button" tabindex="0" aria-label="对照点 {label}" aria-pressed="false">'
                 f'<circle class="point-hit" cx="{x}" cy="{y}" r="16"/>'
                 f'<circle cx="{x}" cy="{y}" r="4"/>'
-                f'<text x="{number(at[0]+9,"点名")}" y="{number(at[1]-9,"点名")}">{label}</text></g>'))
+                f'<text x="{number(x_label,"点名")}" y="{number(label_y,"点名")}">{display}</text></g>'))
         hidden = ' hidden' if key != "oblique" else ''
         panels.append(f'<div data-space-view="{key}"{hidden}><svg viewBox="0 0 540 284" role="group" aria-label="{title}">'
                       + "".join(content) + f'</svg><p class="space-note">{note}</p></div>')
 
-    return ('<details class="space-panel" id="space-panel"><summary>空间示意</summary>'
+    return ('<section class="space-panel" id="space-panel" aria-labelledby="space-title"><h2 id="space-title">空间图</h2>'
             '<div class="space-controls" aria-label="视角">'
             '<button type="button" data-camera="oblique" aria-pressed="true">空间关系</button>'
             '<button type="button" data-camera="side" aria-pressed="false">看向侧面 W</button></div>'
-            + "".join(panels) + '<p class="space-status" aria-live="polite">点选字母，对照纸面图中已画出的投影。</p></details>')
+            + "".join(panels) + '<p class="space-status" aria-live="polite">点选字母，对照纸面图中已画出的投影。</p></section>')

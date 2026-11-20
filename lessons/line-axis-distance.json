@@ -198,14 +198,17 @@
     ],
     "markers": [
       {
-        "point": "A"
+        "point": "A",
+        "project": true
       },
       {
-        "point": "B"
+        "point": "B",
+        "project": true
       },
       {
         "point": "M",
-        "step": 2
+        "step": 2,
+        "project": true
       },
       {
         "point": "N",

@@ -28,12 +28,12 @@ $spatial_css</style>
 <main>
 <header><small><a href="../">工程图学研习</a> / $source</small>
 <h1>$title</h1><p>$problem</p></header>
-<figure><svg viewBox="0 0 $width $height" id="drawing" role="img" aria-label="$title 的分步作图">$drawing</svg><figcaption>$caption</figcaption></figure>
+$diagram_start<figure><svg viewBox="0 0 $width $height" id="drawing" role="img" aria-label="$title 的分步作图">$drawing</svg><figcaption>$caption</figcaption></figure>$diagram_end
 <nav class="controls" aria-label="作图步骤">
 <span id="count">题图</span><button id="prev" disabled>上一步</button><button id="next">下一步</button><button id="finish">完成图</button>
 </nav>
 <section class="explain" aria-live="polite"><h2 id="heading">$intro_title</h2><p id="action">$intro</p><p id="why" class="why">$intro_reason</p></section>
-$spatial$details
+$details
 <noscript>启用 JavaScript 后可查看分步作图。</noscript>
 <script type="application/json" id="lesson">$lesson</script>
 <script>
