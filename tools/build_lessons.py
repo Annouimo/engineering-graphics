@@ -89,7 +89,7 @@ def draw(item, where, resolve=None):
         return f'<circle cx="{x}" cy="{y}" r="{r}" class="ring {cls}"/>'
     point = item.get("at") if kind in ("dot", "label") else None
     def link():
-        return f' data-point="{escape(point["point"], quote=True)}"' if isinstance(point, dict) else ""
+        return f' data-point="{escape(point["point"], quote=True)}"' if isinstance(point, dict) and item.get("role") != "dimension" else ""
     if kind == "dot":
         fields(item, ("type", "at"), (), where)
         x, y = position(item["at"], where)
