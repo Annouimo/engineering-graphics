@@ -24,7 +24,7 @@ svg .dim{font-size:15px}svg .hidden-edge{stroke-dasharray:6 4}svg text{stroke:no
 .is-hidden{display:none}
 svg .ring{fill:none}svg .ring,svg .ring.aux{stroke-width:1.25}
 @media(prefers-color-scheme:dark){:root{--paper:#242218;--ink:#ebe5d7;--blue:#abc9eb;--muted:#beb6a5;--rule:#5b5547;--diagram:#211f15;--faded:#a19a8b;--button-bg:#223d5f;--button-ink:#fff}}
-</style>
+$spatial_css</style>
 <main>
 <header><small><a href="../">工程图学研习</a> / $source</small>
 <h1>$title</h1><p>$problem</p></header>
@@ -33,7 +33,7 @@ svg .ring{fill:none}svg .ring,svg .ring.aux{stroke-width:1.25}
 <span id="count">题图</span><button id="prev" disabled>上一步</button><button id="next">下一步</button><button id="finish">完成图</button>
 </nav>
 <section class="explain" aria-live="polite"><h2 id="heading">$intro_title</h2><p id="action">$intro</p><p id="why" class="why">$intro_reason</p></section>
-$details
+$spatial$details
 <noscript>启用 JavaScript 后可查看分步作图。</noscript>
 <script type="application/json" id="lesson">$lesson</script>
 <script>
@@ -63,12 +63,12 @@ function render(position) {
   get('why').textContent = step.reason || '';
   get('count').textContent = done ? '完成图' : position ? '第 ' + position + ' 步 / 共 ' + config.steps.length + ' 步' : '题图';
   previous.disabled = position === 0;
-  next.disabled = finish.disabled = done;
+  next.disabled = finish.disabled = done;$spatial_update
 }
 
 previous.onclick = () => render(current - 1);
 next.onclick = () => render(current + 1);
 finish.onclick = () => render(config.steps.length + 1);
-</script>
+$spatial_js</script>
 </main>
 </html>

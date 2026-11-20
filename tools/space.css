@@ -1,0 +1,17 @@
+.space-panel { margin: 0 0 18px; }
+.space-controls { display:flex; flex-wrap:wrap; gap:8px; padding-top:12px; }
+.space-controls [aria-pressed="true"] { background:var(--button-bg); color:var(--button-ink); }
+.space-panel svg { margin-top:10px; background:var(--diagram); border:1px solid var(--rule); }
+.space-panel svg text { font-size:22px; }
+.space-panel svg .space-result { color:var(--blue); }
+.space-panel svg .space-result line { stroke-width:2; }
+.space-panel svg .space-axis { color:var(--faded); }
+.space-panel .w-plane { fill:var(--blue); fill-opacity:.07; stroke:var(--rule); }
+.space-point { cursor:pointer; }
+.space-point .point-hit { fill:transparent; stroke:none; }
+.space-point:focus-visible .point-hit,
+.space-point.is-selected .point-hit { stroke:var(--blue); stroke-width:2; }
+svg [data-point].is-selected { color:var(--blue); }
+svg text.is-selected { font-weight:bold; text-decoration:underline; }
+#drawing circle.is-selected { r:5; stroke-width:2; }
+.space-note, .space-status { color:var(--muted); font-size:.9rem; margin:8px 0; }

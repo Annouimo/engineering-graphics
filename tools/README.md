@@ -37,3 +37,11 @@ python3 tools/build_lessons.py --check
 每个点用 `[x, y]`。线类图元的 `role` 可选 `outline`（轮廓）、`construction`（作图线）、`hidden`（不可见轮廓）、`center`（中心线）。标签的 `role` 可选 `normal`、`view`（视图名）、`dimension`（尺寸）、`result`（结果点）。颜色、字号、文字描边和步骤控件都由共享模板管理。
 
 先用计算或作图确立几何关系，再把纸面坐标写入配置。坐标如何求可由各题自行决定。编译器负责检查字段、图层引用和弧的基本约束，并输出页面。如果遇到需要新图元的题，在共享编译器中加入相应图元。
+
+## 空间示意
+
+[第 2 题（3）的配置](../lessons/line-axis-distance.json)含可选的 `space`。空间点以 `[x, y, z]` 定义，`views` 为三面投影指定共同的 `scale` 和 `V`、`H`、`W` 三个图面原点。图面坐标依次采用 `[-x, -z]`、`[-x, y]`、`[y, -z]`，乘以比例后加到原点。
+
+纸面图元可以用 `{"point":"M","view":"W"}` 代替二维坐标。标签可用 `offset` 设图面偏移。水平图的点引用加 `"on":"miter"`，可定位从该点向右引深度线与 45° 转向线的交点。普通二维坐标仍可用于轴线、图注和辅助构造。
+
+`segments` 用 `from` 和 `to` 引用空间点，可用 `role` 标为 `axis` 或 `result`。在 `markers` 中用 `point` 标出可对照的点，在 `right_angles` 中用 `vertex` 和两个 `arms` 端点标示直角。三类对象都可用 `step` 指定首次出现的步骤，省略则随题图显示。空间图和点选联动由模板生成。
