@@ -25,7 +25,12 @@ def spatial_panel(model, points, steps, draw, fields, number, words):
         if not isinstance(model.get(key, []), list):
             raise ValueError(f"space.{key} 需要列表")
 
-    default_angles = (62, 28)
+    default_angles = model.get("camera", (62, 28))
+    if not isinstance(default_angles, (list, tuple)) or len(default_angles) != 2:
+        raise ValueError("space.camera 需要 [方位角, 仰角]")
+    default_angles = tuple(float(number(value, "空间视角")) for value in default_angles)
+    if not 8 <= default_angles[1] <= 83:
+        raise ValueError("空间视角仰角须在 8 到 83 度之间")
     azimuth, elevation = map(radians, default_angles)
     right = (-sin(azimuth), cos(azimuth), 0)
     up = (-sin(elevation)*cos(azimuth), -sin(elevation)*sin(azimuth), cos(elevation))
@@ -103,7 +108,8 @@ def spatial_panel(model, points, steps, draw, fields, number, words):
         center = tuple(sum(axis)/len(corners) for axis in zip(*corners))
         content.append(wrap(start, '<g class="space-plane plane-extra">'
                             + face(corners) + caption(center, label, (6,-6), "view") + '</g>'))
-    content.append(caption((0,0,0), "O", (7,15), "view"))
+    if enabled:
+        content.append(caption((0,0,0), "O", (7,15), "view"))
 
     for item in model.get("projections", []):
         fields(item, ("view", "step", "points"), ("until", "segments"), "space.projections")
@@ -162,14 +168,23 @@ def spatial_panel(model, points, steps, draw, fields, number, words):
         content.append(wrap(stage(item), f'<g class="space-result">{mark}</g>'))
 
     for item in model["markers"]:
-        fields(item, ("point",), ("step",), "space.markers")
+        fields(item, ("point",), ("step", "until", "offset"), "space.markers")
         name = item["point"]
         p = coordinate(name)
         label = escape(name)
         offset = {"A": (-19,-12), "B": (10,17), "M": (-9,-16), "N": (-26,-10)}.get(name, (9,-9))
-        content.append(wrap(stage(item),
+        if "offset" in item:
+            offset = item["offset"]
+            if not isinstance(offset, list) or len(offset) != 2:
+                raise ValueError("点名偏移需要 [dx, dy]")
+            offset = tuple(float(number(value, "点名偏移")) for value in offset)
+        start = stage(item)
+        end = stage(item, "until") if "until" in item else None
+        if end is not None and end < start:
+            raise ValueError("点名的 until 不能早于 step")
+        content.append(wrap(start,
             f'<g class="space-point" data-point="{label}" role="button" tabindex="0" aria-label="对照点 {label}" aria-pressed="false">'
-            + circle(p, 15, "point-hit") + circle(p, 4) + caption(p, name, offset) + '</g>'))
+            + circle(p, 15, "point-hit") + circle(p, 4) + caption(p, name, offset) + '</g>', end))
 
     camera = ",".join(map(str, default_angles))
     return ('<section class="space-panel" id="space-panel" aria-labelledby="space-title"><h2 id="space-title">空间图</h2>'

@@ -12,39 +12,39 @@
       {"type": "line", "from": [15.0, 201.0], "to": [328.0, 201.0]},
       {"type": "label", "at": [0.0, 206.0], "text": "X"},
       {"type": "label", "at": [334.0, 206.0], "text": "O"},
-      {"type": "line", "from": [40.58, 179.94], "to": [142.76, 122.22]},
-      {"type": "line", "from": [40.58, 257.16], "to": [142.76, 224.4]},
-      {"type": "line", "from": [142.76, 122.22], "to": [85.82, 77.76]},
-      {"type": "line", "from": [142.76, 224.4], "to": [85.82, 318.0]},
-      {"type": "line", "from": [85.82, 77.76], "to": [40.58, 179.94]},
-      {"type": "line", "from": [85.82, 318.0], "to": [40.58, 257.16]},
-      {"type": "line", "from": [180.2, 59.82], "to": [254.3, 122.22]},
-      {"type": "line", "from": [180.2, 253.26], "to": [254.3, 318.78]},
-      {"type": "line", "from": [40.58, 179.94], "to": [40.58, 257.16], "role": "construction"},
-      {"type": "label", "at": [26.58, 174.94], "text": "a′"},
-      {"type": "label", "at": [44.58, 273.16], "text": "a"},
-      {"type": "line", "from": [142.76, 122.22], "to": [142.76, 224.4], "role": "construction"},
-      {"type": "label", "at": [128.76, 117.22], "text": "b′"},
-      {"type": "label", "at": [146.76, 240.4], "text": "b"},
-      {"type": "line", "from": [85.82, 77.76], "to": [85.82, 318.0], "role": "construction"},
-      {"type": "label", "at": [71.82, 72.76], "text": "c′"},
-      {"type": "label", "at": [89.82, 334.0], "text": "c"},
-      {"type": "line", "from": [180.2, 59.82], "to": [180.2, 253.26], "role": "construction"},
-      {"type": "label", "at": [166.2, 54.82], "text": "e′"},
-      {"type": "label", "at": [184.2, 269.26], "text": "e"},
-      {"type": "line", "from": [254.3, 122.22], "to": [254.3, 318.78], "role": "construction"},
-      {"type": "label", "at": [240.3, 117.22], "text": "f′"},
-      {"type": "label", "at": [258.3, 334.78], "text": "f"},
+      {"type": "line", "from": {"point": "A", "view": "V"}, "to": {"point": "B", "view": "V"}},
+      {"type": "line", "from": {"point": "A", "view": "H"}, "to": {"point": "B", "view": "H"}},
+      {"type": "line", "from": {"point": "B", "view": "V"}, "to": {"point": "C", "view": "V"}},
+      {"type": "line", "from": {"point": "B", "view": "H"}, "to": {"point": "C", "view": "H"}},
+      {"type": "line", "from": {"point": "C", "view": "V"}, "to": {"point": "A", "view": "V"}},
+      {"type": "line", "from": {"point": "C", "view": "H"}, "to": {"point": "A", "view": "H"}},
+      {"type": "line", "from": {"point": "E", "view": "V"}, "to": {"point": "F", "view": "V"}},
+      {"type": "line", "from": {"point": "E", "view": "H"}, "to": {"point": "F", "view": "H"}},
+      {"type": "line", "from": {"point": "A", "view": "V"}, "to": {"point": "A", "view": "H"}, "role": "construction"},
+      {"type": "label", "at": {"point": "A", "view": "V", "offset": [-14.0, -5.0]}, "text": "a′"},
+      {"type": "label", "at": {"point": "A", "view": "H", "offset": [4.0, 16.0]}, "text": "a"},
+      {"type": "line", "from": {"point": "B", "view": "V"}, "to": {"point": "B", "view": "H"}, "role": "construction"},
+      {"type": "label", "at": {"point": "B", "view": "V", "offset": [-14.0, -5.0]}, "text": "b′"},
+      {"type": "label", "at": {"point": "B", "view": "H", "offset": [4.0, 16.0]}, "text": "b"},
+      {"type": "line", "from": {"point": "C", "view": "V"}, "to": {"point": "C", "view": "H"}, "role": "construction"},
+      {"type": "label", "at": {"point": "C", "view": "V", "offset": [-14.0, -5.0]}, "text": "c′"},
+      {"type": "label", "at": {"point": "C", "view": "H", "offset": [4.0, 16.0]}, "text": "c"},
+      {"type": "line", "from": {"point": "E", "view": "V"}, "to": {"point": "E", "view": "H"}, "role": "construction"},
+      {"type": "label", "at": {"point": "E", "view": "V", "offset": [-14.0, -5.0]}, "text": "e′"},
+      {"type": "label", "at": {"point": "E", "view": "H", "offset": [4.0, 16.0]}, "text": "e"},
+      {"type": "line", "from": {"point": "F", "view": "V"}, "to": {"point": "F", "view": "H"}, "role": "construction"},
+      {"type": "label", "at": {"point": "F", "view": "V", "offset": [-14.0, -5.0]}, "text": "f′"},
+      {"type": "label", "at": {"point": "F", "view": "H", "offset": [4.0, 16.0]}, "text": "f"},
       {"type": "label", "at": [419.0, 46.0], "text": "辅助视图", "role": "view"}
     ],
     "horizontal-line": [
-      {"type": "line", "from": [142.76, 122.22], "to": [66.14, 122.22]},
-      {"type": "line", "from": [142.76, 224.4], "to": [66.14, 291.53]},
-      {"type": "line", "from": [66.14, 122.22], "to": [66.14, 291.53], "role": "construction"},
-      {"type": "dot", "at": [66.14, 122.22]},
-      {"type": "label", "at": [71.14, 116.22], "text": "p′"},
-      {"type": "dot", "at": [66.14, 291.53]},
-      {"type": "label", "at": [71.14, 285.53], "text": "p"}
+      {"type": "line", "from": {"point": "B", "view": "V"}, "to": {"point": "P", "view": "V"}},
+      {"type": "line", "from": {"point": "B", "view": "H"}, "to": {"point": "P", "view": "H"}},
+      {"type": "line", "from": {"point": "P", "view": "V"}, "to": {"point": "P", "view": "H"}, "role": "construction"},
+      {"type": "dot", "at": {"point": "P", "view": "V"}},
+      {"type": "label", "at": {"point": "P", "view": "V", "offset": [5.0, -6.0]}, "text": "p′"},
+      {"type": "dot", "at": {"point": "P", "view": "H"}},
+      {"type": "label", "at": {"point": "P", "view": "H", "offset": [5.0, -6.0]}, "text": "p"}
     ],
     "edge-view": [
       {"type": "line", "from": [54.38, 276.8], "to": [175.62, 415.2], "role": "construction"},
@@ -83,18 +83,18 @@
       {"type": "label", "at": [488.64, 191.58], "text": "20 mm", "role": "dimension"}
     ],
     "original-projections": [
-      {"type": "line", "from": [208.61, 83.74], "to": [208.61, 278.38], "role": "construction"},
-      {"type": "dot", "at": [208.61, 83.74]},
-      {"type": "label", "at": [213.61, 77.74], "text": "d1′"},
-      {"type": "dot", "at": [208.61, 278.38]},
-      {"type": "label", "at": [213.61, 292.38], "text": "d1"},
-      {"type": "line", "from": [151.56, 35.7], "to": [151.56, 227.94], "role": "construction"},
-      {"type": "dot", "at": [151.56, 35.7]},
-      {"type": "label", "at": [156.56, 29.7], "text": "d2′"},
-      {"type": "dot", "at": [151.56, 227.94]},
-      {"type": "label", "at": [156.56, 241.94], "text": "d2"},
-      {"type": "line", "from": [180.2, 59.82], "to": [151.56, 35.7], "role": "construction"},
-      {"type": "line", "from": [180.2, 253.26], "to": [151.56, 227.94], "role": "construction"}
+      {"type": "line", "from": {"point": "D1", "view": "V"}, "to": {"point": "D1", "view": "H"}, "role": "construction"},
+      {"type": "dot", "at": {"point": "D1", "view": "V"}},
+      {"type": "label", "at": {"point": "D1", "view": "V", "offset": [5.0, -6.0042]}, "text": "d1′"},
+      {"type": "dot", "at": {"point": "D1", "view": "H"}},
+      {"type": "label", "at": {"point": "D1", "view": "H", "offset": [5.0, 13.9996]}, "text": "d1"},
+      {"type": "line", "from": {"point": "D2", "view": "V"}, "to": {"point": "D2", "view": "H"}, "role": "construction"},
+      {"type": "dot", "at": {"point": "D2", "view": "V"}},
+      {"type": "label", "at": {"point": "D2", "view": "V", "offset": [5.0, -6.0021]}, "text": "d2′"},
+      {"type": "dot", "at": {"point": "D2", "view": "H"}},
+      {"type": "label", "at": {"point": "D2", "view": "H", "offset": [5.0, 14.0038]}, "text": "d2"},
+      {"type": "line", "from": {"point": "E", "view": "V"}, "to": {"point": "D2", "view": "V"}, "role": "construction"},
+      {"type": "line", "from": {"point": "E", "view": "H"}, "to": {"point": "D2", "view": "H"}, "role": "construction"}
     ],
     "answer-geometry": [
       {"type": "line", "from": [378.0, 340.0], "to": [624.0, 340.0]},
@@ -165,6 +165,194 @@
     "show": [
       "original-projections",
       "answer-geometry"
+    ]
+  },
+  "space": {
+    "camera": [50, 36],
+    "points": {
+      "A": [
+        287.42,
+        56.160000000000025,
+        21.060000000000002
+      ],
+      "B": [
+        185.24,
+        23.400000000000006,
+        78.78
+      ],
+      "C": [
+        242.18,
+        117,
+        123.24
+      ],
+      "E": [
+        147.8,
+        52.25999999999999,
+        141.18
+      ],
+      "F": [
+        73.69999999999999,
+        117.77999999999997,
+        78.78
+      ],
+      "P": [
+        261.86,
+        90.52999999999997,
+        78.78
+      ],
+      "D1": [
+        119.38999999999999,
+        77.38042105263158,
+        117.2557894736842
+      ],
+      "D2": [
+        176.44,
+        26.936210526315808,
+        165.2978947368421
+      ],
+      "Foot-D1": [
+        143.04634428522755,
+        50.377272692990516,
+        143.80780123395292
+      ],
+      "Foot-D2": [
+        152.7865325294606,
+        53.9360750711421,
+        138.74911192930213
+      ],
+      "aux-0": [
+        156.98576852115053,
+        208.93282311797182,
+        0.0
+      ],
+      "aux-1": [
+        269.01423147884947,
+        81.06717688202818,
+        0.0
+      ],
+      "aux-2": [
+        269.01423147884947,
+        81.06717688202818,
+        158.0
+      ],
+      "aux-3": [
+        156.98576852115053,
+        208.93282311797182,
+        158.0
+      ]
+    },
+    "views": {
+      "scale": 1,
+      "V": [
+        328,
+        201
+      ],
+      "H": [
+        328,
+        201
+      ]
+    },
+    "segments": [
+      {
+        "from": "A",
+        "to": "B"
+      },
+      {
+        "from": "B",
+        "to": "C"
+      },
+      {
+        "from": "C",
+        "to": "A"
+      },
+      {
+        "from": "E",
+        "to": "F"
+      },
+      {
+        "from": "D2",
+        "to": "E",
+        "step": 3
+      },
+      {
+        "from": "B",
+        "to": "P",
+        "step": 1,
+        "role": "result"
+      },
+      {
+        "from": "D1",
+        "to": "Foot-D1",
+        "step": 3,
+        "role": "result"
+      },
+      {
+        "from": "D2",
+        "to": "Foot-D2",
+        "step": 3,
+        "role": "result"
+      }
+    ],
+    "markers": [
+      {
+        "point": "A"
+      },
+      {
+        "point": "B"
+      },
+      {
+        "point": "C"
+      },
+      {
+        "point": "E"
+      },
+      {
+        "point": "F"
+      },
+      {
+        "point": "P",
+        "step": 1,
+        "until": 1
+      },
+      {
+        "point": "D1",
+        "step": 3
+      },
+      {
+        "point": "D2",
+        "step": 3
+      }
+    ],
+    "right_angles": [],
+    "projections": [
+      {
+        "view": "V",
+        "step": 4,
+        "points": [
+          "D1",
+          "D2"
+        ]
+      },
+      {
+        "view": "H",
+        "step": 4,
+        "points": [
+          "D1",
+          "D2"
+        ]
+      }
+    ],
+    "auxiliary_planes": [
+      {
+        "label": "新投影面",
+        "corners": [
+          "aux-0",
+          "aux-1",
+          "aux-2",
+          "aux-3"
+        ],
+        "step": 2
+      }
     ]
   }
 }

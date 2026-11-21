@@ -151,7 +151,7 @@ def compile_lesson(config, template):
     resolve = None
     if "space" in config:
         model = config["space"]
-        fields(model, ("points", "views", "segments", "markers", "right_angles"), ("auxiliary_planes", "projections"), "space")
+        fields(model, ("points", "views", "segments", "markers", "right_angles"), ("auxiliary_planes", "projections", "camera"), "space")
         points, views = model["points"], model["views"]
         if not isinstance(points, dict) or not points or not isinstance(views, dict):
             raise ValueError("space.points 和 space.views 需要对象")
@@ -160,13 +160,13 @@ def compile_lesson(config, template):
                 raise ValueError(f"{name}：需要命名点及 [x, y, z]")
             for value in coordinate:
                 number(value, name)
-        fields(views, ("scale",), ("V", "H", "W"), "space.views")
+        fields(views, ("scale",), ("V", "H", "W", "I"), "space.views")
         if len(views) < 2:
-            raise ValueError("space.views 至少需要一个投影面")
+            raise ValueError("space.views 至少需要一个视图原点")
         scale = float(number(views["scale"], "投影比例"))
         if scale <= 0:
             raise ValueError("投影比例必须为正")
-        origins = {name: list(map(float, pair(views[name], name))) for name in ("V", "H", "W") if name in views}
+        origins = {name: list(map(float, pair(views[name], name))) for name in ("V", "H", "W", "I") if name in views}
 
         def resolve(value, where):
             if not isinstance(value, dict):
@@ -176,7 +176,7 @@ def compile_lesson(config, template):
             if not isinstance(name, str) or name not in points or not isinstance(view, str) or view not in origins:
                 raise ValueError(f"{where}：未知点或投影视图")
             x, y, z = points[name]
-            u, v = {"V": (-x, -z), "H": (-x, y), "W": (y, -z)}[view]
+            u, v = {"V": (-x, -z), "H": (-x, y), "W": (y, -z), "I": (math.sqrt(3) * (x-y) / 2, (x+y) / 2-z)}[view]
             ox, oy = origins[view]
             if "on" in value:
                 if value["on"] != "miter" or view != "H" or "W" not in origins:

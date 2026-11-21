@@ -29,7 +29,7 @@ function renderSpace(position) {
     const end = Number(element.dataset.spaceUntil ?? Infinity);
     const visible = position >= start && position <= end;
     element.classList.toggle('is-hidden', !visible);
-    element.classList.toggle('is-faded', visible && position > start && end !== Infinity);
+    element.classList.toggle('is-faded', visible && Boolean(element.dataset.spaceFocus) && position > start && end !== Infinity);
     if (visible && element.dataset.spaceFocus && (position === start || end === Infinity)) {
       activePlanes.add(element.dataset.spaceFocus);
     }

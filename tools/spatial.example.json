@@ -1,0 +1,41 @@
+{
+  "source": "投影基础 · 练习",
+  "title": "从空间点到两面投影",
+  "problem": "已知空间点 A，作出它在正面 V 和水平面 H 上的投影。",
+  "caption": "两幅投影采用相同比例。",
+  "size": [440, 320],
+  "layers": {
+    "axis": [
+      {"type": "line", "from": [44, 164], "to": [356, 164]},
+      {"type": "label", "at": [29, 168], "text": "X"}
+    ],
+    "front": [
+      {"type": "dot", "at": {"point": "A", "view": "V"}},
+      {"type": "label", "at": {"point": "A", "view": "V", "offset": [8, -8]}, "text": "a′"}
+    ],
+    "top": [
+      {"type": "dot", "at": {"point": "A", "view": "H"}},
+      {"type": "label", "at": {"point": "A", "view": "H", "offset": [8, 17]}, "text": "a"}
+    ],
+    "transfer": [
+      {"type": "line", "from": {"point": "A", "view": "V"}, "to": {"point": "A", "view": "H"}, "role": "construction"}
+    ]
+  },
+  "given": ["axis"],
+  "steps": [
+    {"title": "向正面投射", "action": "沿垂直于 V 面的方向投射，落点为 a′。", "add": ["front"]},
+    {"title": "向水平面投射", "action": "沿垂直于 H 面的方向投射，落点为 a。", "add": ["top"], "show": ["transfer"]}
+  ],
+  "answer": {"action": "a′ 和 a 处于同一条垂直于 X 轴的投影连线上。", "show": ["front", "top", "transfer"]},
+  "space": {
+    "points": {"A": [90, 60, 100]},
+    "views": {"scale": 1, "V": [356, 164], "H": [356, 164]},
+    "segments": [],
+    "markers": [{"point": "A"}],
+    "right_angles": [],
+    "projections": [
+      {"view": "V", "step": 1, "points": ["A"]},
+      {"view": "H", "step": 2, "points": ["A"]}
+    ]
+  }
+}

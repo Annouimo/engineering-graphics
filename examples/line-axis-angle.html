@@ -24,11 +24,47 @@ svg .dim{font-size:15px}svg .hidden-edge{stroke-dasharray:6 4}svg text{stroke:no
 .is-hidden{display:none}
 svg .ring{fill:none}svg .ring,svg .ring.aux{stroke-width:1.25}
 @media(prefers-color-scheme:dark){:root{--paper:#242218;--ink:#ebe5d7;--blue:#abc9eb;--muted:#beb6a5;--rule:#5b5547;--diagram:#211f15;--faded:#a19a8b;--button-bg:#223d5f;--button-ink:#fff}}
+.space-controls { display:flex; flex-wrap:wrap; gap:8px; }
+.space-panel svg { margin-top:8px; background:var(--diagram); border:1px solid var(--rule); }
+.space-panel svg text { font-size:22px; }
+.space-panel svg .space-result { color:var(--blue); }
+.space-panel svg .space-result line { stroke-width:2; }
+.space-panel svg .space-axis { color:var(--ink); }
+.space-point { cursor:pointer; }
+.space-point .point-hit { fill:transparent; stroke:none; }
+.space-point:focus-visible .point-hit,
+.space-point.is-selected .point-hit { stroke:var(--blue); stroke-width:2; }
+svg [data-point].is-selected { color:var(--blue); }
+svg text.is-selected { font-weight:bold; text-decoration:underline; }
+#drawing circle.is-selected { r:5; stroke-width:2; }
+.space-note, .space-status { color:var(--muted); font-size:.9rem; margin:8px 0; }
+main:has(.diagram-pair) { max-width:1240px; display:flex; flex-direction:column; }
+main:has(.diagram-pair) > header { order:-2; }
+main:has(.diagram-pair) > .controls { order:-1; position:sticky; top:0; z-index:1; background:var(--paper); }
+.diagram-pair { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:clamp(20px,3vw,36px); margin:20px 0; align-items:start; }
+.diagram-pair h2 { margin:0 0 8px; }
+.paper-panel figure { margin:0; }
+.space-panel { margin:0; }
+.space-panel svg .plane { font-size:15px; }
+.space-panel .space-projection { color:var(--blue); }
+.space-panel .space-projection text { fill:var(--blue); }
+@media(max-width:820px) { .diagram-pair { grid-template-columns:1fr; gap:18px; } }
+
+.space-panel svg[data-orbit] { touch-action:none; cursor:grab; user-select:none; }
+.space-panel svg[data-orbit]:active { cursor:grabbing; }
+
+.space-plane { color:var(--faded); }
+.space-plane polygon { fill:currentColor; fill-opacity:.05; stroke:currentColor; stroke-opacity:.48; vector-effect:non-scaling-stroke; }
+.space-plane.is-active,.space-plane.plane-extra { color:var(--blue); }
+.space-plane.is-active polygon { fill-opacity:.12; stroke-opacity:.82; }
+.space-plane.is-active text { fill:currentColor; font-weight:bold; }
+[data-space-focus].is-faded { opacity:.36; }
+.space-status:empty { display:none; }
 </style>
 <main>
 <header><small><a href="../">工程图学研习</a> / 2024 秋期中 · 第 2 题（2）</small>
 <h1>求 AB 与 X 轴的夹角</h1><p>已知 AB 的正面投影和水平投影，求直线 AB 与 X 轴的锐夹角。</p></header>
-<figure><svg viewBox="0 0 640 430" id="drawing" role="img" aria-label="求 AB 与 X 轴的夹角 的分步作图"><g data-layer="given"><line x1="83" y1="232" x2="303" y2="232" class=""/><text x="68" y="237" class="">X</text><text x="309" y="237" class="">O</text><line x1="193" y1="102" x2="273" y2="172" class=""/><line x1="193" y1="302" x2="273" y2="382" class=""/><line x1="193" y1="102" x2="193" y2="302" class="aux"/><text x="179" y="97" class="">a′</text><text x="197" y="318" class="">a</text><line x1="273" y1="172" x2="273" y2="382" class="aux"/><text x="259" y="167" class="">b′</text><text x="277" y="398" class="">b</text><line x1="303" y1="42" x2="303" y2="396" class=""/><line x1="303" y1="232" x2="585" y2="232" class=""/><text x="311" y="43" class="">Z</text><text x="311" y="392" class="">Yₕ</text><text x="593" y="232" class="">Y𝑤</text><text x="90" y="70" class="plane">正面 V</text><text x="90" y="388" class="plane">水平 H</text><text x="525" y="70" class="plane">侧面 W</text></g><g data-layer="side-projection" class="is-hidden"><line x1="193" y1="302" x2="373" y2="302" class="aux"/><line x1="373" y1="302" x2="373" y2="102" class="aux"/><line x1="373" y1="102" x2="193" y2="102" class="aux"/><line x1="273" y1="382" x2="453" y2="382" class="aux"/><line x1="453" y1="382" x2="453" y2="172" class="aux"/><line x1="453" y1="172" x2="273" y2="172" class="aux"/><line x1="303" y1="232" x2="454" y2="383" class="aux"/><line x1="373" y1="102" x2="453" y2="172" class=""/><circle cx="373" cy="102" r="2.7"/><text x="378" y="96" class="">a″</text><circle cx="453" cy="172" r="2.7"/><text x="458" y="166" class="">b″</text></g><g data-layer="length-triangle" class="is-hidden"><line x1="105" y1="175" x2="185" y2="175" class=""/><line x1="185" y1="175" x2="185" y2="68.7" class=""/><line x1="185" y1="68.7" x2="105" y2="175" class=""/><line x1="177" y1="175" x2="177" y2="167" class=""/><line x1="177" y1="167" x2="185" y2="167" class=""/><path class="" d="M130,175 A25,25 0 0,0 120.0329,155.0247"/><text x="137" y="163" class="">α</text></g><g data-layer="length-triangle-marks" class="is-hidden"><text x="139" y="197" class="dim">Δx</text><text x="193" y="129" class="dim">|a″b″|</text><text x="80" y="105.7" class="dim">AB 实长</text><line x1="193" y1="232" x2="273" y2="232" class=""/></g><g data-layer="angle" class="is-hidden"><text x="139" y="197" class="dim">Δx</text><text x="193" y="129" class="dim">|a″b″|</text><text x="80" y="105.7" class="dim">AB 实长</text></g><g data-layer="answer-geometry" class="is-hidden"><line x1="373" y1="102" x2="453" y2="172" class=""/><circle cx="373" cy="102" r="2.7"/><text x="378" y="96" class="">a″</text><circle cx="453" cy="172" r="2.7"/><text x="458" y="166" class="">b″</text></g></svg><figcaption>依据原卷重绘。未标注的图面坐标为估读值，图中数值仅供方法核对。</figcaption></figure>
+<div class="diagram-pair"><section class="space-panel" id="space-panel" aria-labelledby="space-title"><h2 id="space-title">空间图</h2><div class="space-controls"><button id="reset-space" type="button">恢复默认视角</button></div><svg viewBox="0 0 540 284" role="group" aria-label="空间图，拖动可旋转" data-orbit="62.0,28.0" data-fit="110,70,130 30,150,60 0,0,0 220,0,0 110,0,0 30,0,0 0,0,0 220,0,0 220,174,0 0,174,0 0,0,0 220,0,0 220,0,156 0,0,156 0,0,0 0,174,0 0,174,156 0,0,156"><g class="space-plane plane-h" data-plane="H"><polygon data-world="0,0,0 220,0,0 220,174,0 0,174,0" points="316.6179,149.0924 155.7184,189.2565 223.3821,249 384.2816,208.8359"/><text data-world="191.4,107.88,0" data-offset="-28,19" x="190.5868" y="240.0761" class="plane">水平面 H</text></g><g class="space-plane plane-v" data-plane="V"><polygon data-world="0,0,0 220,0,0 220,0,156 0,0,156" points="316.6179,149.0924 155.7184,189.2565 155.7184,75.1641 316.6179,35"/><text data-world="220,0,156" data-offset="-8,-10" x="147.7184" y="65.1641" class="plane">正投影面 V</text></g><g class="space-plane plane-w" data-plane="W"><polygon data-world="0,0,0 0,174,0 0,174,156 0,0,156" points="316.6179,149.0924 384.2816,208.8359 384.2816,94.7435 316.6179,35"/><text data-world="0,174,96.72" data-offset="15,3" x="399.2816" y="141.0986" class="plane">侧投影面 W</text></g><text data-world="0,0,0" data-offset="7,15" x="323.6179" y="164.0924" class="plane">O</text><g data-space-step="1" data-space-focus="W" class="is-hidden"><g class="space-projection"><line data-world="0,70,130 0,150,60" x1="343.8389" y1="78.0501" x2="374.9487" y2="156.7137" class=""/><line data-world="110,70,130 0,70,130" x1="263.3892" y1="98.1322" x2="343.8389" y2="78.0501" class="aux"/><circle data-world="0,70,130" class="" cx="343.8389" cy="78.0501" r="3"/><text data-world="0,70,130" data-offset="8,-9" x="351.8389" y="69.0501" class="">a″</text><line data-world="30,150,60 0,150,60" x1="353.0078" y1="162.1906" x2="374.9487" y2="156.7137" class="aux"/><circle data-world="0,150,60" class="" cx="374.9487" cy="156.7137" r="3"/><text data-world="0,150,60" data-offset="8,-9" x="382.9487" y="147.7137" class="">b″</text></g></g><g data-space-step="0"><g class="space-outline"><line data-world="110,70,130 30,150,60" x1="263.3892" y1="98.1322" x2="353.0078" y2="162.1906" class=""/></g></g><g data-space-step="0"><g class="space-axis"><line data-world="0,0,0 220,0,0" x1="316.6179" y1="149.0924" x2="155.7184" y2="189.2565" class=""/><text data-world="220,0,0" data-offset="-27,22" x="128.7184" y="211.2565" class="">X 轴</text></g></g><g data-space-step="2" class="is-hidden"><g class="space-result"><line data-world="110,0,0 30,0,0" x1="236.1682" y1="169.1744" x2="294.6771" y2="154.5693" class=""/></g></g><g data-space-step="0"><g class="space-point" data-point="A" role="button" tabindex="0" aria-label="对照点 A" aria-pressed="false"><circle data-world="110,70,130" class="point-hit" cx="263.3892" cy="98.1322" r="15"/><circle data-world="110,70,130" class="" cx="263.3892" cy="98.1322" r="4"/><text data-world="110,70,130" data-offset="-19,-12" x="244.3892" y="86.1322" class="">A</text></g></g><g data-space-step="0"><g class="space-point" data-point="B" role="button" tabindex="0" aria-label="对照点 B" aria-pressed="false"><circle data-world="30,150,60" class="point-hit" cx="353.0078" cy="162.1906" r="15"/><circle data-world="30,150,60" class="" cx="353.0078" cy="162.1906" r="4"/><text data-world="30,150,60" data-offset="10,17" x="363.0078" y="179.1906" class="">B</text></g></g></svg><p class="space-note">拖动旋转，点选字母可对照纸面投影。</p><p class="space-status" aria-live="polite"></p></section><div class="paper-panel"><h2>纸面作图</h2><figure><svg viewBox="0 0 640 430" id="drawing" role="img" aria-label="求 AB 与 X 轴的夹角 的分步作图"><g data-layer="given"><line x1="83" y1="232" x2="303" y2="232" class=""/><text x="68" y="237" class="">X</text><text x="309" y="237" class="" data-point="O">O</text><line x1="193" y1="102" x2="273" y2="172" class=""/><line x1="193" y1="302" x2="273" y2="382" class=""/><line x1="193" y1="102" x2="193" y2="302" class="aux"/><text x="179" y="97" class="" data-point="A">a′</text><text x="197" y="318" class="" data-point="A">a</text><line x1="273" y1="172" x2="273" y2="382" class="aux"/><text x="259" y="167" class="" data-point="B">b′</text><text x="277" y="398" class="" data-point="B">b</text><line x1="303" y1="42" x2="303" y2="396" class=""/><line x1="303" y1="232" x2="585" y2="232" class=""/><text x="311" y="43" class="">Z</text><text x="311" y="392" class="">Yₕ</text><text x="593" y="232" class="">Y𝑤</text><text x="90" y="70" class="plane">正面 V</text><text x="90" y="388" class="plane">水平 H</text><text x="525" y="70" class="plane">侧面 W</text></g><g data-layer="side-projection" class="is-hidden"><line x1="193" y1="302" x2="373" y2="302" class="aux"/><line x1="373" y1="302" x2="373" y2="102" class="aux"/><line x1="373" y1="102" x2="193" y2="102" class="aux"/><line x1="273" y1="382" x2="453" y2="382" class="aux"/><line x1="453" y1="382" x2="453" y2="172" class="aux"/><line x1="453" y1="172" x2="273" y2="172" class="aux"/><line x1="303" y1="232" x2="454" y2="383" class="aux"/><line x1="373" y1="102" x2="453" y2="172" class=""/><circle cx="373" cy="102" r="2.7" data-point="A"/><text x="378" y="96" class="" data-point="A">a″</text><circle cx="453" cy="172" r="2.7" data-point="B"/><text x="458" y="166" class="" data-point="B">b″</text></g><g data-layer="length-triangle" class="is-hidden"><line x1="105" y1="175" x2="185" y2="175" class=""/><line x1="185" y1="175" x2="185" y2="68.7" class=""/><line x1="185" y1="68.7" x2="105" y2="175" class=""/><line x1="177" y1="175" x2="177" y2="167" class=""/><line x1="177" y1="167" x2="185" y2="167" class=""/><path class="" d="M130,175 A25,25 0 0,0 120.0329,155.0247"/><text x="137" y="163" class="">α</text></g><g data-layer="length-triangle-marks" class="is-hidden"><text x="139" y="197" class="dim">Δx</text><text x="193" y="129" class="dim">|a″b″|</text><text x="80" y="105.7" class="dim">AB 实长</text><line x1="193" y1="232" x2="273" y2="232" class=""/></g><g data-layer="angle" class="is-hidden"><text x="139" y="197" class="dim">Δx</text><text x="193" y="129" class="dim">|a″b″|</text><text x="80" y="105.7" class="dim">AB 实长</text></g><g data-layer="answer-geometry" class="is-hidden"><line x1="373" y1="102" x2="453" y2="172" class=""/><circle cx="373" cy="102" r="2.7" data-point="A"/><text x="378" y="96" class="" data-point="A">a″</text><circle cx="453" cy="172" r="2.7" data-point="B"/><text x="458" y="166" class="" data-point="B">b″</text></g></svg><figcaption>依据原卷重绘。未标注的图面坐标为估读值，图中数值仅供方法核对。</figcaption></figure></div></div>
 <nav class="controls" aria-label="作图步骤">
 <span id="count">题图</span><button id="prev" disabled>上一步</button><button id="next">下一步</button><button id="finish">完成图</button>
 </nav>
@@ -64,11 +100,136 @@ function render(position) {
   get('count').textContent = done ? '完成图' : position ? '第 ' + position + ' 步 / 共 ' + config.steps.length + ' 步' : '题图';
   previous.disabled = position === 0;
   next.disabled = finish.disabled = done;
+  renderSpace(position);
 }
 
 previous.onclick = () => render(current - 1);
 next.onclick = () => render(current + 1);
 finish.onclick = () => render(config.steps.length + 1);
+const panel = get('space-panel');
+const pointMarkers = [...panel.querySelectorAll('.space-point')];
+const linkedPoints = [...get('drawing').querySelectorAll('[data-point]'), ...pointMarkers];
+const sceneSteps = [...panel.querySelectorAll('[data-space-step]')];
+const planes = [...panel.querySelectorAll('[data-plane]')];
+const reference = panel.querySelector('.space-status');
+let selectedPoint = '';
+
+function highlightPoint() {
+  for (const node of linkedPoints) {
+    const active = selectedPoint === node.dataset.point;
+    node.classList.toggle('is-selected', active);
+    if (node.matches('.space-point')) node.setAttribute('aria-pressed', String(active));
+  }
+
+  const projections = [...new Set(linkedPoints
+    .filter(node => node.tagName.toLowerCase() === 'text' && node.dataset.point === selectedPoint &&
+      !node.closest('.is-hidden'))
+    .map(node => node.textContent))];
+  reference.textContent = selectedPoint
+    ? selectedPoint + ' 的投影 · ' + (projections.join('、') || '本步还未画出')
+    : '点选字母，对照纸面图中已画出的投影。';
+}
+
+function renderSpace(position) {
+  const activePlanes = new Set();
+  for (const element of sceneSteps) {
+    const start = Number(element.dataset.spaceStep);
+    const end = Number(element.dataset.spaceUntil ?? Infinity);
+    const visible = position >= start && position <= end;
+    element.classList.toggle('is-hidden', !visible);
+    element.classList.toggle('is-faded', visible && Boolean(element.dataset.spaceFocus) && position > start && end !== Infinity);
+    if (visible && element.dataset.spaceFocus && (position === start || end === Infinity)) {
+      activePlanes.add(element.dataset.spaceFocus);
+    }
+  }
+  for (const plane of planes) {
+    plane.classList.toggle('is-active', activePlanes.has(plane.dataset.plane));
+  }
+  if (!pointMarkers.some(node => node.dataset.point === selectedPoint && !node.closest('.is-hidden'))) {
+    selectedPoint = '';
+  }
+  highlightPoint();
+}
+
+for (const marker of pointMarkers) {
+  marker.onclick = () => {
+    selectedPoint = selectedPoint === marker.dataset.point ? '' : marker.dataset.point;
+    highlightPoint();
+  };
+  marker.onkeydown = event => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      marker.onclick();
+    }
+  };
+}
+
+// Orbit the existing SVG geometry, keeping paper projections and point IDs fixed.
+const orbit = panel.querySelector('svg[data-orbit]');
+const objects = [...orbit.querySelectorAll('[data-world]')].map(element => ({
+  element,
+  points: element.dataset.world.split(' ').map(point => point.split(',').map(Number)),
+  offset: (element.dataset.offset || '0,0').split(',').map(Number),
+}));
+const fit = orbit.dataset.fit.split(' ').map(point => point.split(',').map(Number));
+const defaults = orbit.dataset.orbit.split(',').map(Number);
+let [azimuth, elevation] = defaults;
+let drag = null;
+
+function drawOrbit() {
+  const a = azimuth * Math.PI / 180;
+  const e = elevation * Math.PI / 180;
+  const sa = Math.sin(a), ca = Math.cos(a), se = Math.sin(e), ce = Math.cos(e);
+  const project = ([x, y, z]) => [-sa * x + ca * y, se * (ca * x + sa * y) - ce * z];
+  const all = fit.map(project);
+  const xs = all.map(([x]) => x), ys = all.map(([,y]) => y);
+  const left = Math.min(...xs), right = Math.max(...xs);
+  const top = Math.min(...ys), bottom = Math.max(...ys);
+  const scale = Math.min(430 / Math.max(1, right - left), 214 / Math.max(1, bottom - top));
+  for (const {element, points, offset} of objects) {
+    const mapped = points.map(project).map(([x, y]) =>
+      [270 + (x - (left + right) / 2) * scale, 142 + (y - (top + bottom) / 2) * scale]);
+    const [[x,y]] = mapped;
+    const tag = element.localName;
+    const attrs = tag === 'polygon' ? {points: mapped.map(p => p.join(',')).join(' ')} :
+      tag === 'line' ? {x1:x, y1:y, x2:mapped[1][0], y2:mapped[1][1]} :
+      tag === 'circle' ? {cx:x, cy:y} : {
+        x:Math.max(10, Math.min(435, x + offset[0])),
+        y:Math.max(20, Math.min(272, y + offset[1])),
+      };
+    for (const [key, value] of Object.entries(attrs)) element.setAttribute(key, value);
+  }
+}
+
+get('reset-space').addEventListener('click', () => {
+  [azimuth, elevation] = defaults;
+  drawOrbit();
+});
+
+orbit.addEventListener('pointerdown', event => {
+  if (!event.isPrimary || event.button !== 0) return;
+  drag = {id:event.pointerId, x:event.clientX, y:event.clientY, azimuth, elevation, moved:false};
+});
+orbit.addEventListener('pointermove', event => {
+  if (!drag || drag.id !== event.pointerId) return;
+  const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
+  if (!drag.moved) {
+    if (Math.hypot(dx, dy) < 5) return;
+    orbit.setPointerCapture(event.pointerId);
+    drag.moved = true;
+  }
+  azimuth = drag.azimuth - dx * .42;
+  elevation = Math.max(8, Math.min(83, drag.elevation + dy * .35));
+  drawOrbit();
+});
+function endDrag(event) {
+  if (drag?.id === event.pointerId) drag = null;
+}
+orbit.addEventListener('pointerup', endDrag);
+orbit.addEventListener('pointercancel', endDrag);
+orbit.addEventListener('pointerleave', event => {
+  if (!drag?.moved) endDrag(event);
+});
 </script>
 </main>
 </html>

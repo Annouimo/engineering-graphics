@@ -1,6 +1,6 @@
 # 用配置生成作图讲解
 
-复制 [配置模板](lesson.example.json) 到 `lessons/<题目名>.json`。题目名使用小写字母、数字和短横线，与生成的 HTML 同名。
+按题型复制[空间配置模板](spatial.example.json)或[纯二维模板](lesson.example.json) 到 `lessons/<题目名>.json`。题目名使用小写字母、数字和短横线，与生成的 HTML 同名。
 
 ```sh
 python3 tools/build_lessons.py <题目名>
@@ -40,14 +40,28 @@ python3 tools/build_lessons.py --check
 
 ## 空间示意
 
-[第 2 题（3）的配置](../lessons/line-axis-distance.json)含可选的 `space`。空间点以 `[x, y, z]` 定义，`views` 为三面投影指定共同的 `scale` 和 `V`、`H`、`W` 三个图面原点。图面坐标依次采用 `[-x, -z]`、`[-x, y]`、`[y, -z]`，乘以比例后加到原点。
+[第 2 题（3）的配置](../lessons/line-axis-distance.json)含可选的 `space`。空间点以 `[x, y, z]` 定义。`views` 指定共同的 `scale` 和各视图的图面原点。设置了哪些标准视图，就启用哪些空间投影面。图面坐标乘以比例后加到该视图原点。
+
+| 视图 | 图面坐标 | 空间参照 |
+| --- | --- | --- |
+| `V` 正面 | `[-x, -z]` | `y = 0` |
+| `H` 水平面 | `[-x, y]` | `z = 0` |
+| `W` 侧面 | `[y, -z]` | `x = 0` |
+| `I` 正等轴测 | `[√3(x-y)/2, (x+y)/2-z]` | 可单独使用，空间图显示形体 |
 
 纸面图元可以用 `{"point":"M","view":"W"}` 代替二维坐标。标签可用 `offset` 设图面偏移。水平图的点引用加 `"on":"miter"`，可定位从该点向右引深度线与 45° 转向线的交点。普通二维坐标仍可用于轴线、图注和辅助构造。
 
-`segments` 用 `from` 和 `to` 引用空间点，可用 `role` 标为 `axis` 或 `result`。在 `markers` 中用 `point` 标出可对照的点，在 `right_angles` 中用 `vertex` 和两个 `arms` 端点标示直角。三类对象都可用 `step` 指定首次出现的步骤，省略则随题图显示。空间图和点选联动由模板生成。
+`segments` 用 `from` 和 `to` 引用空间点，可用 `role` 标为 `axis` 或 `result`。在 `markers` 中用 `point` 标出可对照的点，可用 `offset` 调整点名、用 `until` 指定它最后出现的步骤，在 `right_angles` 中用 `vertex` 和两个 `arms` 端点标示直角。三类对象都可用 `step` 指定首次出现的步骤，省略则随题图显示。空间图和点选联动由模板生成。
 
 空间图在题目下方默认显示。标准投影面由 `space.views` 中配置的 H、V、W 决定。辅助面和换面产生的新平面可以通过 `auxiliary_planes` 声明名称、顶点及出现步骤，顶点引用 `space.points`。二维换面作图仍用原有图层编排。
 
 `projections` 按步骤指定标准投影面（`view`）、投影点（`points`）及可选的投影线段（`segments`）。用 `step` 指定开始步骤，需要在某一步后收起时填写 `until`。空间坐标同时用于生成面上的投影与投射线。
 
-默认从第一分角上方斜看。可以用鼠标或触摸拖动，切换作图步骤会保留视角。「恢复默认视角」将空间图转回开场方向。
+默认从第一分角上方斜看。个别题目可以用 `camera: [方位角, 仰角]` 调整开场视角，角度以度为单位，仰角范围为 8 到 83 度。可以用鼠标或触摸拖动，切换作图步骤会保留视角。「恢复默认视角」将空间图转回开场方向。
+
+
+### 现有示例
+
+- [点的三面投影](../lessons/three-view-projection.json)和[直线与 X 轴的距离](../lessons/line-axis-distance.json)展示如何按步骤启用投射线。
+- [点到平面的距离](../lessons/point-plane-distance.json)和[平面倾角](../lessons/isosceles-triangle.json)展示如何在换面步骤显示辅助平面。
+- [补画主视图](../lessons/missing-front-view.json)和[正等轴测图](../lessons/isometric-view.json)使用同一套形体坐标。空间图采用线框，纸面图按原题要求处理可见性。

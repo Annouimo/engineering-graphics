@@ -2,7 +2,7 @@
   "source": "2024 秋期中 · 第 5 题 · 正等轴测图",
   "title": "画平面立体的正等轴测图",
   "problem": "把第 5 题的底座、台阶、斜面和上方四棱柱画成正等轴测图。",
-  "caption": "根据左、俯视图重建空间形体。与补画的主视图共用同一几何关系。",
+  "caption": "根据左、俯视图重建空间形体。与补画的主视图共用同一几何关系。 空间图为可旋转线框，纸面图按正等轴测方向保留可见线。",
   "size": [
     640,
     590
@@ -12,70 +12,70 @@
       {"type": "label", "at": [42.0, 42.0], "text": "正等轴测图", "role": "view"}
     ],
     "base": [
-      {"type": "line", "from": [558.52, 446.5], "to": [436.41, 517.0]},
-      {"type": "line", "from": [436.41, 517.0], "to": [436.41, 470.0]},
-      {"type": "line", "from": [395.7, 493.5], "to": [436.41, 517.0]},
-      {"type": "line", "from": [436.41, 470.0], "to": [355.0, 517.0]},
-      {"type": "line", "from": [151.48, 399.5], "to": [151.48, 352.5]},
-      {"type": "line", "from": [355.0, 517.0], "to": [355.0, 470.0]},
-      {"type": "line", "from": [151.48, 399.5], "to": [355.0, 517.0]},
-      {"type": "line", "from": [151.48, 352.5], "to": [232.89, 211.5]},
-      {"type": "line", "from": [355.0, 470.0], "to": [436.41, 329.0]},
-      {"type": "line", "from": [151.48, 352.5], "to": [355.0, 470.0]},
-      {"type": "line", "from": [232.89, 211.5], "to": [293.95, 176.25]},
-      {"type": "line", "from": [436.41, 329.0], "to": [558.52, 258.5]},
-      {"type": "line", "from": [232.89, 211.5], "to": [293.95, 246.75]},
-      {"type": "line", "from": [375.35, 293.75], "to": [436.41, 329.0]},
-      {"type": "line", "from": [558.52, 258.5], "to": [558.52, 446.5]},
-      {"type": "line", "from": [416.05, 176.25], "to": [558.52, 258.5]}
+      {"type": "line", "from": {"point": "L0", "view": "I"}, "to": {"point": "L1", "view": "I"}},
+      {"type": "line", "from": {"point": "L1", "view": "I"}, "to": {"point": "L2", "view": "I"}},
+      {"type": "line", "from": [395.7, 493.5], "to": {"point": "L1", "view": "I"}},
+      {"type": "line", "from": {"point": "L2", "view": "I"}, "to": {"point": "L3", "view": "I"}},
+      {"type": "line", "from": {"point": "R3", "view": "I"}, "to": {"point": "R4", "view": "I"}},
+      {"type": "line", "from": {"point": "L3", "view": "I"}, "to": {"point": "L4", "view": "I"}},
+      {"type": "line", "from": {"point": "R3", "view": "I"}, "to": {"point": "L3", "view": "I"}},
+      {"type": "line", "from": {"point": "R4", "view": "I"}, "to": {"point": "R5", "view": "I"}},
+      {"type": "line", "from": {"point": "L4", "view": "I"}, "to": {"point": "L5", "view": "I"}},
+      {"type": "line", "from": {"point": "R4", "view": "I"}, "to": {"point": "L4", "view": "I"}},
+      {"type": "line", "from": {"point": "R5", "view": "I"}, "to": [293.95, 176.25]},
+      {"type": "line", "from": {"point": "L5", "view": "I"}, "to": {"point": "L6", "view": "I"}},
+      {"type": "line", "from": {"point": "R5", "view": "I"}, "to": {"point": "Q1", "view": "I"}},
+      {"type": "line", "from": {"point": "Q2", "view": "I"}, "to": {"point": "L5", "view": "I"}},
+      {"type": "line", "from": {"point": "L6", "view": "I"}, "to": {"point": "L0", "view": "I"}},
+      {"type": "line", "from": [416.05, 176.25], "to": {"point": "L6", "view": "I"}}
     ],
     "base-marks": [
-      {"type": "line", "from": [615.5, 479.4], "to": [355.0, 329.0], "role": "construction"},
-      {"type": "line", "from": [355.0, 329.0], "to": [94.5, 479.4], "role": "construction"},
-      {"type": "line", "from": [355.0, 329.0], "to": [355.0, 23.5], "role": "construction"},
+      {"type": "line", "from": [615.5, 479.4], "to": {"point": "R0", "view": "I"}, "role": "construction"},
+      {"type": "line", "from": {"point": "R0", "view": "I"}, "to": [94.5, 479.4], "role": "construction"},
+      {"type": "line", "from": {"point": "R0", "view": "I"}, "to": [355.0, 23.5], "role": "construction"},
       {"type": "label", "at": [618.5, 485.4], "text": "宽"},
       {"type": "label", "at": [97.5, 485.4], "text": "深"},
       {"type": "label", "at": [358.0, 29.5], "text": "高"}
     ],
     "column": [
-      {"type": "line", "from": [416.05, 129.25], "to": [416.05, 199.75]},
-      {"type": "line", "from": [416.05, 199.75], "to": [293.95, 199.75]},
-      {"type": "line", "from": [293.95, 199.75], "to": [293.95, 129.25]},
-      {"type": "line", "from": [293.95, 129.25], "to": [416.05, 129.25]},
-      {"type": "line", "from": [416.05, 293.75], "to": [375.35, 293.75]},
-      {"type": "line", "from": [416.05, 293.75], "to": [416.05, 199.75]},
-      {"type": "line", "from": [375.35, 293.75], "to": [293.95, 340.75]},
-      {"type": "line", "from": [293.95, 340.75], "to": [293.95, 199.75]}
+      {"type": "line", "from": {"point": "T0", "view": "I"}, "to": {"point": "T3", "view": "I"}},
+      {"type": "line", "from": {"point": "T3", "view": "I"}, "to": {"point": "T2", "view": "I"}},
+      {"type": "line", "from": {"point": "T2", "view": "I"}, "to": {"point": "T1", "view": "I"}},
+      {"type": "line", "from": {"point": "T1", "view": "I"}, "to": {"point": "T0", "view": "I"}},
+      {"type": "line", "from": {"point": "J3", "view": "I"}, "to": {"point": "Q2", "view": "I"}},
+      {"type": "line", "from": {"point": "J3", "view": "I"}, "to": {"point": "T3", "view": "I"}},
+      {"type": "line", "from": {"point": "Q2", "view": "I"}, "to": {"point": "J2", "view": "I"}},
+      {"type": "line", "from": {"point": "J2", "view": "I"}, "to": {"point": "T2", "view": "I"}}
     ],
     "column-marks": [
-      {"type": "line", "from": [293.95, 199.75], "to": [293.95, 340.75], "role": "construction"},
+      {"type": "line", "from": {"point": "T2", "view": "I"}, "to": {"point": "J2", "view": "I"}, "role": "construction"},
       {"type": "label", "at": [301.95, 346.75], "text": "斜面上的柱脚", "role": "dimension"}
     ],
     "visibility-check": [
-      {"type": "line", "from": [558.52, 446.5], "to": [436.41, 517.0]},
-      {"type": "line", "from": [436.41, 517.0], "to": [436.41, 470.0]},
-      {"type": "line", "from": [395.7, 493.5], "to": [436.41, 517.0]},
-      {"type": "line", "from": [436.41, 470.0], "to": [355.0, 517.0]},
-      {"type": "line", "from": [151.48, 399.5], "to": [151.48, 352.5]},
-      {"type": "line", "from": [355.0, 517.0], "to": [355.0, 470.0]},
-      {"type": "line", "from": [151.48, 399.5], "to": [355.0, 517.0]},
-      {"type": "line", "from": [151.48, 352.5], "to": [232.89, 211.5]},
-      {"type": "line", "from": [355.0, 470.0], "to": [436.41, 329.0]},
-      {"type": "line", "from": [151.48, 352.5], "to": [355.0, 470.0]},
-      {"type": "line", "from": [232.89, 211.5], "to": [293.95, 176.25]},
-      {"type": "line", "from": [436.41, 329.0], "to": [558.52, 258.5]},
-      {"type": "line", "from": [232.89, 211.5], "to": [293.95, 246.75]},
-      {"type": "line", "from": [375.35, 293.75], "to": [436.41, 329.0]},
-      {"type": "line", "from": [558.52, 258.5], "to": [558.52, 446.5]},
-      {"type": "line", "from": [416.05, 176.25], "to": [558.52, 258.5]},
-      {"type": "line", "from": [416.05, 129.25], "to": [416.05, 199.75]},
-      {"type": "line", "from": [416.05, 199.75], "to": [293.95, 199.75]},
-      {"type": "line", "from": [293.95, 199.75], "to": [293.95, 129.25]},
-      {"type": "line", "from": [293.95, 129.25], "to": [416.05, 129.25]},
-      {"type": "line", "from": [416.05, 293.75], "to": [375.35, 293.75]},
-      {"type": "line", "from": [416.05, 293.75], "to": [416.05, 199.75]},
-      {"type": "line", "from": [375.35, 293.75], "to": [293.95, 340.75]},
-      {"type": "line", "from": [293.95, 340.75], "to": [293.95, 199.75]}
+      {"type": "line", "from": {"point": "L0", "view": "I"}, "to": {"point": "L1", "view": "I"}},
+      {"type": "line", "from": {"point": "L1", "view": "I"}, "to": {"point": "L2", "view": "I"}},
+      {"type": "line", "from": [395.7, 493.5], "to": {"point": "L1", "view": "I"}},
+      {"type": "line", "from": {"point": "L2", "view": "I"}, "to": {"point": "L3", "view": "I"}},
+      {"type": "line", "from": {"point": "R3", "view": "I"}, "to": {"point": "R4", "view": "I"}},
+      {"type": "line", "from": {"point": "L3", "view": "I"}, "to": {"point": "L4", "view": "I"}},
+      {"type": "line", "from": {"point": "R3", "view": "I"}, "to": {"point": "L3", "view": "I"}},
+      {"type": "line", "from": {"point": "R4", "view": "I"}, "to": {"point": "R5", "view": "I"}},
+      {"type": "line", "from": {"point": "L4", "view": "I"}, "to": {"point": "L5", "view": "I"}},
+      {"type": "line", "from": {"point": "R4", "view": "I"}, "to": {"point": "L4", "view": "I"}},
+      {"type": "line", "from": {"point": "R5", "view": "I"}, "to": [293.95, 176.25]},
+      {"type": "line", "from": {"point": "L5", "view": "I"}, "to": {"point": "L6", "view": "I"}},
+      {"type": "line", "from": {"point": "R5", "view": "I"}, "to": {"point": "Q1", "view": "I"}},
+      {"type": "line", "from": {"point": "Q2", "view": "I"}, "to": {"point": "L5", "view": "I"}},
+      {"type": "line", "from": {"point": "L6", "view": "I"}, "to": {"point": "L0", "view": "I"}},
+      {"type": "line", "from": [416.05, 176.25], "to": {"point": "L6", "view": "I"}},
+      {"type": "line", "from": {"point": "T0", "view": "I"}, "to": {"point": "T3", "view": "I"}},
+      {"type": "line", "from": {"point": "T3", "view": "I"}, "to": {"point": "T2", "view": "I"}},
+      {"type": "line", "from": {"point": "T2", "view": "I"}, "to": {"point": "T1", "view": "I"}},
+      {"type": "line", "from": {"point": "T1", "view": "I"}, "to": {"point": "T0", "view": "I"}},
+      {"type": "line", "from": {"point": "J3", "view": "I"}, "to": {"point": "Q2", "view": "I"}},
+      {"type": "line", "from": {"point": "J3", "view": "I"}, "to": {"point": "T3", "view": "I"}},
+      {"type": "line", "from": {"point": "Q2", "view": "I"}, "to": {"point": "J2", "view": "I"}},
+      {"type": "line", "from": {"point": "J2", "view": "I"}, "to": {"point": "T2", "view": "I"}}
     ]
   },
   "given": [
@@ -124,5 +124,320 @@
       "base",
       "column"
     ]
+  },
+  "space": {
+    "points": {
+      "L0": [
+        50,
+        0,
+        0
+      ],
+      "L1": [
+        50,
+        30,
+        0
+      ],
+      "L2": [
+        50,
+        30,
+        10
+      ],
+      "L3": [
+        50,
+        50,
+        10
+      ],
+      "L4": [
+        50,
+        50,
+        20
+      ],
+      "L5": [
+        50,
+        30,
+        40
+      ],
+      "L6": [
+        50,
+        0,
+        40
+      ],
+      "R0": [
+        0,
+        0,
+        0
+      ],
+      "R1": [
+        0,
+        30,
+        0
+      ],
+      "R2": [
+        0,
+        30,
+        10
+      ],
+      "R3": [
+        0,
+        50,
+        10
+      ],
+      "R4": [
+        0,
+        50,
+        20
+      ],
+      "R5": [
+        0,
+        30,
+        40
+      ],
+      "R6": [
+        0,
+        0,
+        40
+      ],
+      "T0": [
+        25,
+        10,
+        60
+      ],
+      "J0": [
+        25,
+        10,
+        40
+      ],
+      "T1": [
+        10,
+        25,
+        60
+      ],
+      "J1": [
+        10,
+        25,
+        40
+      ],
+      "T2": [
+        25,
+        40,
+        60
+      ],
+      "J2": [
+        25,
+        40,
+        30
+      ],
+      "T3": [
+        40,
+        25,
+        60
+      ],
+      "J3": [
+        40,
+        25,
+        40
+      ],
+      "Q1": [
+        15,
+        30,
+        40
+      ],
+      "Q2": [
+        35,
+        30,
+        40
+      ]
+    },
+    "views": {
+      "scale": 4.7,
+      "I": [
+        355,
+        329
+      ]
+    },
+    "segments": [
+      {
+        "from": "L0",
+        "to": "L1",
+        "step": 1
+      },
+      {
+        "from": "L1",
+        "to": "L2",
+        "step": 1
+      },
+      {
+        "from": "L2",
+        "to": "L3",
+        "step": 1
+      },
+      {
+        "from": "L3",
+        "to": "L4",
+        "step": 1
+      },
+      {
+        "from": "L4",
+        "to": "L5",
+        "step": 1
+      },
+      {
+        "from": "L5",
+        "to": "L6",
+        "step": 1
+      },
+      {
+        "from": "L6",
+        "to": "L0",
+        "step": 1
+      },
+      {
+        "from": "R0",
+        "to": "R1",
+        "step": 1
+      },
+      {
+        "from": "R1",
+        "to": "R2",
+        "step": 1
+      },
+      {
+        "from": "R2",
+        "to": "R3",
+        "step": 1
+      },
+      {
+        "from": "R3",
+        "to": "R4",
+        "step": 1
+      },
+      {
+        "from": "R4",
+        "to": "R5",
+        "step": 1
+      },
+      {
+        "from": "R5",
+        "to": "R6",
+        "step": 1
+      },
+      {
+        "from": "R6",
+        "to": "R0",
+        "step": 1
+      },
+      {
+        "from": "L0",
+        "to": "R0",
+        "step": 1
+      },
+      {
+        "from": "L1",
+        "to": "R1",
+        "step": 1
+      },
+      {
+        "from": "L2",
+        "to": "R2",
+        "step": 1
+      },
+      {
+        "from": "L3",
+        "to": "R3",
+        "step": 1
+      },
+      {
+        "from": "L4",
+        "to": "R4",
+        "step": 1
+      },
+      {
+        "from": "L6",
+        "to": "R6",
+        "step": 1
+      },
+      {
+        "from": "L5",
+        "to": "Q2",
+        "step": 1
+      },
+      {
+        "from": "Q1",
+        "to": "R5",
+        "step": 1
+      },
+      {
+        "from": "J0",
+        "to": "J1",
+        "step": 2
+      },
+      {
+        "from": "J1",
+        "to": "Q1",
+        "step": 2
+      },
+      {
+        "from": "Q1",
+        "to": "J2",
+        "step": 2
+      },
+      {
+        "from": "J2",
+        "to": "Q2",
+        "step": 2
+      },
+      {
+        "from": "Q2",
+        "to": "J3",
+        "step": 2
+      },
+      {
+        "from": "J3",
+        "to": "J0",
+        "step": 2
+      },
+      {
+        "from": "J0",
+        "to": "T0",
+        "step": 2
+      },
+      {
+        "from": "J1",
+        "to": "T1",
+        "step": 2
+      },
+      {
+        "from": "J2",
+        "to": "T2",
+        "step": 2
+      },
+      {
+        "from": "J3",
+        "to": "T3",
+        "step": 2
+      },
+      {
+        "from": "T0",
+        "to": "T1",
+        "step": 2
+      },
+      {
+        "from": "T1",
+        "to": "T2",
+        "step": 2
+      },
+      {
+        "from": "T2",
+        "to": "T3",
+        "step": 2
+      },
+      {
+        "from": "T3",
+        "to": "T0",
+        "step": 2
+      }
+    ],
+    "markers": [],
+    "right_angles": []
   }
 }

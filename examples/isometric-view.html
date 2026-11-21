@@ -24,11 +24,47 @@ svg .dim{font-size:15px}svg .hidden-edge{stroke-dasharray:6 4}svg text{stroke:no
 .is-hidden{display:none}
 svg .ring{fill:none}svg .ring,svg .ring.aux{stroke-width:1.25}
 @media(prefers-color-scheme:dark){:root{--paper:#242218;--ink:#ebe5d7;--blue:#abc9eb;--muted:#beb6a5;--rule:#5b5547;--diagram:#211f15;--faded:#a19a8b;--button-bg:#223d5f;--button-ink:#fff}}
+.space-controls { display:flex; flex-wrap:wrap; gap:8px; }
+.space-panel svg { margin-top:8px; background:var(--diagram); border:1px solid var(--rule); }
+.space-panel svg text { font-size:22px; }
+.space-panel svg .space-result { color:var(--blue); }
+.space-panel svg .space-result line { stroke-width:2; }
+.space-panel svg .space-axis { color:var(--ink); }
+.space-point { cursor:pointer; }
+.space-point .point-hit { fill:transparent; stroke:none; }
+.space-point:focus-visible .point-hit,
+.space-point.is-selected .point-hit { stroke:var(--blue); stroke-width:2; }
+svg [data-point].is-selected { color:var(--blue); }
+svg text.is-selected { font-weight:bold; text-decoration:underline; }
+#drawing circle.is-selected { r:5; stroke-width:2; }
+.space-note, .space-status { color:var(--muted); font-size:.9rem; margin:8px 0; }
+main:has(.diagram-pair) { max-width:1240px; display:flex; flex-direction:column; }
+main:has(.diagram-pair) > header { order:-2; }
+main:has(.diagram-pair) > .controls { order:-1; position:sticky; top:0; z-index:1; background:var(--paper); }
+.diagram-pair { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:clamp(20px,3vw,36px); margin:20px 0; align-items:start; }
+.diagram-pair h2 { margin:0 0 8px; }
+.paper-panel figure { margin:0; }
+.space-panel { margin:0; }
+.space-panel svg .plane { font-size:15px; }
+.space-panel .space-projection { color:var(--blue); }
+.space-panel .space-projection text { fill:var(--blue); }
+@media(max-width:820px) { .diagram-pair { grid-template-columns:1fr; gap:18px; } }
+
+.space-panel svg[data-orbit] { touch-action:none; cursor:grab; user-select:none; }
+.space-panel svg[data-orbit]:active { cursor:grabbing; }
+
+.space-plane { color:var(--faded); }
+.space-plane polygon { fill:currentColor; fill-opacity:.05; stroke:currentColor; stroke-opacity:.48; vector-effect:non-scaling-stroke; }
+.space-plane.is-active,.space-plane.plane-extra { color:var(--blue); }
+.space-plane.is-active polygon { fill-opacity:.12; stroke-opacity:.82; }
+.space-plane.is-active text { fill:currentColor; font-weight:bold; }
+[data-space-focus].is-faded { opacity:.36; }
+.space-status:empty { display:none; }
 </style>
 <main>
 <header><small><a href="../">工程图学研习</a> / 2024 秋期中 · 第 5 题 · 正等轴测图</small>
 <h1>画平面立体的正等轴测图</h1><p>把第 5 题的底座、台阶、斜面和上方四棱柱画成正等轴测图。</p></header>
-<figure><svg viewBox="0 0 640 590" id="drawing" role="img" aria-label="画平面立体的正等轴测图 的分步作图"><g data-layer="given"><text x="42" y="42" class="plane">正等轴测图</text></g><g data-layer="base" class="is-hidden"><line x1="558.52" y1="446.5" x2="436.41" y2="517" class=""/><line x1="436.41" y1="517" x2="436.41" y2="470" class=""/><line x1="395.7" y1="493.5" x2="436.41" y2="517" class=""/><line x1="436.41" y1="470" x2="355" y2="517" class=""/><line x1="151.48" y1="399.5" x2="151.48" y2="352.5" class=""/><line x1="355" y1="517" x2="355" y2="470" class=""/><line x1="151.48" y1="399.5" x2="355" y2="517" class=""/><line x1="151.48" y1="352.5" x2="232.89" y2="211.5" class=""/><line x1="355" y1="470" x2="436.41" y2="329" class=""/><line x1="151.48" y1="352.5" x2="355" y2="470" class=""/><line x1="232.89" y1="211.5" x2="293.95" y2="176.25" class=""/><line x1="436.41" y1="329" x2="558.52" y2="258.5" class=""/><line x1="232.89" y1="211.5" x2="293.95" y2="246.75" class=""/><line x1="375.35" y1="293.75" x2="436.41" y2="329" class=""/><line x1="558.52" y1="258.5" x2="558.52" y2="446.5" class=""/><line x1="416.05" y1="176.25" x2="558.52" y2="258.5" class=""/></g><g data-layer="base-marks" class="is-hidden"><line x1="615.5" y1="479.4" x2="355" y2="329" class="aux"/><line x1="355" y1="329" x2="94.5" y2="479.4" class="aux"/><line x1="355" y1="329" x2="355" y2="23.5" class="aux"/><text x="618.5" y="485.4" class="">宽</text><text x="97.5" y="485.4" class="">深</text><text x="358" y="29.5" class="">高</text></g><g data-layer="column" class="is-hidden"><line x1="416.05" y1="129.25" x2="416.05" y2="199.75" class=""/><line x1="416.05" y1="199.75" x2="293.95" y2="199.75" class=""/><line x1="293.95" y1="199.75" x2="293.95" y2="129.25" class=""/><line x1="293.95" y1="129.25" x2="416.05" y2="129.25" class=""/><line x1="416.05" y1="293.75" x2="375.35" y2="293.75" class=""/><line x1="416.05" y1="293.75" x2="416.05" y2="199.75" class=""/><line x1="375.35" y1="293.75" x2="293.95" y2="340.75" class=""/><line x1="293.95" y1="340.75" x2="293.95" y2="199.75" class=""/></g><g data-layer="column-marks" class="is-hidden"><line x1="293.95" y1="199.75" x2="293.95" y2="340.75" class="aux"/><text x="301.95" y="346.75" class="dim">斜面上的柱脚</text></g><g data-layer="visibility-check" class="is-hidden"><line x1="558.52" y1="446.5" x2="436.41" y2="517" class=""/><line x1="436.41" y1="517" x2="436.41" y2="470" class=""/><line x1="395.7" y1="493.5" x2="436.41" y2="517" class=""/><line x1="436.41" y1="470" x2="355" y2="517" class=""/><line x1="151.48" y1="399.5" x2="151.48" y2="352.5" class=""/><line x1="355" y1="517" x2="355" y2="470" class=""/><line x1="151.48" y1="399.5" x2="355" y2="517" class=""/><line x1="151.48" y1="352.5" x2="232.89" y2="211.5" class=""/><line x1="355" y1="470" x2="436.41" y2="329" class=""/><line x1="151.48" y1="352.5" x2="355" y2="470" class=""/><line x1="232.89" y1="211.5" x2="293.95" y2="176.25" class=""/><line x1="436.41" y1="329" x2="558.52" y2="258.5" class=""/><line x1="232.89" y1="211.5" x2="293.95" y2="246.75" class=""/><line x1="375.35" y1="293.75" x2="436.41" y2="329" class=""/><line x1="558.52" y1="258.5" x2="558.52" y2="446.5" class=""/><line x1="416.05" y1="176.25" x2="558.52" y2="258.5" class=""/><line x1="416.05" y1="129.25" x2="416.05" y2="199.75" class=""/><line x1="416.05" y1="199.75" x2="293.95" y2="199.75" class=""/><line x1="293.95" y1="199.75" x2="293.95" y2="129.25" class=""/><line x1="293.95" y1="129.25" x2="416.05" y2="129.25" class=""/><line x1="416.05" y1="293.75" x2="375.35" y2="293.75" class=""/><line x1="416.05" y1="293.75" x2="416.05" y2="199.75" class=""/><line x1="375.35" y1="293.75" x2="293.95" y2="340.75" class=""/><line x1="293.95" y1="340.75" x2="293.95" y2="199.75" class=""/></g></svg><figcaption>根据左、俯视图重建空间形体。与补画的主视图共用同一几何关系。</figcaption></figure>
+<div class="diagram-pair"><section class="space-panel" id="space-panel" aria-labelledby="space-title"><h2 id="space-title">空间图</h2><div class="space-controls"><button id="reset-space" type="button">恢复默认视角</button></div><svg viewBox="0 0 540 284" role="group" aria-label="空间图，拖动可旋转" data-orbit="62.0,28.0" data-fit="50,0,0 50,30,0 50,30,10 50,50,10 50,50,20 50,30,40 50,0,40 0,0,0 0,30,0 0,30,10 0,50,10 0,50,20 0,30,40 0,0,40 25,10,60 25,10,40 10,25,60 10,25,40 25,40,60 25,40,30 40,25,60 40,25,40 15,30,40 35,30,40"><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,0,0 50,30,0" x1="161.6482" y1="209.148" x2="206.7834" y2="249" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,30,0 50,30,10" x1="206.7834" y1="249" x2="206.7834" y2="220.7043" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,30,10 50,50,10" x1="206.7834" y1="220.7043" x2="236.8735" y2="247.2724" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,50,10 50,50,20" x1="236.8735" y1="247.2724" x2="236.8735" y2="218.9767" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,50,20 50,30,40" x1="236.8735" y1="218.9767" x2="206.7834" y2="135.8174" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,30,40 50,0,40" x1="206.7834" y1="135.8174" x2="161.6482" y2="95.9654" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,0,40 50,0,0" x1="161.6482" y1="95.9654" x2="161.6482" y2="209.148" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="0,0,0 0,30,0" x1="303.1265" y1="173.8318" x2="348.2617" y2="213.6838" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="0,30,0 0,30,10" x1="348.2617" y1="213.6838" x2="348.2617" y2="185.3882" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="0,30,10 0,50,10" x1="348.2617" y1="185.3882" x2="378.3518" y2="211.9562" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="0,50,10 0,50,20" x1="378.3518" y1="211.9562" x2="378.3518" y2="183.6606" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="0,50,20 0,30,40" x1="378.3518" y1="183.6606" x2="348.2617" y2="100.5012" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="0,30,40 0,0,40" x1="348.2617" y1="100.5012" x2="303.1265" y2="60.6492" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="0,0,40 0,0,0" x1="303.1265" y1="60.6492" x2="303.1265" y2="173.8318" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,0,0 0,0,0" x1="161.6482" y1="209.148" x2="303.1265" y2="173.8318" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,30,0 0,30,0" x1="206.7834" y1="249" x2="348.2617" y2="213.6838" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,30,10 0,30,10" x1="206.7834" y1="220.7043" x2="348.2617" y2="185.3882" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,50,10 0,50,10" x1="236.8735" y1="247.2724" x2="378.3518" y2="211.9562" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,50,20 0,50,20" x1="236.8735" y1="218.9767" x2="378.3518" y2="183.6606" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,0,40 0,0,40" x1="161.6482" y1="95.9654" x2="303.1265" y2="60.6492" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="50,30,40 35,30,40" x1="206.7834" y1="135.8174" x2="249.2269" y2="125.2225" class=""/></g></g><g data-space-step="1" class="is-hidden"><g class="space-outline"><line data-world="15,30,40 0,30,40" x1="305.8182" y1="111.0961" x2="348.2617" y2="100.5012" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="25,10,40 10,25,40" x1="247.4324" y1="91.5913" x2="312.4435" y2="100.9225" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="10,25,40 15,30,40" x1="312.4435" y1="100.9225" x2="305.8182" y2="111.0961" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="15,30,40 25,40,30" x1="305.8182" y1="111.0961" x2="292.5676" y2="159.739" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="25,40,30 35,30,40" x1="292.5676" y1="159.739" x2="249.2269" y2="125.2225" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="35,30,40 40,25,40" x1="249.2269" y1="125.2225" x2="227.5565" y2="122.1122" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="40,25,40 25,10,40" x1="227.5565" y1="122.1122" x2="247.4324" y2="91.5913" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="25,10,40 25,10,60" x1="247.4324" y1="91.5913" x2="247.4324" y2="35" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="10,25,40 10,25,60" x1="312.4435" y1="100.9225" x2="312.4435" y2="44.3312" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="25,40,30 25,40,60" x1="292.5676" y1="159.739" x2="292.5676" y2="74.852" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="40,25,40 40,25,60" x1="227.5565" y1="122.1122" x2="227.5565" y2="65.5209" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="25,10,60 10,25,60" x1="247.4324" y1="35" x2="312.4435" y2="44.3312" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="10,25,60 25,40,60" x1="312.4435" y1="44.3312" x2="292.5676" y2="74.852" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="25,40,60 40,25,60" x1="292.5676" y1="74.852" x2="227.5565" y2="65.5209" class=""/></g></g><g data-space-step="2" class="is-hidden"><g class="space-outline"><line data-world="40,25,60 25,10,60" x1="227.5565" y1="65.5209" x2="247.4324" y2="35" class=""/></g></g></svg><p class="space-note">拖动旋转，点选字母可对照纸面投影。</p><p class="space-status" aria-live="polite"></p></section><div class="paper-panel"><h2>纸面作图</h2><figure><svg viewBox="0 0 640 590" id="drawing" role="img" aria-label="画平面立体的正等轴测图 的分步作图"><g data-layer="given"><text x="42" y="42" class="plane">正等轴测图</text></g><g data-layer="base" class="is-hidden"><line x1="558.516" y1="446.5" x2="436.4064" y2="517" class=""/><line x1="436.4064" y1="517" x2="436.4064" y2="470" class=""/><line x1="395.7" y1="493.5" x2="436.4064" y2="517" class=""/><line x1="436.4064" y1="470" x2="355" y2="517" class=""/><line x1="151.484" y1="399.5" x2="151.484" y2="352.5" class=""/><line x1="355" y1="517" x2="355" y2="470" class=""/><line x1="151.484" y1="399.5" x2="355" y2="517" class=""/><line x1="151.484" y1="352.5" x2="232.8904" y2="211.5" class=""/><line x1="355" y1="470" x2="436.4064" y2="329" class=""/><line x1="151.484" y1="352.5" x2="355" y2="470" class=""/><line x1="232.8904" y1="211.5" x2="293.95" y2="176.25" class=""/><line x1="436.4064" y1="329" x2="558.516" y2="258.5" class=""/><line x1="232.8904" y1="211.5" x2="293.9452" y2="246.75" class=""/><line x1="375.3516" y1="293.75" x2="436.4064" y2="329" class=""/><line x1="558.516" y1="258.5" x2="558.516" y2="446.5" class=""/><line x1="416.05" y1="176.25" x2="558.516" y2="258.5" class=""/></g><g data-layer="base-marks" class="is-hidden"><line x1="615.5" y1="479.4" x2="355" y2="329" class="aux"/><line x1="355" y1="329" x2="94.5" y2="479.4" class="aux"/><line x1="355" y1="329" x2="355" y2="23.5" class="aux"/><text x="618.5" y="485.4" class="">宽</text><text x="97.5" y="485.4" class="">深</text><text x="358" y="29.5" class="">高</text></g><g data-layer="column" class="is-hidden"><line x1="416.0548" y1="129.25" x2="416.0548" y2="199.75" class=""/><line x1="416.0548" y1="199.75" x2="293.9452" y2="199.75" class=""/><line x1="293.9452" y1="199.75" x2="293.9452" y2="129.25" class=""/><line x1="293.9452" y1="129.25" x2="416.0548" y2="129.25" class=""/><line x1="416.0548" y1="293.75" x2="375.3516" y2="293.75" class=""/><line x1="416.0548" y1="293.75" x2="416.0548" y2="199.75" class=""/><line x1="375.3516" y1="293.75" x2="293.9452" y2="340.75" class=""/><line x1="293.9452" y1="340.75" x2="293.9452" y2="199.75" class=""/></g><g data-layer="column-marks" class="is-hidden"><line x1="293.9452" y1="199.75" x2="293.9452" y2="340.75" class="aux"/><text x="301.95" y="346.75" class="dim">斜面上的柱脚</text></g><g data-layer="visibility-check" class="is-hidden"><line x1="558.516" y1="446.5" x2="436.4064" y2="517" class=""/><line x1="436.4064" y1="517" x2="436.4064" y2="470" class=""/><line x1="395.7" y1="493.5" x2="436.4064" y2="517" class=""/><line x1="436.4064" y1="470" x2="355" y2="517" class=""/><line x1="151.484" y1="399.5" x2="151.484" y2="352.5" class=""/><line x1="355" y1="517" x2="355" y2="470" class=""/><line x1="151.484" y1="399.5" x2="355" y2="517" class=""/><line x1="151.484" y1="352.5" x2="232.8904" y2="211.5" class=""/><line x1="355" y1="470" x2="436.4064" y2="329" class=""/><line x1="151.484" y1="352.5" x2="355" y2="470" class=""/><line x1="232.8904" y1="211.5" x2="293.95" y2="176.25" class=""/><line x1="436.4064" y1="329" x2="558.516" y2="258.5" class=""/><line x1="232.8904" y1="211.5" x2="293.9452" y2="246.75" class=""/><line x1="375.3516" y1="293.75" x2="436.4064" y2="329" class=""/><line x1="558.516" y1="258.5" x2="558.516" y2="446.5" class=""/><line x1="416.05" y1="176.25" x2="558.516" y2="258.5" class=""/><line x1="416.0548" y1="129.25" x2="416.0548" y2="199.75" class=""/><line x1="416.0548" y1="199.75" x2="293.9452" y2="199.75" class=""/><line x1="293.9452" y1="199.75" x2="293.9452" y2="129.25" class=""/><line x1="293.9452" y1="129.25" x2="416.0548" y2="129.25" class=""/><line x1="416.0548" y1="293.75" x2="375.3516" y2="293.75" class=""/><line x1="416.0548" y1="293.75" x2="416.0548" y2="199.75" class=""/><line x1="375.3516" y1="293.75" x2="293.9452" y2="340.75" class=""/><line x1="293.9452" y1="340.75" x2="293.9452" y2="199.75" class=""/></g></svg><figcaption>根据左、俯视图重建空间形体。与补画的主视图共用同一几何关系。 空间图为可旋转线框，纸面图按正等轴测方向保留可见线。</figcaption></figure></div></div>
 <nav class="controls" aria-label="作图步骤">
 <span id="count">题图</span><button id="prev" disabled>上一步</button><button id="next">下一步</button><button id="finish">完成图</button>
 </nav>
@@ -64,11 +100,136 @@ function render(position) {
   get('count').textContent = done ? '完成图' : position ? '第 ' + position + ' 步 / 共 ' + config.steps.length + ' 步' : '题图';
   previous.disabled = position === 0;
   next.disabled = finish.disabled = done;
+  renderSpace(position);
 }
 
 previous.onclick = () => render(current - 1);
 next.onclick = () => render(current + 1);
 finish.onclick = () => render(config.steps.length + 1);
+const panel = get('space-panel');
+const pointMarkers = [...panel.querySelectorAll('.space-point')];
+const linkedPoints = [...get('drawing').querySelectorAll('[data-point]'), ...pointMarkers];
+const sceneSteps = [...panel.querySelectorAll('[data-space-step]')];
+const planes = [...panel.querySelectorAll('[data-plane]')];
+const reference = panel.querySelector('.space-status');
+let selectedPoint = '';
+
+function highlightPoint() {
+  for (const node of linkedPoints) {
+    const active = selectedPoint === node.dataset.point;
+    node.classList.toggle('is-selected', active);
+    if (node.matches('.space-point')) node.setAttribute('aria-pressed', String(active));
+  }
+
+  const projections = [...new Set(linkedPoints
+    .filter(node => node.tagName.toLowerCase() === 'text' && node.dataset.point === selectedPoint &&
+      !node.closest('.is-hidden'))
+    .map(node => node.textContent))];
+  reference.textContent = selectedPoint
+    ? selectedPoint + ' 的投影 · ' + (projections.join('、') || '本步还未画出')
+    : '点选字母，对照纸面图中已画出的投影。';
+}
+
+function renderSpace(position) {
+  const activePlanes = new Set();
+  for (const element of sceneSteps) {
+    const start = Number(element.dataset.spaceStep);
+    const end = Number(element.dataset.spaceUntil ?? Infinity);
+    const visible = position >= start && position <= end;
+    element.classList.toggle('is-hidden', !visible);
+    element.classList.toggle('is-faded', visible && Boolean(element.dataset.spaceFocus) && position > start && end !== Infinity);
+    if (visible && element.dataset.spaceFocus && (position === start || end === Infinity)) {
+      activePlanes.add(element.dataset.spaceFocus);
+    }
+  }
+  for (const plane of planes) {
+    plane.classList.toggle('is-active', activePlanes.has(plane.dataset.plane));
+  }
+  if (!pointMarkers.some(node => node.dataset.point === selectedPoint && !node.closest('.is-hidden'))) {
+    selectedPoint = '';
+  }
+  highlightPoint();
+}
+
+for (const marker of pointMarkers) {
+  marker.onclick = () => {
+    selectedPoint = selectedPoint === marker.dataset.point ? '' : marker.dataset.point;
+    highlightPoint();
+  };
+  marker.onkeydown = event => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      marker.onclick();
+    }
+  };
+}
+
+// Orbit the existing SVG geometry, keeping paper projections and point IDs fixed.
+const orbit = panel.querySelector('svg[data-orbit]');
+const objects = [...orbit.querySelectorAll('[data-world]')].map(element => ({
+  element,
+  points: element.dataset.world.split(' ').map(point => point.split(',').map(Number)),
+  offset: (element.dataset.offset || '0,0').split(',').map(Number),
+}));
+const fit = orbit.dataset.fit.split(' ').map(point => point.split(',').map(Number));
+const defaults = orbit.dataset.orbit.split(',').map(Number);
+let [azimuth, elevation] = defaults;
+let drag = null;
+
+function drawOrbit() {
+  const a = azimuth * Math.PI / 180;
+  const e = elevation * Math.PI / 180;
+  const sa = Math.sin(a), ca = Math.cos(a), se = Math.sin(e), ce = Math.cos(e);
+  const project = ([x, y, z]) => [-sa * x + ca * y, se * (ca * x + sa * y) - ce * z];
+  const all = fit.map(project);
+  const xs = all.map(([x]) => x), ys = all.map(([,y]) => y);
+  const left = Math.min(...xs), right = Math.max(...xs);
+  const top = Math.min(...ys), bottom = Math.max(...ys);
+  const scale = Math.min(430 / Math.max(1, right - left), 214 / Math.max(1, bottom - top));
+  for (const {element, points, offset} of objects) {
+    const mapped = points.map(project).map(([x, y]) =>
+      [270 + (x - (left + right) / 2) * scale, 142 + (y - (top + bottom) / 2) * scale]);
+    const [[x,y]] = mapped;
+    const tag = element.localName;
+    const attrs = tag === 'polygon' ? {points: mapped.map(p => p.join(',')).join(' ')} :
+      tag === 'line' ? {x1:x, y1:y, x2:mapped[1][0], y2:mapped[1][1]} :
+      tag === 'circle' ? {cx:x, cy:y} : {
+        x:Math.max(10, Math.min(435, x + offset[0])),
+        y:Math.max(20, Math.min(272, y + offset[1])),
+      };
+    for (const [key, value] of Object.entries(attrs)) element.setAttribute(key, value);
+  }
+}
+
+get('reset-space').addEventListener('click', () => {
+  [azimuth, elevation] = defaults;
+  drawOrbit();
+});
+
+orbit.addEventListener('pointerdown', event => {
+  if (!event.isPrimary || event.button !== 0) return;
+  drag = {id:event.pointerId, x:event.clientX, y:event.clientY, azimuth, elevation, moved:false};
+});
+orbit.addEventListener('pointermove', event => {
+  if (!drag || drag.id !== event.pointerId) return;
+  const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
+  if (!drag.moved) {
+    if (Math.hypot(dx, dy) < 5) return;
+    orbit.setPointerCapture(event.pointerId);
+    drag.moved = true;
+  }
+  azimuth = drag.azimuth - dx * .42;
+  elevation = Math.max(8, Math.min(83, drag.elevation + dy * .35));
+  drawOrbit();
+});
+function endDrag(event) {
+  if (drag?.id === event.pointerId) drag = null;
+}
+orbit.addEventListener('pointerup', endDrag);
+orbit.addEventListener('pointercancel', endDrag);
+orbit.addEventListener('pointerleave', event => {
+  if (!drag?.moved) endDrag(event);
+});
 </script>
 </main>
 </html>

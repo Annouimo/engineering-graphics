@@ -24,11 +24,47 @@ svg .dim{font-size:15px}svg .hidden-edge{stroke-dasharray:6 4}svg text{stroke:no
 .is-hidden{display:none}
 svg .ring{fill:none}svg .ring,svg .ring.aux{stroke-width:1.25}
 @media(prefers-color-scheme:dark){:root{--paper:#242218;--ink:#ebe5d7;--blue:#abc9eb;--muted:#beb6a5;--rule:#5b5547;--diagram:#211f15;--faded:#a19a8b;--button-bg:#223d5f;--button-ink:#fff}}
+.space-controls { display:flex; flex-wrap:wrap; gap:8px; }
+.space-panel svg { margin-top:8px; background:var(--diagram); border:1px solid var(--rule); }
+.space-panel svg text { font-size:22px; }
+.space-panel svg .space-result { color:var(--blue); }
+.space-panel svg .space-result line { stroke-width:2; }
+.space-panel svg .space-axis { color:var(--ink); }
+.space-point { cursor:pointer; }
+.space-point .point-hit { fill:transparent; stroke:none; }
+.space-point:focus-visible .point-hit,
+.space-point.is-selected .point-hit { stroke:var(--blue); stroke-width:2; }
+svg [data-point].is-selected { color:var(--blue); }
+svg text.is-selected { font-weight:bold; text-decoration:underline; }
+#drawing circle.is-selected { r:5; stroke-width:2; }
+.space-note, .space-status { color:var(--muted); font-size:.9rem; margin:8px 0; }
+main:has(.diagram-pair) { max-width:1240px; display:flex; flex-direction:column; }
+main:has(.diagram-pair) > header { order:-2; }
+main:has(.diagram-pair) > .controls { order:-1; position:sticky; top:0; z-index:1; background:var(--paper); }
+.diagram-pair { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:clamp(20px,3vw,36px); margin:20px 0; align-items:start; }
+.diagram-pair h2 { margin:0 0 8px; }
+.paper-panel figure { margin:0; }
+.space-panel { margin:0; }
+.space-panel svg .plane { font-size:15px; }
+.space-panel .space-projection { color:var(--blue); }
+.space-panel .space-projection text { fill:var(--blue); }
+@media(max-width:820px) { .diagram-pair { grid-template-columns:1fr; gap:18px; } }
+
+.space-panel svg[data-orbit] { touch-action:none; cursor:grab; user-select:none; }
+.space-panel svg[data-orbit]:active { cursor:grabbing; }
+
+.space-plane { color:var(--faded); }
+.space-plane polygon { fill:currentColor; fill-opacity:.05; stroke:currentColor; stroke-opacity:.48; vector-effect:non-scaling-stroke; }
+.space-plane.is-active,.space-plane.plane-extra { color:var(--blue); }
+.space-plane.is-active polygon { fill-opacity:.12; stroke-opacity:.82; }
+.space-plane.is-active text { fill:currentColor; font-weight:bold; }
+[data-space-focus].is-faded { opacity:.36; }
+.space-status:empty { display:none; }
 </style>
 <main>
 <header><small><a href="../">工程图学研习</a> / 2024 秋期中 · 第 2 题（1）</small>
 <h1>求点 K 的三面投影</h1><p>已知直线 AB 的正面投影和水平投影。在直线 AB 上找一点 K，使 K 到 Y 轴的距离为 30 mm，并作出 K 的三面投影。</p></header>
-<figure><svg viewBox="0 0 570 380" id="drawing" role="img" aria-label="求点 K 的三面投影 的分步作图"><g data-layer="given"><line x1="82" y1="232" x2="514" y2="232" class=""/><line x1="303" y1="38" x2="303" y2="356" class=""/><text x="62" y="238" class="">X</text><text x="310" y="252" class="">O</text><text x="312" y="36" class="">Z</text><text x="522" y="237" class="">Y<tspan baseline-shift="sub" font-size="13">W</tspan></text><text x="312" y="360" class="">Y<tspan baseline-shift="sub" font-size="13">H</tspan></text><text x="83" y="49" class="plane">正面 V</text><text x="83" y="355" class="plane">水平 H</text><text x="440" y="49" class="plane">侧面 W</text><line x1="193" y1="102" x2="193" y2="302" class="aux"/><line x1="273" y1="172" x2="273" y2="382" class="aux"/><line x1="193" y1="102" x2="273" y2="172" class=""/><line x1="193" y1="302" x2="273" y2="382" class=""/><text x="173" y="99" class="">a′</text><text x="281" y="169" class="">b′</text><text x="173" y="307" class="">a</text><text x="281" y="377" class="">b</text></g><g data-layer="radius" class="is-hidden"><line x1="303" y1="232" x2="208.4693" y2="115.5356" class=""/><circle cx="208.4693" cy="115.5356" r="2.7"/><text x="186.4693" y="137.5356" class="found">k′</text></g><g data-layer="radius-marks" class="is-hidden"><path class="" d="M154.878,208.3381 A150,150 0 0,1 274.3193,84.7675"/><text x="207.7347" y="192.7678" class="">30 mm</text></g><g data-layer="vertical-projection" class="is-hidden"><line x1="208.4693" y1="115.5356" x2="208.4693" y2="317.4693" class="aux"/><circle cx="208.4693" cy="317.4693" r="2.7"/><text x="190.4693" y="335.4693" class="found">k</text></g><g data-layer="depth-transfer" class="is-hidden"><line x1="303" y1="232" x2="426" y2="355" class="aux"/><line x1="208.4693" y1="317.4693" x2="388.4693" y2="317.4693" class="aux"/><line x1="388.4693" y1="317.4693" x2="388.4693" y2="115.5356" class="aux"/><line x1="208.4693" y1="115.5356" x2="388.4693" y2="115.5356" class="aux"/><circle cx="388.4693" cy="115.5356" r="2.7"/><text x="397.4693" y="105.5356" class="found">k″</text></g><g data-layer="depth-transfer-marks" class="is-hidden"><text x="429" y="357" class="">45°</text></g><g data-layer="answer-geometry" class="is-hidden"><circle cx="208.4693" cy="115.5356" r="2.7"/><text x="186.4693" y="137.5356" class="found">k′</text><circle cx="208.4693" cy="317.4693" r="2.7"/><text x="190.4693" y="335.4693" class="found">k</text><circle cx="388.4693" cy="115.5356" r="2.7"/><text x="397.4693" y="105.5356" class="found">k″</text></g></svg><figcaption>依据原题重绘的教学示意图。图中距离按所用示意坐标绘制。</figcaption></figure>
+<div class="diagram-pair"><section class="space-panel" id="space-panel" aria-labelledby="space-title"><h2 id="space-title">空间图</h2><div class="space-controls"><button id="reset-space" type="button">恢复默认视角</button></div><svg viewBox="0 0 540 284" role="group" aria-label="空间图，拖动可旋转" data-orbit="62.0,28.0" data-fit="110,70,130 30,150,60 0,0,0 220,0,0 94.5307,85.4693,116.4644 0,85.4693,0 0,155,0 0,0,0 220,0,0 220,179,0 0,179,0 0,0,0 220,0,0 220,0,156 0,0,156 0,0,0 0,179,0 0,179,156 0,0,156"><g class="space-plane plane-h" data-plane="H"><polygon data-world="0,0,0 220,0,0 220,179,0 0,179,0" points="315.2825,148.1844 155.6635,188.0289 224.7175,249 384.3365,209.1555"/><text data-world="191.4,110.98,0" data-offset="-28,19" x="191.2275" y="239.6512" class="plane">水平面 H</text></g><g class="space-plane plane-v" data-plane="V"><polygon data-world="0,0,0 220,0,0 220,0,156 0,0,156" points="315.2825,148.1844 155.6635,188.0289 155.6635,74.8445 315.2825,35"/><text data-world="220,0,156" data-offset="-8,-10" x="147.6635" y="64.8445" class="plane">正投影面 V</text></g><g class="space-plane plane-w" data-plane="W"><polygon data-world="0,0,0 0,179,0 0,179,156 0,0,156" points="315.2825,148.1844 384.3365,209.1555 384.3365,95.9711 315.2825,35"/><text data-world="0,179,96.72" data-offset="15,3" x="399.3365" y="141.9812" class="plane">侧投影面 W</text></g><text data-world="0,0,0" data-offset="7,15" x="322.2825" y="163.1844" class="plane">O</text><g data-space-step="1" data-space-until="1" data-space-focus="V" class="is-hidden"><g class="space-projection"><line data-world="94.5307,85.4693,116.4644 94.5307,0,116.4644" x1="279.6687" y1="109.9179" x2="246.6966" y2="80.8053" class="aux"/><circle data-world="94.5307,0,116.4644" class="" cx="246.6966" cy="80.8053" r="3"/><text data-world="94.5307,0,116.4644" data-offset="8,-9" x="254.6966" y="71.8053" class="">k′</text></g></g><g data-space-step="2" data-space-until="2" data-space-focus="H" class="is-hidden"><g class="space-projection"><line data-world="94.5307,85.4693,116.4644 94.5307,85.4693,0" x1="279.6687" y1="109.9179" x2="279.6687" y2="194.4176" class="aux"/><circle data-world="94.5307,85.4693,0" class="" cx="279.6687" cy="194.4176" r="3"/><text data-world="94.5307,85.4693,0" data-offset="8,-9" x="287.6687" y="185.4176" class="">k</text></g></g><g data-space-step="3" data-space-focus="W" class="is-hidden"><g class="space-projection"><line data-world="94.5307,85.4693,116.4644 0,85.4693,116.4644" x1="279.6687" y1="109.9179" x2="348.2546" y2="92.7973" class="aux"/><circle data-world="0,85.4693,116.4644" class="" cx="348.2546" cy="92.7973" r="3"/><text data-world="0,85.4693,116.4644" data-offset="8,-9" x="356.2546" y="83.7973" class="">k″</text></g></g><g data-space-step="0"><g class="space-outline"><line data-world="110,70,130 30,150,60" x1="262.4773" y1="97.6298" x2="351.3828" y2="161.1784" class=""/></g></g><g data-space-step="0"><g class="space-axis"><line data-world="0,0,0 0,155,0" x1="315.2825" y1="148.1844" x2="375.0779" y2="200.9806" class=""/><text data-world="0,155,0" data-offset="-27,22" x="348.0779" y="222.9806" class="">Y 轴</text></g></g><g data-space-step="1" class="is-hidden"><g class="space-result"><line data-world="94.5307,85.4693,116.4644 0,85.4693,0" x1="279.6687" y1="109.9179" x2="348.2546" y2="177.297" class=""/></g></g><g data-space-step="0"><g class="space-point" data-point="A" role="button" tabindex="0" aria-label="对照点 A" aria-pressed="false"><circle data-world="110,70,130" class="point-hit" cx="262.4773" cy="97.6298" r="15"/><circle data-world="110,70,130" class="" cx="262.4773" cy="97.6298" r="4"/><text data-world="110,70,130" data-offset="-19,-12" x="243.4773" y="85.6298" class="">A</text></g></g><g data-space-step="0"><g class="space-point" data-point="B" role="button" tabindex="0" aria-label="对照点 B" aria-pressed="false"><circle data-world="30,150,60" class="point-hit" cx="351.3828" cy="161.1784" r="15"/><circle data-world="30,150,60" class="" cx="351.3828" cy="161.1784" r="4"/><text data-world="30,150,60" data-offset="10,17" x="361.3828" y="178.1784" class="">B</text></g></g><g data-space-step="1" class="is-hidden"><g class="space-point" data-point="K" role="button" tabindex="0" aria-label="对照点 K" aria-pressed="false"><circle data-world="94.5307,85.4693,116.4644" class="point-hit" cx="279.6687" cy="109.9179" r="15"/><circle data-world="94.5307,85.4693,116.4644" class="" cx="279.6687" cy="109.9179" r="4"/><text data-world="94.5307,85.4693,116.4644" data-offset="9,-9" x="288.6687" y="100.9179" class="">K</text></g></g></svg><p class="space-note">拖动旋转，点选字母可对照纸面投影。</p><p class="space-status" aria-live="polite"></p></section><div class="paper-panel"><h2>纸面作图</h2><figure><svg viewBox="0 0 570 380" id="drawing" role="img" aria-label="求点 K 的三面投影 的分步作图"><g data-layer="given"><line x1="82" y1="232" x2="514" y2="232" class=""/><line x1="303" y1="38" x2="303" y2="356" class=""/><text x="62" y="238" class="">X</text><text x="310" y="252" class="" data-point="O">O</text><text x="312" y="36" class="">Z</text><text x="522" y="237" class="">Y<tspan baseline-shift="sub" font-size="13">W</tspan></text><text x="312" y="360" class="">Y<tspan baseline-shift="sub" font-size="13">H</tspan></text><text x="83" y="49" class="plane">正面 V</text><text x="83" y="355" class="plane">水平 H</text><text x="440" y="49" class="plane">侧面 W</text><line x1="193" y1="102" x2="193" y2="302" class="aux"/><line x1="273" y1="172" x2="273" y2="382" class="aux"/><line x1="193" y1="102" x2="273" y2="172" class=""/><line x1="193" y1="302" x2="273" y2="382" class=""/><text x="173" y="99" class="" data-point="A">a′</text><text x="281" y="169" class="" data-point="B">b′</text><text x="173" y="307" class="" data-point="A">a</text><text x="281" y="377" class="" data-point="B">b</text></g><g data-layer="radius" class="is-hidden"><line x1="303" y1="232" x2="208.4693" y2="115.5356" class=""/><circle cx="208.4693" cy="115.5356" r="2.7" data-point="K"/><text x="186.4693" y="137.5356" class="found" data-point="K">k′</text></g><g data-layer="radius-marks" class="is-hidden"><path class="" d="M154.878,208.3381 A150,150 0 0,1 274.3193,84.7675"/><text x="207.7347" y="192.7678" class="">30 mm</text></g><g data-layer="vertical-projection" class="is-hidden"><line x1="208.4693" y1="115.5356" x2="208.4693" y2="317.4693" class="aux"/><circle cx="208.4693" cy="317.4693" r="2.7" data-point="K"/><text x="190.4693" y="335.4693" class="found" data-point="K">k</text></g><g data-layer="depth-transfer" class="is-hidden"><line x1="303" y1="232" x2="426" y2="355" class="aux"/><line x1="208.4693" y1="317.4693" x2="388.4693" y2="317.4693" class="aux"/><line x1="388.4693" y1="317.4693" x2="388.4693" y2="115.5356" class="aux"/><line x1="208.4693" y1="115.5356" x2="388.4693" y2="115.5356" class="aux"/><circle cx="388.4693" cy="115.5356" r="2.7" data-point="K"/><text x="397.4693" y="105.5356" class="found" data-point="K">k″</text></g><g data-layer="depth-transfer-marks" class="is-hidden"><text x="429" y="357" class="">45°</text></g><g data-layer="answer-geometry" class="is-hidden"><circle cx="208.4693" cy="115.5356" r="2.7" data-point="K"/><text x="186.4693" y="137.5356" class="found" data-point="K">k′</text><circle cx="208.4693" cy="317.4693" r="2.7" data-point="K"/><text x="190.4693" y="335.4693" class="found" data-point="K">k</text><circle cx="388.4693" cy="115.5356" r="2.7" data-point="K"/><text x="397.4693" y="105.5356" class="found" data-point="K">k″</text></g></svg><figcaption>依据原题重绘的教学示意图。图中距离按所用示意坐标绘制。</figcaption></figure></div></div>
 <nav class="controls" aria-label="作图步骤">
 <span id="count">题图</span><button id="prev" disabled>上一步</button><button id="next">下一步</button><button id="finish">完成图</button>
 </nav>
@@ -64,11 +100,136 @@ function render(position) {
   get('count').textContent = done ? '完成图' : position ? '第 ' + position + ' 步 / 共 ' + config.steps.length + ' 步' : '题图';
   previous.disabled = position === 0;
   next.disabled = finish.disabled = done;
+  renderSpace(position);
 }
 
 previous.onclick = () => render(current - 1);
 next.onclick = () => render(current + 1);
 finish.onclick = () => render(config.steps.length + 1);
+const panel = get('space-panel');
+const pointMarkers = [...panel.querySelectorAll('.space-point')];
+const linkedPoints = [...get('drawing').querySelectorAll('[data-point]'), ...pointMarkers];
+const sceneSteps = [...panel.querySelectorAll('[data-space-step]')];
+const planes = [...panel.querySelectorAll('[data-plane]')];
+const reference = panel.querySelector('.space-status');
+let selectedPoint = '';
+
+function highlightPoint() {
+  for (const node of linkedPoints) {
+    const active = selectedPoint === node.dataset.point;
+    node.classList.toggle('is-selected', active);
+    if (node.matches('.space-point')) node.setAttribute('aria-pressed', String(active));
+  }
+
+  const projections = [...new Set(linkedPoints
+    .filter(node => node.tagName.toLowerCase() === 'text' && node.dataset.point === selectedPoint &&
+      !node.closest('.is-hidden'))
+    .map(node => node.textContent))];
+  reference.textContent = selectedPoint
+    ? selectedPoint + ' 的投影 · ' + (projections.join('、') || '本步还未画出')
+    : '点选字母，对照纸面图中已画出的投影。';
+}
+
+function renderSpace(position) {
+  const activePlanes = new Set();
+  for (const element of sceneSteps) {
+    const start = Number(element.dataset.spaceStep);
+    const end = Number(element.dataset.spaceUntil ?? Infinity);
+    const visible = position >= start && position <= end;
+    element.classList.toggle('is-hidden', !visible);
+    element.classList.toggle('is-faded', visible && Boolean(element.dataset.spaceFocus) && position > start && end !== Infinity);
+    if (visible && element.dataset.spaceFocus && (position === start || end === Infinity)) {
+      activePlanes.add(element.dataset.spaceFocus);
+    }
+  }
+  for (const plane of planes) {
+    plane.classList.toggle('is-active', activePlanes.has(plane.dataset.plane));
+  }
+  if (!pointMarkers.some(node => node.dataset.point === selectedPoint && !node.closest('.is-hidden'))) {
+    selectedPoint = '';
+  }
+  highlightPoint();
+}
+
+for (const marker of pointMarkers) {
+  marker.onclick = () => {
+    selectedPoint = selectedPoint === marker.dataset.point ? '' : marker.dataset.point;
+    highlightPoint();
+  };
+  marker.onkeydown = event => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      marker.onclick();
+    }
+  };
+}
+
+// Orbit the existing SVG geometry, keeping paper projections and point IDs fixed.
+const orbit = panel.querySelector('svg[data-orbit]');
+const objects = [...orbit.querySelectorAll('[data-world]')].map(element => ({
+  element,
+  points: element.dataset.world.split(' ').map(point => point.split(',').map(Number)),
+  offset: (element.dataset.offset || '0,0').split(',').map(Number),
+}));
+const fit = orbit.dataset.fit.split(' ').map(point => point.split(',').map(Number));
+const defaults = orbit.dataset.orbit.split(',').map(Number);
+let [azimuth, elevation] = defaults;
+let drag = null;
+
+function drawOrbit() {
+  const a = azimuth * Math.PI / 180;
+  const e = elevation * Math.PI / 180;
+  const sa = Math.sin(a), ca = Math.cos(a), se = Math.sin(e), ce = Math.cos(e);
+  const project = ([x, y, z]) => [-sa * x + ca * y, se * (ca * x + sa * y) - ce * z];
+  const all = fit.map(project);
+  const xs = all.map(([x]) => x), ys = all.map(([,y]) => y);
+  const left = Math.min(...xs), right = Math.max(...xs);
+  const top = Math.min(...ys), bottom = Math.max(...ys);
+  const scale = Math.min(430 / Math.max(1, right - left), 214 / Math.max(1, bottom - top));
+  for (const {element, points, offset} of objects) {
+    const mapped = points.map(project).map(([x, y]) =>
+      [270 + (x - (left + right) / 2) * scale, 142 + (y - (top + bottom) / 2) * scale]);
+    const [[x,y]] = mapped;
+    const tag = element.localName;
+    const attrs = tag === 'polygon' ? {points: mapped.map(p => p.join(',')).join(' ')} :
+      tag === 'line' ? {x1:x, y1:y, x2:mapped[1][0], y2:mapped[1][1]} :
+      tag === 'circle' ? {cx:x, cy:y} : {
+        x:Math.max(10, Math.min(435, x + offset[0])),
+        y:Math.max(20, Math.min(272, y + offset[1])),
+      };
+    for (const [key, value] of Object.entries(attrs)) element.setAttribute(key, value);
+  }
+}
+
+get('reset-space').addEventListener('click', () => {
+  [azimuth, elevation] = defaults;
+  drawOrbit();
+});
+
+orbit.addEventListener('pointerdown', event => {
+  if (!event.isPrimary || event.button !== 0) return;
+  drag = {id:event.pointerId, x:event.clientX, y:event.clientY, azimuth, elevation, moved:false};
+});
+orbit.addEventListener('pointermove', event => {
+  if (!drag || drag.id !== event.pointerId) return;
+  const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
+  if (!drag.moved) {
+    if (Math.hypot(dx, dy) < 5) return;
+    orbit.setPointerCapture(event.pointerId);
+    drag.moved = true;
+  }
+  azimuth = drag.azimuth - dx * .42;
+  elevation = Math.max(8, Math.min(83, drag.elevation + dy * .35));
+  drawOrbit();
+});
+function endDrag(event) {
+  if (drag?.id === event.pointerId) drag = null;
+}
+orbit.addEventListener('pointerup', endDrag);
+orbit.addEventListener('pointercancel', endDrag);
+orbit.addEventListener('pointerleave', event => {
+  if (!drag?.moved) endDrag(event);
+});
 </script>
 </main>
 </html>
